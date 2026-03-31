@@ -2918,7 +2918,7 @@ elif page == "Model Metrics & Tables":
         {"Model": "LSTM", "Accuracy": 0.844, "Precision": 0.84, "Recall": 0.85, "F1 Score": 0.844},
         {"Model": "GRU", "Accuracy": 0.796, "Precision": 0.80, "Recall": 0.79, "F1 Score": 0.795},
         {"Model": "BiLSTM", "Accuracy": 0.77, "Precision": 0.82, "Recall": 0.71, "F1 Score": 0.76},
-      //  {"Model": "ResNet50", "Accuracy": 0.76, "Precision": 0.71, "Recall": 0.88, "F1 Score": 0.78},
+      #  {"Model": "ResNet50", "Accuracy": 0.76, "Precision": 0.71, "Recall": 0.88, "F1 Score": 0.78},
     ]
     df_metrics = pd.DataFrame(metrics).set_index("Model").round(3)
     st.markdown("**Deep learning model comparison** — rounded to 3 decimals")
