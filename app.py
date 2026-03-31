@@ -2870,12 +2870,7 @@ if page == "Test & Predict":
                         st.table(preds_df)
 
                         # Voting
-                        votes = [v for v in preds_df["Prediction"].values if isinstance(v, str)]
-                        if votes:
-                            final = max(set(votes), key=votes.count)
-                            st.success(f"🧠 Final Decision (majority vote): **{final}**")
-                        else:
-                            st.info("No valid model predictions available to vote on (check model outputs).")
+                     
 
 # # ---- Test & Predict ----
 # if page == "Test & Predict":
