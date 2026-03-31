@@ -2836,6 +2836,8 @@ if page == "Test & Predict":
                         st.subheader("Model predictions")
                         results = {}
                         for name, model in MODELS.items():
+                            if name in ["mobilenetv2", "resnet50"]:
+                                continue
                             try:
                                 out = model.predict(x_input, verbose=0)
                                 # Try to interpret typical model outputs
