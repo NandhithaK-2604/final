@@ -2918,7 +2918,7 @@ elif page == "Model Metrics & Tables":
         {"Model": "LSTM", "Accuracy": 0.844, "Precision": 0.84, "Recall": 0.85, "F1 Score": 0.844},
         {"Model": "GRU", "Accuracy": 0.796, "Precision": 0.80, "Recall": 0.79, "F1 Score": 0.795},
         {"Model": "BiLSTM", "Accuracy": 0.77, "Precision": 0.82, "Recall": 0.71, "F1 Score": 0.76},
-        {"Model": "ResNet50", "Accuracy": 0.76, "Precision": 0.71, "Recall": 0.88, "F1 Score": 0.78},
+      //  {"Model": "ResNet50", "Accuracy": 0.76, "Precision": 0.71, "Recall": 0.88, "F1 Score": 0.78},
     ]
     df_metrics = pd.DataFrame(metrics).set_index("Model").round(3)
     st.markdown("**Deep learning model comparison** — rounded to 3 decimals")
@@ -2962,28 +2962,28 @@ elif page == "Model Metrics & Tables":
                                file_name="feature_significance.csv", mime="text/csv")
         else:
             st.info("CSV not found in repo. Use the uploader above to load one.")
-# Performance Graphs (use new container-width and card style)
-elif page == "Performance Graphs":
-    st.header("Performance Graphs")
-    if os.path.exists(PLOTS_DIR):
-        imgs = sorted([f for f in os.listdir(PLOTS_DIR) if f.lower().endswith((".png",".jpg",".jpeg"))])
-    else:
-        imgs = []
+# # Performance Graphs (use new container-width and card style)
+# elif page == "Performance Graphs":
+#     st.header("Performance Graphs")
+#     if os.path.exists(PLOTS_DIR):
+#         imgs = sorted([f for f in os.listdir(PLOTS_DIR) if f.lower().endswith((".png",".jpg",".jpeg"))])
+#     else:
+#         imgs = []
 
-    if not imgs:
-        st.info(f"No images found in `{PLOTS_DIR}`. Add PNGs there or commit them to the repo.")
-    else:
-        cols = st.columns(2)
-        for i, fname in enumerate(imgs):
-            path = os.path.join(PLOTS_DIR, fname)
-            with cols[i % 2]:
-                st.markdown(f"<div class='plot-card'>", unsafe_allow_html=True)
-                try:
-                    img = Image.open(path)
-                    st.image(img, caption=fname, use_container_width=True)   # <<--- use_container_width
-                except Exception as e:
-                    st.error(f"Error loading {fname}: {e}")
-                st.markdown("</div>", unsafe_allow_html=True)
+#     if not imgs:
+#         st.info(f"No images found in `{PLOTS_DIR}`. Add PNGs there or commit them to the repo.")
+#     else:
+#         cols = st.columns(2)
+#         for i, fname in enumerate(imgs):
+#             path = os.path.join(PLOTS_DIR, fname)
+#             with cols[i % 2]:
+#                 st.markdown(f"<div class='plot-card'>", unsafe_allow_html=True)
+#                 try:
+#                     img = Image.open(path)
+#                     st.image(img, caption=fname, use_container_width=True)   # <<--- use_container_width
+#                 except Exception as e:
+#                     st.error(f"Error loading {fname}: {e}")
+#                 st.markdown("</div>", unsafe_allow_html=True)
 
 
 # Footer
