@@ -11,3 +11,326 @@ resampy>=0.4.2
 scipy>=1.10.0
 noisereduce>=3.0.0
 Pillow>=9.0.0
+Improve the UI of ONLY User Story 2 – Create Transaction in this React project.
+
+My assigned work is:
+
+US2 – Create Transaction
+
+The relevant files are inside the "us2-create-transaction" folder:
+
+- "BatchList.jsx"
+- "CreateBatchModal.jsx"
+- "payroll.css"
+- "TransactionDetailForm.jsx"
+
+VERY IMPORTANT — SCOPE
+
+ONLY modify User Story 2.
+
+Do NOT modify, refactor, rename, delete, or redesign anything belonging to:
+
+- "us1-login"
+- "us3-payment-creation-upload"
+- Any other user story
+- Other developers' components
+- Shared components, unless absolutely necessary for US2 and without changing their existing behavior
+- Existing business logic
+- Existing functionality
+- Existing routing
+
+Do not touch files outside US2 unless required to make the US2 UI work.
+
+The existing company branding, colors, layout structure, navigation, and shared components must remain unchanged.
+
+---
+
+UI GOAL
+
+Make US2 – Create Transaction look like a premium, production-ready enterprise banking portal.
+
+It should look:
+
+- Professional
+- Clean
+- Modern
+- Corporate
+- Sophisticated
+- Neat
+- Consistent
+- Easy to scan
+- Production-ready
+- Suitable for a real banking/company environment
+
+The goal is that when someone opens my US2 screen, it should immediately look like a real enterprise banking application, not a student/demo project.
+
+Do this through polishing the existing UI, not by creating an entirely new design.
+
+---
+
+Preserve the existing design
+
+DO NOT change:
+
+- Existing blue/green company color palette
+- Existing Standard Chartered-style branding
+- Existing header
+- Existing sidebar/navigation
+- Existing overall page layout
+- Existing shared components
+- Existing buttons' purpose
+- Existing workflow
+- Existing functionality
+- Existing data
+- Existing business logic
+
+Do not introduce flashy gradients, excessive animations, glassmorphism, unnecessary icons, or unrelated colors.
+
+Keep the design professional and appropriate for a banking portal.
+
+---
+
+Improve US2 screens
+
+1. Batch List
+
+Improve the existing batch list so it looks like a polished enterprise data table.
+
+Improve:
+
+- Page title hierarchy
+- Table header alignment
+- Column spacing
+- Row height
+- Cell padding
+- Typography
+- Amount alignment
+- Status badge appearance
+- Action button alignment
+- Consistent spacing
+- Table readability
+
+Keep the existing table structure and information.
+
+Monetary values should be properly aligned.
+
+Actions such as:
+
+- View
+- Edit
+- Delete
+
+should have consistent dimensions and spacing.
+
+---
+
+2. Create Batch Modal
+
+Make the existing Create Batch modal look polished and professional.
+
+Improve:
+
+- Modal spacing
+- Header hierarchy
+- Label/input spacing
+- Input height
+- Input alignment
+- Border radius
+- Focus states
+- Button alignment
+- Modal padding
+- Visual hierarchy
+
+The modal should feel like a professional banking workflow.
+
+Do NOT change the existing fields or functionality.
+
+---
+
+3. Transaction Detail Form
+
+This is an important US2 screen.
+
+Make the transaction/payee form look clean and structured.
+
+Organize the information clearly:
+
+- Employee ID
+- Name
+- Account Number
+- IFSC/SWIFT
+- Amount
+
+Use consistent input sizes and alignment.
+
+Numeric fields should be appropriately aligned.
+
+Make the form easy to scan and comfortable to use.
+
+---
+
+4. Summary and actions
+
+Where the existing screen displays:
+
+- Total Payees
+- Total Amount
+- Back to List
+- Save as Draft
+- Submit for Approval
+- Add Payee
+- Reset Rows
+
+make the action hierarchy clear.
+
+Keep primary actions visually prominent using the existing color scheme.
+
+Keep secondary actions subtle.
+
+Buttons should have consistent:
+
+- Height
+- Padding
+- Font size
+- Border radius
+- Alignment
+
+---
+
+Spacing and alignment
+
+This is one of the highest priorities.
+
+Use consistent spacing between:
+
+- Page title
+- Metadata
+- Tables
+- Forms
+- Sections
+- Alerts
+- Summary
+- Buttons
+
+Avoid elements appearing cramped.
+
+Also avoid unnecessary huge empty spaces.
+
+The entire page should feel balanced and intentionally designed.
+
+---
+
+Typography
+
+Improve the visual hierarchy without changing the application's overall font style.
+
+Use clear hierarchy for:
+
+Page title → section title → table headers → normal data → secondary information
+
+Use appropriate font weights rather than making everything bold.
+
+---
+
+Tables
+
+Make tables feel like professional enterprise banking tables.
+
+Use:
+
+- Clean header
+- Consistent row height
+- Subtle separators
+- Proper padding
+- Clear column alignment
+- Proper numeric alignment
+- Consistent action placement
+
+Do not use excessive borders.
+
+---
+
+Status badges
+
+Make existing statuses such as:
+
+- Pending
+- Draft
+- Submitted
+- Approved
+
+look like compact professional enterprise badges.
+
+Keep the existing color language.
+
+Make all badges consistent in:
+
+- Height
+- Padding
+- Font size
+- Border radius
+- Alignment
+
+---
+
+Empty states
+
+If there are no payees/transactions, don't leave a large blank area.
+
+Show a subtle professional empty state such as:
+
+"No payees added yet"
+
+with the existing Add Payee action.
+
+Do not create unnecessary new components if the existing shared components can be reused.
+
+---
+
+Responsive behavior
+
+Make sure the US2 UI remains clean at different screen sizes.
+
+Prevent:
+
+- Overlapping content
+- Broken tables
+- Misaligned buttons
+- Overflow
+- Inconsistent spacing
+
+---
+
+Code quality
+
+Before modifying anything:
+
+1. Inspect the existing US2 components.
+2. Understand the current structure.
+3. Reuse existing CSS/classes where possible.
+4. Prefer improving "payroll.css" rather than creating duplicate styles.
+5. Do not duplicate components.
+6. Do not change business logic.
+7. Do not change functionality.
+8. Do not modify other user stories.
+
+After making changes:
+
+- Verify US2 compiles successfully.
+- Verify existing US2 interactions still work.
+- Verify Create Batch works.
+- Verify View/Edit/Delete work.
+- Verify Add Payee works.
+- Verify Save as Draft works.
+- Verify Submit for Approval works.
+- Verify no files belonging to US1 or US3 were modified.
+
+Final requirement
+
+The final result should look like:
+
+"A polished, production-ready enterprise banking portal for US2 – Create Transaction."
+
+Keep the existing company design and structure, but make the UI significantly more professional, neat, consistent, visually balanced, and impressive.
+
+ONLY User Story 2 should be updated.
