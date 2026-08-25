@@ -334,3 +334,361 @@ The final result should look like:
 Keep the existing company design and structure, but make the UI significantly more professional, neat, consistent, visually balanced, and impressive.
 
 ONLY User Story 2 should be updated.
+
+
+
+I want you to improve the UI of the existing Payroll Batches page shown in the attached screenshot.
+
+The goal is to make this page look like a professional, modern enterprise banking/payroll application, while keeping the existing functionality completely unchanged.
+
+VERY IMPORTANT PROJECT CONSTRAINTS
+
+This project already uses shared components, shared CSS, global variables, design tokens, and common layouts.
+
+DO NOT:
+
+- Do NOT modify, rename, delete, or override global CSS variables.
+- Do NOT modify shared/global components.
+- Do NOT modify common buttons, inputs, tables, layouts, headers, sidebars, or other reusable components if they are shared with other pages.
+- Do NOT modify global CSS files or theme files.
+- Do NOT modify design tokens or existing color variables.
+- Do NOT change existing API calls or endpoints.
+- Do NOT change backend logic.
+- Do NOT change database-related logic.
+- Do NOT change routing.
+- Do NOT change existing state management or business logic.
+- Do NOT change existing functionality.
+- Do NOT remove any existing features.
+- Do NOT introduce changes that could affect other pages.
+
+IMPORTANT:
+
+Scope all UI changes specifically to the Payroll Batches page/component.
+
+If a style needs to be changed, apply it locally to this page using scoped styles/classes rather than modifying global styles.
+
+Reuse existing shared components and global variables wherever possible.
+
+Before making changes, inspect the existing Payroll Batches component and understand which components/styles are shared. Do not modify shared code just to achieve the visual design.
+
+---
+
+UI IMPROVEMENTS
+
+1. Page Header
+
+Improve the page header.
+
+Display:
+
+Payroll Batches
+
+Below it, add a small descriptive subtitle:
+
+Create, manage and track payroll payment batches.
+
+Keep the existing + Create New Batch functionality.
+
+Place the Create New Batch button neatly on the right side of the header.
+
+The button should look professional and compact rather than oversized.
+
+---
+
+2. Summary Cards
+
+Add a row of compact summary cards above the table.
+
+Cards:
+
+- Total Batches
+- Pending Approval
+- Total Payroll
+- Draft Batches
+
+Use the existing payroll batch data to calculate these values dynamically where possible.
+
+Do not hardcode values if the existing data can be used.
+
+The cards should be clean and minimal with:
+
+- subtle border
+- small shadow
+- rounded corners
+- clear number
+- smaller descriptive label
+- good spacing
+
+Do not make the cards excessively large.
+
+---
+
+3. Search and Filters
+
+Add a search/filter area above the table.
+
+Include:
+
+- Search by Batch ID
+- Status filter
+- Payment Date filter, if compatible with the existing data
+
+Example layout:
+
+Search Batch ID... | Status ▼ | Payment Date ▼
+
+Make the controls aligned and compact.
+
+If filtering functionality already exists, preserve it.
+
+If these controls are only visual additions, do not break or alter existing functionality.
+
+---
+
+4. Payroll Table
+
+Redesign the existing Payroll Batches table to look like a professional enterprise data table.
+
+Keep all existing columns and data.
+
+Current columns include:
+
+- Batch ID
+- Payment Date
+- Debit Account
+- Currency
+- Total Amount
+- Payees
+- Status
+- Actions
+
+Improve:
+
+- column spacing
+- row height
+- typography
+- alignment
+- borders
+- header styling
+- overall readability
+
+Use a clean, subtle table header instead of a very strong/bright blue header.
+
+Use light borders and sufficient whitespace.
+
+Make monetary values visually clear and right-aligned where appropriate.
+
+Example:
+
+$50,000.00
+
+should be visually emphasized slightly compared with secondary information.
+
+Add a subtle hover effect to rows.
+
+Do not change the actual data or table functionality.
+
+---
+
+5. Status Badges
+
+Make status values visually clear using compact rounded badges.
+
+Examples:
+
+- Draft → neutral/gray badge
+- Pending → amber/yellow badge
+- Approved → green badge
+- Completed → green badge
+- Rejected → red badge
+- Processing → blue badge
+
+Use the existing global color variables if available.
+
+Do not create or modify global color variables.
+
+Do not change the underlying status values.
+
+---
+
+6. Action Buttons
+
+Improve the existing action buttons:
+
+- View
+- Edit
+- Delete
+
+Keep their existing functionality exactly the same.
+
+Make them smaller, consistent and visually balanced.
+
+Suggested hierarchy:
+
+- View → subtle/outline
+- Edit → subtle/outline
+- Delete → destructive/red styling
+
+Do not make every action button look like a primary button.
+
+If icons are already available in the project, use the existing icon library rather than adding a new dependency.
+
+---
+
+7. Sidebar
+
+The existing sidebar contains:
+
+- Create
+- Manage
+- Approve
+
+Keep the existing navigation and functionality.
+
+Improve only the Payroll Batches page's visual integration with the sidebar.
+
+Do NOT modify the shared sidebar component if it is used by other pages.
+
+Do NOT change the global sidebar styles.
+
+If necessary, apply page-level adjustments around the sidebar without changing the shared component.
+
+The active navigation item should be clearly identifiable if this is already supported by the existing implementation.
+
+---
+
+8. Color Scheme
+
+Make the page feel like a professional corporate banking application.
+
+Prefer:
+
+- existing project/global primary colors
+- dark navy/blue for important primary elements
+- white backgrounds
+- light gray borders
+- subtle gray backgrounds
+- existing theme variables
+
+Use stronger colors only where they communicate meaning, such as status badges.
+
+Avoid:
+
+- neon green
+- excessive bright colors
+- too many colors
+- large colored blocks
+- unnecessary gradients
+
+Do not create new global colors. Reuse existing project variables.
+
+---
+
+9. Typography
+
+Use the existing project font if one is already configured.
+
+Improve typography hierarchy:
+
+- Page title → prominent and bold
+- Subtitle → smaller and muted
+- Card numbers → clear and slightly bold
+- Card labels → smaller and secondary
+- Table headers → medium weight
+- Table data → clean and readable
+
+Do not change the global font configuration.
+
+---
+
+10. Spacing and Layout
+
+Improve the overall spacing.
+
+The current screen has too much unused white space.
+
+Use the available page width effectively.
+
+Maintain:
+
+- consistent page padding
+- consistent gaps between cards
+- consistent table spacing
+- proper alignment
+- balanced vertical spacing
+
+Avoid making the UI crowded.
+
+The result should feel spacious but not empty.
+
+---
+
+11. Responsive Design
+
+Make the Payroll Batches page responsive.
+
+It should work properly on:
+
+- laptop screens
+- smaller desktop screens
+- tablet-sized screens
+
+If the table becomes too wide, allow horizontal scrolling rather than breaking the layout.
+
+Do not change the application's global responsive behavior.
+
+---
+
+12. Pagination
+
+If the existing application already has pagination, improve its appearance without changing its functionality.
+
+If pagination does not exist, do not implement complex backend pagination.
+
+A simple UI can be added only if it can work safely with the existing data.
+
+---
+
+DESIGN GOAL
+
+The final UI should feel like:
+
+A real production-level corporate banking payroll dashboard
+
+rather than a basic student/project application.
+
+Use this visual hierarchy:
+
+Payroll Batches                         + Create New Batch
+Create, manage and track payroll...
+
+┌────────────┐ ┌────────────┐ ┌────────────┐ ┌────────────┐
+│Total       │ │Pending     │ │Total       │ │Draft       │
+│Batches     │ │Approval    │ │Payroll     │ │Batches     │
+│    24      │ │     6      │ │  $1.24M    │ │     3      │
+└────────────┘ └────────────┘ └────────────┘ └────────────┘
+
+[ 🔍 Search Batch ID... ] [ Status ▼ ] [ Payment Date ▼ ]
+
+┌───────────────────────────────────────────────────────────────┐
+│ Batch ID | Payment Date | Debit Account | Amount | Status    │
+├───────────────────────────────────────────────────────────────┤
+│ BATCH... | 25 Aug 2026  | 1000293847    | $50,000 | Pending   │
+│ BATCH... | 30 Aug 2026  | 1000293847    | $0      | Draft     │
+└───────────────────────────────────────────────────────────────┘
+
+FINAL SAFETY REQUIREMENT
+
+Before finishing:
+
+1. Verify that no shared/global component was modified unnecessarily.
+2. Verify that no global CSS variables were changed.
+3. Verify that no global styles were changed.
+4. Verify that existing API calls still work.
+5. Verify that View/Edit/Delete functionality still works.
+6. Verify that routing still works.
+7. Verify that existing data is displayed correctly.
+8. Verify that other pages are not affected.
+9. Keep all changes limited to the Payroll Batches page/component and its locally scoped styles.
+
+Do not rewrite the application. Make targeted UI improvements only.
