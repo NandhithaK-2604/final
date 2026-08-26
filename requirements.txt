@@ -1,48 +1,99 @@
-Fix the inconsistent spacing between the shared Sidebar and the main page content.
+The previous layout spacing change caused a regression.
 
-Currently, when navigating between Create, Manage, Approve, Upload and Balances, the main content starts at different horizontal positions. This makes the dashboard layout inconsistent.
+IMPORTANT: Fix the layout without affecting the existing functionality or business logic.
 
-IMPORTANT:
-Do not modify the business logic or functionality of any page.
+CURRENT PROBLEM:
+After normalizing the spacing between the Sidebar and Main Content, the dashboard is now overflowing horizontally. Parts of the Header/Sidebar are going outside the viewport and are getting cut off. The pages are no longer fitting correctly inside the browser window.
 
-Use the shared dashboard layout to provide consistent positioning.
+Please fix this properly.
 
-Requirements:
+REQUIREMENTS:
 
-1. Sidebar width must remain consistent across all dashboard pages.
+1. The complete dashboard must fit within the browser viewport.
 
-2. Main content should always begin at the same horizontal position after the sidebar.
+2. Nothing in the Header, Sidebar, or Main Content should be pushed outside the screen.
 
-3. Use one common gap/padding between:
-   Sidebar → Main Content
+3. The Header must span the available viewport correctly and must not be cut off on the left or right.
 
-4. Do NOT add different margin-left values individually to Create, Manage, Approve, Upload or Balances.
+4. The Sidebar must remain fully visible and have a consistent width.
 
-5. The shared layout should control the structure, for example:
+5. Main Content must occupy only the remaining available space after the Sidebar.
 
-   [ Sidebar ][ consistent gap ][ Main Content ]
+6. Do NOT use width: 100vw for the main content if it causes overflow when the Sidebar is present.
 
-6. Give the main content consistent padding, approximately:
-   padding: 32px 40px;
+7. Prefer this layout structure:
 
-   Adjust slightly if required to match the existing design.
+   Dashboard
+   ├── Header
+   └── Body
+       ├── Sidebar
+       └── Main Content
 
-7. Remove page-specific margin-left/padding-left values that are causing inconsistent alignment, ONLY where safe.
+8. Use flexbox/grid correctly:
+   - Sidebar: fixed/flexible width, flex-shrink: 0
+   - Main Content: flex: 1
+   - Main Content: min-width: 0
+   - Avoid unnecessary fixed widths
+   - Avoid horizontal overflow
 
-8. Main content should use the available remaining width instead of fixed widths that cause horizontal overflow.
+9. The main content should have consistent spacing from the Sidebar, but the spacing must NOT increase the total width beyond the viewport.
 
-9. Avoid unnecessary horizontal scrolling.
+10. If necessary, use:
+    box-sizing: border-box;
 
-10. When navigating:
-    Create → Manage → Approve → Upload → Balances
+    and:
 
-    the left edge of the main content should remain visually aligned.
+    .main-content {
+      flex: 1;
+      min-width: 0;
+      box-sizing: border-box;
+    }
 
-11. Keep the existing Header and Sidebar appearance and functionality unchanged.
+11. Check for and remove/fix any:
+    width: 100vw;
+    fixed pixel widths;
+    excessive margin-left;
+    excessive padding;
+    min-width values
 
-12. Do not change APIs, routing, state management, validation or business logic.
+    that are causing horizontal overflow.
 
-13. Prefer fixing this through the existing shared Dashboard/Layout component rather than repeating CSS in every page.
+12. Tables should remain inside the main content area.
+    If a table is wider than the available content area, make ONLY the table container horizontally scrollable instead of making the entire dashboard/page scroll horizontally.
 
-IMPORTANT:
-Do not redesign unrelated components. Only normalize the dashboard layout spacing/alignment.
+13. Do NOT move or hide the Header, Sidebar, buttons, forms, tables or page content.
+
+14. Do NOT modify routing, APIs, state management, validation, services or business logic.
+
+15. Keep the existing Standard Chartered / Straight2Bank visual design:
+    - dark navy header
+    - light sidebar
+    - blue active navigation
+    - existing fonts
+    - existing colors
+    - existing icons
+
+16. Keep the consistent Sidebar → Main Content spacing that was recently added, but make it responsive so it does not push the page outside the viewport.
+
+17. VERY IMPORTANT:
+    This work is ONLY for User Story 2.
+    Do not change the appearance, layout, styles, components or behavior of unrelated pages/features outside User Story 2.
+
+18. If shared components or global CSS are being changed, make sure the change is scoped so it does NOT unintentionally alter other existing pages.
+
+19. Before finishing, test navigation between:
+    - Create Payroll
+    - Manage
+    - Approve
+    - Upload
+    - Balances
+
+    and verify:
+    - Header stays fully visible
+    - Sidebar stays fully visible
+    - Main content stays inside viewport
+    - consistent Sidebar/Main Content spacing
+    - no unwanted page-level horizontal scrollbar
+    - tables/forms remain usable
+
+Do not simply reduce the content width to hide the problem. Fix the underlying flex/grid/width/overflow issue.
