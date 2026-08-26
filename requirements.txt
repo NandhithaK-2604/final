@@ -1,99 +1,89 @@
-The previous layout spacing change caused a regression.
+There is still a layout issue across ALL User Story 2 dashboard pages.
 
-IMPORTANT: Fix the layout without affecting the existing functionality or business logic.
+The main content is positioned too far away from the Sidebar, leaving a large unnecessary empty horizontal gap.
 
-CURRENT PROBLEM:
-After normalizing the spacing between the Sidebar and Main Content, the dashboard is now overflowing horizontally. Parts of the Header/Sidebar are going outside the viewport and are getting cut off. The pages are no longer fitting correctly inside the browser window.
+I can see this consistently on:
+- Create Payroll
+- Manage
+- Approve
+- Upload
+- Balances
 
-Please fix this properly.
+IMPORTANT:
+Fix this at the SHARED DASHBOARD LAYOUT level instead of adding separate margins to each page.
 
-REQUIREMENTS:
+Requirements:
 
-1. The complete dashboard must fit within the browser viewport.
+1. Keep the Sidebar width fixed/consistent.
 
-2. Nothing in the Header, Sidebar, or Main Content should be pushed outside the screen.
+2. Main content should start reasonably close to the Sidebar with a small, consistent gap.
 
-3. The Header must span the available viewport correctly and must not be cut off on the left or right.
+3. Remove the excessive horizontal whitespace between Sidebar and Main Content.
 
-4. The Sidebar must remain fully visible and have a consistent width.
+4. Use a layout such as:
 
-5. Main Content must occupy only the remaining available space after the Sidebar.
+   .dashboard-body {
+       display: flex;
+       width: 100%;
+   }
 
-6. Do NOT use width: 100vw for the main content if it causes overflow when the Sidebar is present.
+   .sidebar {
+       flex: 0 0 [existing sidebar width];
+   }
 
-7. Prefer this layout structure:
+   .main-content {
+       flex: 1;
+       min-width: 0;
+       padding: 24px 32px;
+   }
 
-   Dashboard
-   ├── Header
-   └── Body
-       ├── Sidebar
-       └── Main Content
+5. Do NOT use a large margin-left on the page content.
 
-8. Use flexbox/grid correctly:
-   - Sidebar: fixed/flexible width, flex-shrink: 0
-   - Main Content: flex: 1
-   - Main Content: min-width: 0
-   - Avoid unnecessary fixed widths
-   - Avoid horizontal overflow
+6. Do NOT use fixed positioning to manually place each page.
 
-9. The main content should have consistent spacing from the Sidebar, but the spacing must NOT increase the total width beyond the viewport.
+7. Do NOT use width: 100vw on the main content if it causes overflow.
 
-10. If necessary, use:
-    box-sizing: border-box;
+8. The main content should use the remaining available width after the Sidebar.
 
-    and:
+9. Keep a consistent small gap/padding between Sidebar and Main Content on every User Story 2 page.
 
-    .main-content {
-      flex: 1;
-      min-width: 0;
-      box-sizing: border-box;
-    }
-
-11. Check for and remove/fix any:
-    width: 100vw;
-    fixed pixel widths;
-    excessive margin-left;
-    excessive padding;
-    min-width values
-
-    that are causing horizontal overflow.
-
-12. Tables should remain inside the main content area.
-    If a table is wider than the available content area, make ONLY the table container horizontally scrollable instead of making the entire dashboard/page scroll horizontally.
-
-13. Do NOT move or hide the Header, Sidebar, buttons, forms, tables or page content.
-
-14. Do NOT modify routing, APIs, state management, validation, services or business logic.
-
-15. Keep the existing Standard Chartered / Straight2Bank visual design:
-    - dark navy header
-    - light sidebar
-    - blue active navigation
-    - existing fonts
-    - existing colors
-    - existing icons
-
-16. Keep the consistent Sidebar → Main Content spacing that was recently added, but make it responsive so it does not push the page outside the viewport.
-
-17. VERY IMPORTANT:
-    This work is ONLY for User Story 2.
-    Do not change the appearance, layout, styles, components or behavior of unrelated pages/features outside User Story 2.
-
-18. If shared components or global CSS are being changed, make sure the change is scoped so it does NOT unintentionally alter other existing pages.
-
-19. Before finishing, test navigation between:
+10. The following pages must all have the SAME content starting position:
     - Create Payroll
     - Manage
     - Approve
     - Upload
     - Balances
 
-    and verify:
-    - Header stays fully visible
-    - Sidebar stays fully visible
-    - Main content stays inside viewport
-    - consistent Sidebar/Main Content spacing
-    - no unwanted page-level horizontal scrollbar
-    - tables/forms remain usable
+11. The content cards themselves can have their own internal padding, but their outer position relative to the Sidebar must be consistent.
 
-Do not simply reduce the content width to hide the problem. Fix the underlying flex/grid/width/overflow issue.
+12. Do not make the content too narrow. It should use the available horizontal space efficiently.
+
+13. Tables should use the available content width. If a table genuinely needs horizontal scrolling, only the table wrapper should scroll.
+
+14. Do not introduce page-level horizontal scrolling.
+
+15. Keep the existing Header and Sidebar design unchanged.
+
+16. Keep the current fonts, colors, icons and active-sidebar styling.
+
+17. Do NOT modify:
+    - API
+    - routing
+    - state
+    - validation
+    - service layer
+    - business logic
+
+18. This is ONLY for User Story 2.
+    Do not affect unrelated pages or other user stories.
+
+19. Avoid broad global CSS changes that could affect unrelated pages.
+
+20. Prefer fixing the shared Dashboard/Layout component so all User Story 2 pages inherit the same layout.
+
+VISUAL GOAL:
+The Sidebar should end, then there should be a reasonable small gap, and then the main content/card should begin.
+
+Do NOT leave the large blank area currently visible between the Sidebar and the content.
+
+After changing it, verify all five User Story 2 pages at the same browser resolution and make sure their content starts at the same horizontal position.
