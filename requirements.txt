@@ -1,384 +1,48 @@
-IMPORTANT SCOPE RESTRICTION — READ THIS FIRST
+Fix the inconsistent spacing between the shared Sidebar and the main page content.
 
-WORK ONLY ON USER STORY 2 — PAYROLL.
+Currently, when navigating between Create, Manage, Approve, Upload and Balances, the main content starts at different horizontal positions. This makes the dashboard layout inconsistent.
 
-All UI changes in this task must be LIMITED STRICTLY to User Story 2 / Payroll.
+IMPORTANT:
+Do not modify the business logic or functionality of any page.
 
-DO NOT modify, redesign, refactor, or change the UI, styling, functionality, logic, routes, components, or behavior of any other user story, page, or feature.
-
-The existing application contains multiple user stories/pages. They must remain exactly as they are.
-
-If a shared component is currently used by other user stories, DO NOT change that shared component in a way that changes its appearance or behavior for other pages.
-
-If a shared component needs Payroll-specific styling, create a Payroll-scoped variant/class/style instead.
-
-Prefer:
-- Payroll-specific CSS classes
-- Payroll-specific wrapper classes
-- Existing shared design tokens/variables
-- Existing shared components without changing their global behavior
-
-Avoid broad changes to:
-- global.css
-- App-level styles
-- shared Header styling
-- shared Sidebar styling
-- shared Button styling
-- shared Modal styling
-- shared Table styling
-
-unless the change is guaranteed not to affect other user stories.
-
-Before making any change, identify which files/components belong specifically to User Story 2 / Payroll.
-
-ONLY modify those files or add Payroll-specific files/styles when necessary.
-
-After implementation, verify that all other user stories/pages remain unchanged.
-
-==================================================
-USER STORY 2 — PAYROLL UI REDESIGN
-==================================================
-
-Redesign ONLY the Payroll pages belonging to User Story 2.
-
-The goal is to make the Payroll workflow look professional and consistent with the Standard Chartered/Pulse visual style shown in the reference screenshots.
-
-DO NOT change any business logic.
-
-DO NOT change:
-- API calls
-- backend integration
-- routes
-- validation
-- state management
-- existing functionality
-- data handling
-- event handlers
-- authentication/authorization
-
-ONLY improve the UI/UX and styling.
-
-==================================================
-PAYROLL PAGES TO IMPROVE
-==================================================
-
-Apply the redesign only to the User Story 2 Payroll flow, including:
-
-1. Payroll Batch List / Create Payroll page
-2. Create New Payroll Batch modal
-3. Payroll Batch Details page
-4. Payee section/table
-5. Add Payee UI
-6. Pagination
-7. Payroll summary
-8. Payroll action buttons
-9. Payroll-specific status badges
-
-Do not modify unrelated pages such as:
-- Balances
-- Approve
-- Manage
-- Upload
-- other user stories/features
-
-==================================================
-VISUAL STYLE
-==================================================
-
-Make User Story 2 visually consistent with the reference Standard Chartered/Pulse design:
-
-Primary navy:
-#071B3A
-
-Primary blue:
-#0072CE
-
-Page background:
-#F5F7FA
-
-Card:
-#FFFFFF
-
-Border:
-#E5E7EB
-
-Primary text:
-#1F2937
-
-Secondary text:
-#6B7280
-
-Use existing project/theme variables where available instead of introducing duplicate hardcoded values.
-
-Use the existing project font if one is already configured.
-
-Typography:
-
-Page title: 24–28px
-Section heading: 18–20px
-Normal text: 14–16px
-Labels: 13–14px
-Table text: 13–14px
-Buttons: 14px
-
-Use appropriate font weights and spacing to create clear hierarchy.
-
-==================================================
-CREATE NEW PAYROLL BATCH MODAL
-==================================================
-
-Make the modal clean and professional.
-
-Title:
-Create New Payroll Batch
-
-Fields:
-
-Debit Account
-[ Select debit account ]
-
-Base Currency
-[ Select currency ]
-
-Payment Date
-[ dd-mm-yyyy ]
-
-Buttons:
-
-Cancel
-Create Batch
+Use the shared dashboard layout to provide consistent positioning.
 
 Requirements:
-- Clear labels
-- Consistent input height
-- Light borders
-- Proper spacing
-- Subtle shadow
-- White background
-- Company blue primary button
-- Outlined secondary Cancel button
-- Proper calendar icon
-- Centered modal
-- Responsive width
 
-Preserve all existing form functionality and validation.
+1. Sidebar width must remain consistent across all dashboard pages.
 
-==================================================
-PAYROLL BATCH DETAILS
-==================================================
+2. Main content should always begin at the same horizontal position after the sidebar.
 
-Create a clear summary section.
+3. Use one common gap/padding between:
+   Sidebar → Main Content
 
-Example:
+4. Do NOT add different margin-left values individually to Create, Manage, Approve, Upload or Balances.
 
-BATCH-1787754951391-463                         [Draft]
+5. The shared layout should control the structure, for example:
 
-Debit Account       Currency       Payment Date
-2000384756          EUR            26 Aug 2026
+   [ Sidebar ][ consistent gap ][ Main Content ]
 
-Use:
-- dark navy for the batch ID
-- muted labels
-- stronger values
-- subtle status badge
-- clean card structure
+6. Give the main content consistent padding, approximately:
+   padding: 32px 40px;
 
-==================================================
-PAYEE SECTION
-==================================================
+   Adjust slightly if required to match the existing design.
 
-Create a professional PAYEES section.
+7. Remove page-specific margin-left/padding-left values that are causing inconsistent alignment, ONLY where safe.
 
-Top:
+8. Main content should use the available remaining width instead of fixed widths that cause horizontal overflow.
 
-PAYEES
+9. Avoid unnecessary horizontal scrolling.
 
-+ Add Payee
-Reset Rows
+10. When navigating:
+    Create → Manage → Approve → Upload → Balances
 
-Table:
+    the left edge of the main content should remain visually aligned.
 
-Employee ID
-Name
-Account Number
-IFSC/SWIFT
-Amount
-Actions
+11. Keep the existing Header and Sidebar appearance and functionality unchanged.
 
-Use:
-- clean white card
-- subtle table borders
-- professional table header
-- consistent input sizing
-- proper spacing
-- aligned columns
+12. Do not change APIs, routing, state management, validation or business logic.
 
-Preserve all existing Add Payee, Remove Payee, editing and validation functionality.
-
-==================================================
-ACTIONS
-==================================================
-
-Use clear action hierarchy.
-
-Back to List
-→ secondary outlined button
-
-Save as Draft
-→ neutral secondary button
-
-Submit for Approval
-→ primary blue button
-
-Do NOT use bright green for Save as Draft.
-
-Green should be reserved for success/approved states.
-
-==================================================
-SUMMARY
-==================================================
-
-Show:
-
-Total Payees
-1
-
-Total Amount
-€0.00
-
-Keep these visually grouped with the Payroll section.
-
-==================================================
-PAGINATION
-==================================================
-
-Place pagination directly below the table.
-
-Example:
-
-Showing 1–1 of 1
-
-[ First ] [ Prev ]     Page 1 of 1     [ Next ] [ Last ]
-
-Keep disabled states visually clear.
-
-==================================================
-STATUS BADGES
-==================================================
-
-Use subtle status colors:
-
-Draft → neutral gray
-Pending → amber
-Approved → green
-Rejected → red
-
-Keep badges small and professional.
-
-==================================================
-SIDEBAR / HEADER
-==================================================
-
-Do NOT redesign the application's shared Header or Sidebar globally.
-
-For User Story 2, ensure the Payroll page works correctly with the existing shared Header and Sidebar.
-
-If Payroll-specific styling is required, scope it only to the Payroll layout.
-
-The sidebar should:
-- show the correct Payroll navigation items
-- highlight the active Payroll item in blue
-- preserve existing navigation behavior
-- work correctly when collapsed
-
-Do not change the sidebar behavior for other user stories.
-
-==================================================
-GLOBAL CSS SAFETY
-==================================================
+13. Prefer fixing this through the existing shared Dashboard/Layout component rather than repeating CSS in every page.
 
 IMPORTANT:
-
-Do NOT make broad global.css changes just to style Payroll.
-
-If a global variable already exists and is appropriate, reuse it.
-
-If Payroll needs additional styling, use a Payroll-specific stylesheet or scoped classes.
-
-For example:
-
-.payroll-page { ... }
-.payroll-page .payroll-card { ... }
-.payroll-page .payroll-table { ... }
-.payroll-page .payroll-actions { ... }
-
-Do not write selectors that unintentionally affect other pages.
-
-Avoid selectors such as:
-
-button { ... }
-table { ... }
-input { ... }
-h1 { ... }
-.card { ... }
-
-if those selectors are global and could affect other user stories.
-
-==================================================
-COMPONENT SAFETY
-==================================================
-
-Reuse existing shared components where possible.
-
-However, DO NOT modify a shared component's default styling if that would change other user stories.
-
-If necessary, pass a Payroll-specific className/variant/prop to the shared component.
-
-Example:
-
-<Button variant="primary" className="payroll-primary-button">
-
-instead of changing the default Button styling globally.
-
-==================================================
-FINAL SAFETY CHECK
-==================================================
-
-Before finishing:
-
-1. Confirm every changed file belongs to User Story 2 / Payroll OR contains a strictly Payroll-scoped change.
-
-2. Confirm no unrelated user story was modified.
-
-3. Confirm no existing API/backend logic was changed.
-
-4. Confirm no routes were changed.
-
-5. Confirm no validation was changed.
-
-6. Confirm no state/business logic was changed.
-
-7. Confirm Create Batch still works.
-
-8. Confirm Add Payee still works.
-
-9. Confirm Remove Payee still works.
-
-10. Confirm Save as Draft still works.
-
-11. Confirm Submit for Approval still works.
-
-12. Confirm Back to List still works.
-
-13. Confirm pagination still works.
-
-14. Confirm the Payroll page works with the existing Header and Sidebar.
-
-15. Confirm other pages/user stories retain their existing appearance and functionality.
-
-IMPORTANT:
-If a proposed change could affect another user story, DO NOT make that change globally. Find a Payroll-scoped solution instead.
-
-FINAL REQUIREMENT:
-USER STORY 2 / PAYROLL ONLY.
-NO OTHER USER STORY OR PAGE SHOULD BE DISTURBED.
+Do not redesign unrelated components. Only normalize the dashboard layout spacing/alignment.
