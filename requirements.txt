@@ -1,819 +1,775 @@
-streamlit>=1.24.0
-tensorflow==2.20.0
-numpy>=2.3.0
-pandas>=2.0.0
-matplotlib>=3.6.0
-seaborn>=0.12.0
-scikit-learn>=1.1.0
-soundfile>=0.12.1
-librosa>=0.11.0
-resampy>=0.4.2
-scipy>=1.10.0
-noisereduce>=3.0.0
-Pillow>=9.0.0
-Improve the UI of ONLY User Story 2 – Create Transaction in this React project.
+Yes. Since you need to give this to your company AI/code assistant, the prompt should be very explicit about what to change and what NOT to change. The key is to tell it to modify the shared dashboard layout/header/sidebar, not your payroll business logic.
 
-My assigned work is:
+Use this prompt as-is:
 
-US2 – Create Transaction
-
-The relevant files are inside the "us2-create-transaction" folder:
-
-- "BatchList.jsx"
-- "CreateBatchModal.jsx"
-- "payroll.css"
-- "TransactionDetailForm.jsx"
-
-VERY IMPORTANT — SCOPE
-
-ONLY modify User Story 2.
-
-Do NOT modify, refactor, rename, delete, or redesign anything belonging to:
-
-- "us1-login"
-- "us3-payment-creation-upload"
-- Any other user story
-- Other developers' components
-- Shared components, unless absolutely necessary for US2 and without changing their existing behavior
-- Existing business logic
-- Existing functionality
-- Existing routing
-
-Do not touch files outside US2 unless required to make the US2 UI work.
-
-The existing company branding, colors, layout structure, navigation, and shared components must remain unchanged.
-
----
-
-UI GOAL
-
-Make US2 – Create Transaction look like a premium, production-ready enterprise banking portal.
-
-It should look:
-
-- Professional
-- Clean
-- Modern
-- Corporate
-- Sophisticated
-- Neat
-- Consistent
-- Easy to scan
-- Production-ready
-- Suitable for a real banking/company environment
-
-The goal is that when someone opens my US2 screen, it should immediately look like a real enterprise banking application, not a student/demo project.
-
-Do this through polishing the existing UI, not by creating an entirely new design.
-
----
-
-Preserve the existing design
-
-DO NOT change:
-
-- Existing blue/green company color palette
-- Existing Standard Chartered-style branding
-- Existing header
-- Existing sidebar/navigation
-- Existing overall page layout
-- Existing shared components
-- Existing buttons' purpose
-- Existing workflow
-- Existing functionality
-- Existing data
-- Existing business logic
-
-Do not introduce flashy gradients, excessive animations, glassmorphism, unnecessary icons, or unrelated colors.
-
-Keep the design professional and appropriate for a banking portal.
-
----
-
-Improve US2 screens
-
-1. Batch List
-
-Improve the existing batch list so it looks like a polished enterprise data table.
-
-Improve:
-
-- Page title hierarchy
-- Table header alignment
-- Column spacing
-- Row height
-- Cell padding
-- Typography
-- Amount alignment
-- Status badge appearance
-- Action button alignment
-- Consistent spacing
-- Table readability
-
-Keep the existing table structure and information.
-
-Monetary values should be properly aligned.
-
-Actions such as:
-
-- View
-- Edit
-- Delete
-
-should have consistent dimensions and spacing.
-
----
-
-2. Create Batch Modal
-
-Make the existing Create Batch modal look polished and professional.
-
-Improve:
-
-- Modal spacing
-- Header hierarchy
-- Label/input spacing
-- Input height
-- Input alignment
-- Border radius
-- Focus states
-- Button alignment
-- Modal padding
-- Visual hierarchy
-
-The modal should feel like a professional banking workflow.
-
-Do NOT change the existing fields or functionality.
-
----
-
-3. Transaction Detail Form
-
-This is an important US2 screen.
-
-Make the transaction/payee form look clean and structured.
-
-Organize the information clearly:
-
-- Employee ID
-- Name
-- Account Number
-- IFSC/SWIFT
-- Amount
-
-Use consistent input sizes and alignment.
-
-Numeric fields should be appropriately aligned.
-
-Make the form easy to scan and comfortable to use.
-
----
-
-4. Summary and actions
-
-Where the existing screen displays:
-
-- Total Payees
-- Total Amount
-- Back to List
-- Save as Draft
-- Submit for Approval
-- Add Payee
-- Reset Rows
-
-make the action hierarchy clear.
-
-Keep primary actions visually prominent using the existing color scheme.
-
-Keep secondary actions subtle.
-
-Buttons should have consistent:
-
-- Height
-- Padding
-- Font size
-- Border radius
-- Alignment
-
----
-
-Spacing and alignment
-
-This is one of the highest priorities.
-
-Use consistent spacing between:
-
-- Page title
-- Metadata
-- Tables
-- Forms
-- Sections
-- Alerts
-- Summary
-- Buttons
-
-Avoid elements appearing cramped.
-
-Also avoid unnecessary huge empty spaces.
-
-The entire page should feel balanced and intentionally designed.
-
----
-
-Typography
-
-Improve the visual hierarchy without changing the application's overall font style.
-
-Use clear hierarchy for:
-
-Page title → section title → table headers → normal data → secondary information
-
-Use appropriate font weights rather than making everything bold.
-
----
-
-Tables
-
-Make tables feel like professional enterprise banking tables.
-
-Use:
-
-- Clean header
-- Consistent row height
-- Subtle separators
-- Proper padding
-- Clear column alignment
-- Proper numeric alignment
-- Consistent action placement
-
-Do not use excessive borders.
-
----
-
-Status badges
-
-Make existing statuses such as:
-
-- Pending
-- Draft
-- Submitted
-- Approved
-
-look like compact professional enterprise badges.
-
-Keep the existing color language.
-
-Make all badges consistent in:
-
-- Height
-- Padding
-- Font size
-- Border radius
-- Alignment
-
----
-
-Empty states
-
-If there are no payees/transactions, don't leave a large blank area.
-
-Show a subtle professional empty state such as:
-
-"No payees added yet"
-
-with the existing Add Payee action.
-
-Do not create unnecessary new components if the existing shared components can be reused.
-
----
-
-Responsive behavior
-
-Make sure the US2 UI remains clean at different screen sizes.
-
-Prevent:
-
-- Overlapping content
-- Broken tables
-- Misaligned buttons
-- Overflow
-- Inconsistent spacing
-
----
-
-Code quality
-
-Before modifying anything:
-
-1. Inspect the existing US2 components.
-2. Understand the current structure.
-3. Reuse existing CSS/classes where possible.
-4. Prefer improving "payroll.css" rather than creating duplicate styles.
-5. Do not duplicate components.
-6. Do not change business logic.
-7. Do not change functionality.
-8. Do not modify other user stories.
-
-After making changes:
-
-- Verify US2 compiles successfully.
-- Verify existing US2 interactions still work.
-- Verify Create Batch works.
-- Verify View/Edit/Delete work.
-- Verify Add Payee works.
-- Verify Save as Draft works.
-- Verify Submit for Approval works.
-- Verify no files belonging to US1 or US3 were modified.
-
-Final requirement
-
-The final result should look like:
-
-"A polished, production-ready enterprise banking portal for US2 – Create Transaction."
-
-Keep the existing company design and structure, but make the UI significantly more professional, neat, consistent, visually balanced, and impressive.
-
-ONLY User Story 2 should be updated.
-
-
-
-I want you to improve the UI of the existing Payroll Batches page shown in the attached screenshot.
-
-The goal is to make this page look like a professional, modern enterprise banking/payroll application, while keeping the existing functionality completely unchanged.
-
-VERY IMPORTANT PROJECT CONSTRAINTS
-
-This project already uses shared components, shared CSS, global variables, design tokens, and common layouts.
-
-DO NOT:
-
-- Do NOT modify, rename, delete, or override global CSS variables.
-- Do NOT modify shared/global components.
-- Do NOT modify common buttons, inputs, tables, layouts, headers, sidebars, or other reusable components if they are shared with other pages.
-- Do NOT modify global CSS files or theme files.
-- Do NOT modify design tokens or existing color variables.
-- Do NOT change existing API calls or endpoints.
-- Do NOT change backend logic.
-- Do NOT change database-related logic.
-- Do NOT change routing.
-- Do NOT change existing state management or business logic.
-- Do NOT change existing functionality.
-- Do NOT remove any existing features.
-- Do NOT introduce changes that could affect other pages.
+Redesign the existing Straight2Bank application dashboard UI so that it follows the same visual style, layout, spacing, typography, colors, navigation behavior, and profile interaction as the existing company Pulse dashboard shown in the reference.
 
 IMPORTANT:
 
-Scope all UI changes specifically to the Payroll Batches page/component.
+- This is a UI/UX redesign only.
+- DO NOT change business logic.
+- DO NOT change API calls.
+- DO NOT change backend logic.
+- DO NOT change existing routes.
+- DO NOT remove existing functionality.
+- DO NOT change payroll calculations, validations, CRUD operations, approval logic, or transaction logic.
+- Reuse existing components and libraries wherever possible.
+- Make the changes in the shared Dashboard/Layout/Header/Sidebar components so that all user stories automatically get the same design.
+- Do not create a separate dashboard only for Payroll.
+- The existing Manage Transactions, Payroll, Approve, Create, Manage, etc. pages must continue working exactly as before.
 
-If a style needs to be changed, apply it locally to this page using scoped styles/classes rather than modifying global styles.
+REFERENCE DESIGN:
+The target design is the existing company Pulse dashboard.
 
-Reuse existing shared components and global variables wherever possible.
+==================================================
 
-Before making changes, inspect the existing Payroll Batches component and understand which components/styles are shared. Do not modify shared code just to achieve the visual design.
+1. OVERALL APPLICATION STRUCTURE
+   ==================================================
 
----
+Create a dashboard layout with:
 
-UI IMPROVEMENTS
+1. Fixed top header
+2. Left navigation sidebar
+3. Main content area
+4. Light background behind the main content
+5. White cards/content containers
+6. User profile icon and dropdown in the top-right
 
-1. Page Header
+Overall structure:
 
-Improve the page header.
+Header
 
-Display:
+Sidebar          Main Content
+Page content
+Cards
+Tables
+Forms
 
-Payroll Batches
+The header and sidebar must be shared by all pages.
 
-Below it, add a small descriptive subtitle:
+==================================================
+2. HEADER
 
-Create, manage and track payroll payment batches.
+Redesign the current Straight2Bank header to have a cleaner corporate banking appearance similar to the Pulse dashboard.
 
-Keep the existing + Create New Batch functionality.
+Header should contain:
 
-Place the Create New Batch button neatly on the right side of the header.
+LEFT:
 
-The button should look professional and compact rather than oversized.
+- Hamburger/menu icon
+- Standard Chartered/Straight2Bank logo
+- Application name
+- Navigation items such as:
+  - Explore
+  - Connect
+  - Resources
 
----
+RIGHT:
 
-2. Summary Cards
+- Search icon
+- Applications/grid icon
+- Notification/bell icon
+- User profile icon
 
-Add a row of compact summary cards above the table.
+The header should have a dark navy/blue background.
+
+Use a consistent height around 60–68px.
+
+Use proper horizontal spacing between items.
+
+Do not overcrowd the header.
+
+Header text should be small/medium sized and professional.
+
+Use white/light text on the dark header.
+
+==================================================
+3. HEADER COLORS
+
+Use a professional banking color palette.
+
+Primary header:
+
+- Dark navy blue
+
+Example starting value:
+#071B3A
+
+Primary action blue:
+
+- Blue similar to the company's existing banking blue
+
+Example:
+#0072CE
+
+Main page background:
+
+- Very light blue/gray
+
+Example:
+#F5F7FA
 
 Cards:
 
-- Total Batches
-- Pending Approval
-- Total Payroll
-- Draft Batches
+- White
 
-Use the existing payroll batch data to calculate these values dynamically where possible.
+Text:
 
-Do not hardcode values if the existing data can be used.
+- Dark navy/gray
 
-The cards should be clean and minimal with:
+Secondary text:
 
-- subtle border
-- small shadow
-- rounded corners
-- clear number
-- smaller descriptive label
-- good spacing
+- Muted gray
 
-Do not make the cards excessively large.
+Borders:
 
----
+- Very light gray
 
-3. Search and Filters
+Do not use excessive bright green.
 
-Add a search/filter area above the table.
+Green should mainly be used for:
 
-Include:
+- Success
+- Approved status
+- Positive indicators
 
-- Search by Batch ID
-- Status filter
-- Payment Date filter, if compatible with the existing data
+Use subtle colors rather than very saturated colors.
 
-Example layout:
+If the existing project already contains company color variables/theme values, REUSE those values instead of introducing new ones.
 
-Search Batch ID... | Status ▼ | Payment Date ▼
+==================================================
+4. SIDEBAR
 
-Make the controls aligned and compact.
+Redesign the sidebar to visually match the Pulse dashboard.
 
-If filtering functionality already exists, preserve it.
+Sidebar should:
 
-If these controls are only visual additions, do not break or alter existing functionality.
+- Be positioned below the header.
+- Have a clean light/white background OR the existing company's sidebar background depending on the existing design system.
+- Have consistent icons.
+- Have consistent spacing between menu items.
+- Have clear active/selected state.
+- Be vertically scrollable if menu items exceed the viewport.
 
----
+Existing functionality must remain.
 
-4. Payroll Table
+Current menu items such as:
 
-Redesign the existing Payroll Batches table to look like a professional enterprise data table.
+Create
+Manage
+Approve
+Upload
+Balances
 
-Keep all existing columns and data.
+must remain available if they are existing application features.
 
-Current columns include:
-
-- Batch ID
-- Payment Date
-- Debit Account
-- Currency
-- Total Amount
-- Payees
-- Status
-- Actions
-
-Improve:
-
-- column spacing
-- row height
-- typography
-- alignment
-- borders
-- header styling
-- overall readability
-
-Use a clean, subtle table header instead of a very strong/bright blue header.
-
-Use light borders and sufficient whitespace.
-
-Make monetary values visually clear and right-aligned where appropriate.
+Organize menu items logically.
 
 Example:
 
-$50,000.00
+PAYROLL
 
-should be visually emphasized slightly compared with secondary information.
+Create
+Manage
+Approve
 
-Add a subtle hover effect to rows.
+OPERATIONS
 
-Do not change the actual data or table functionality.
+Transactions
+Upload
+Balances
+
+Do not invent routes that don't exist.
+
+==================================================
+5. SIDEBAR ACTIVE STATE
+
+The currently selected page must have a clear active state.
+
+Do NOT use the current very bright neon-green rectangular block.
+
+Instead use a professional blue active state similar to the Pulse dashboard.
+
+Example:
+
+background:
+#E6F3FF
+
+text:
+primary blue
+
+icon:
+primary blue
+
+Optionally add a small blue indicator on the left.
+
+The active menu item should have slightly rounded corners.
+
+Example visual:
+
+[ icon ]  Manage
+^ active blue background
+
+Inactive items should have:
+
+- Dark gray text
+- Muted icon
+- White/light background
+
+Hover state should use a very subtle light-blue/gray background.
+
+==================================================
+6. SIDEBAR ICONS
+
+Use consistent professional icons.
+
+Do not mix different icon styles.
+
+If the project already uses an icon library such as:
+
+- Lucide
+- React Icons
+- Material Icons
+
+reuse the existing library.
+
+Icons should be approximately 18–20px.
+
+Text and icon should be vertically centered.
+
+Keep consistent spacing between icon and text.
+
+==================================================
+7. PROFILE ICON
+
+Add a profile icon in the top-right corner of the header similar to the Pulse dashboard.
+
+The profile icon should be circular.
+
+It can contain:
+
+- User silhouette
+  OR
+- User avatar if one already exists.
+
+Use a subtle circular background.
+
+When clicked, open a profile dropdown.
+
+==================================================
+8. PROFILE DROPDOWN
+
+The profile dropdown should visually resemble the company Pulse profile menu.
+
+Example structure:
 
 ---
 
-5. Status Badges
+| 👤  User Name                |
+|     User Role                |
+|                              |
+|       Edit Profile           |
+|                              |
+| Terms & Conditions            |
+| Privacy Notice               |
+| Terms of Use                 |
+|                              |
+| Sign Out                     |
 
-Make status values visually clear using compact rounded badges.
+The dropdown should:
+
+- Be positioned below the profile icon.
+- Have white background.
+- Have subtle border.
+- Have subtle shadow.
+- Have rounded corners.
+- Have proper padding.
+- Have clear separation between profile information and actions.
+
+Profile section:
+
+User name
+User role
+
+For the current application, use the logged-in user's existing data.
+
+Do NOT hardcode a user if the application already has logged-in user information available.
+
+==================================================
+9. PROFILE DROPDOWN COLORS
+
+Profile dropdown:
+
+background:
+#FFFFFF
+
+text:
+dark navy/gray
+
+secondary text:
+muted gray
+
+hover:
+very light blue/gray
+
+primary profile action:
+light blue background
+
+Sign Out:
+subtle danger styling if appropriate.
+
+Do not make the dropdown bright or colorful.
+
+==================================================
+10. MAIN PAGE BACKGROUND
+
+The current application uses too much plain white space.
+
+Change the main dashboard content background to a very light gray/blue.
+
+Suggested:
+
+#F5F7FA
+
+The main page should occupy the remaining viewport after the header and sidebar.
+
+Example:
+
+.header
+height: 64px
+
+.main-layout
+display: flex
+
+.sidebar
+width: approximately 220–250px
+
+.main-content
+flex: 1
+background: #F5F7FA
+
+==================================================
+11. PAGE CONTENT CONTAINERS
+
+Use white cards for important content.
+
+Cards should have:
+
+background:
+white
+
+border:
+1px solid light gray
+
+border-radius:
+8–12px
+
+subtle shadow if appropriate.
+
+Do NOT use heavy shadows.
+
+Do NOT make everything extremely rounded.
+
+The UI should look like an enterprise banking application, not a consumer social-media application.
+
+==================================================
+12. TYPOGRAPHY
+
+Make typography consistent throughout the application.
+
+Use the existing company/project font if it is already configured.
+
+DO NOT randomly introduce a new font.
+
+If the project already has a typography/theme configuration, reuse it.
+
+Recommended hierarchy:
+
+Page title:
+24–28px
+medium/semibold
+
+Section heading:
+18–20px
+medium/semibold
+
+Normal text:
+14–16px
+
+Secondary text:
+12–14px
+
+Table text:
+13–14px
+
+Sidebar text:
+14–15px
+
+Header navigation:
+14–15px
+
+Button text:
+14px
+
+Do not make every text element bold.
+
+Use font-weight consistently.
+
+==================================================
+13. PAGE TITLE
+
+For pages such as:
+
+Payroll Batches
+Manage Transactions
+Approvals
+
+use a clean page title at the top.
+
+Example:
+
+Payroll Batches
+
+Create, manage and track your payroll batches.
+
+The title should be dark navy.
+
+Subtitle should be muted gray.
+
+Maintain consistent spacing below the title.
+
+==================================================
+14. PAYROLL DASHBOARD
+
+Do not change the existing Payroll functionality.
+
+Improve only its presentation.
+
+The Payroll page should have:
+
+Page title:
+
+Payroll Batches
+
+Subtitle:
+
+Create, manage and track your payroll batches.
+
+Then summary cards:
+
+Total Batches
+Drafts
+Pending Approval
+Approved
+Total Payees
+Total Amount
+
+Cards should be white with subtle borders.
+
+Numbers should be larger than labels.
+
+Example:
+
+TOTAL BATCHES
+12
+
+DRAFT BATCHES
+3
+
+PENDING APPROVAL
+2
+
+Use icons only if the project already has an icon library.
+
+==================================================
+15. QUICK ACTIONS
+
+Add a clean Quick Actions section if it fits the existing Payroll page.
 
 Examples:
 
-- Draft → neutral/gray badge
-- Pending → amber/yellow badge
-- Approved → green badge
-- Completed → green badge
-- Rejected → red badge
-- Processing → blue badge
+Create New Batch
+View Drafts
+Pending Approvals
+Payment History
 
-Use the existing global color variables if available.
+The primary action should be:
 
-Do not create or modify global color variables.
++ Create New Batch
 
-Do not change the underlying status values.
+Use the company's primary blue.
 
----
+Do not add functionality that does not exist.
 
-6. Action Buttons
+If an action does not have an existing route/functionality, do not implement it.
 
-Improve the existing action buttons:
+==================================================
+16. SEARCH AND FILTERS
 
-- View
-- Edit
-- Delete
+Make search and filters look consistent.
 
-Keep their existing functionality exactly the same.
+Use:
 
-Make them smaller, consistent and visually balanced.
+Search batches...
 
-Suggested hierarchy:
+Status
+Payment Date
+Currency
 
-- View → subtle/outline
-- Edit → subtle/outline
-- Delete → destructive/red styling
+Inputs should have:
 
-Do not make every action button look like a primary button.
+- White background
+- Light border
+- Consistent height
+- Small border radius
+- Proper padding
+- Clear labels
 
-If icons are already available in the project, use the existing icon library rather than adding a new dependency.
+Do not use oversized inputs.
 
----
+==================================================
+17. TABLE DESIGN
 
-7. Sidebar
+Keep the existing Payroll table functionality.
 
-The existing sidebar contains:
+Improve only its styling.
 
-- Create
-- Manage
-- Approve
+Use:
 
-Keep the existing navigation and functionality.
+White table container
+Light borders
+Clear header
+Proper row spacing
+Consistent typography
 
-Improve only the Payroll Batches page's visual integration with the sidebar.
+Table header:
 
-Do NOT modify the shared sidebar component if it is used by other pages.
+- Slightly darker/muted text
+- Medium font weight
+- Light background
 
-Do NOT change the global sidebar styles.
+Rows:
 
-If necessary, apply page-level adjustments around the sidebar without changing the shared component.
+- White background
+- Subtle bottom border
+- Hover state
 
-The active navigation item should be clearly identifiable if this is already supported by the existing implementation.
+Avoid excessive grid lines.
 
----
+Amounts should be consistently aligned.
 
-8. Color Scheme
+Dates should be consistently aligned.
 
-Make the page feel like a professional corporate banking application.
+==================================================
+18. STATUS BADGES
 
-Prefer:
+Keep status badges but make them professional.
 
-- existing project/global primary colors
-- dark navy/blue for important primary elements
-- white backgrounds
-- light gray borders
-- subtle gray backgrounds
-- existing theme variables
+Draft:
+neutral gray
 
-Use stronger colors only where they communicate meaning, such as status badges.
+Pending:
+subtle amber
 
-Avoid:
+Approved:
+subtle green
 
-- neon green
-- excessive bright colors
-- too many colors
-- large colored blocks
-- unnecessary gradients
+Rejected:
+subtle red
 
-Do not create new global colors. Reuse existing project variables.
+Use small rounded badges.
 
----
+Example:
 
-9. Typography
+● Pending
 
-Use the existing project font if one is already configured.
+Do not use highly saturated colors.
 
-Improve typography hierarchy:
+==================================================
+19. BUTTONS
 
-- Page title → prominent and bold
-- Subtitle → smaller and muted
-- Card numbers → clear and slightly bold
-- Card labels → smaller and secondary
-- Table headers → medium weight
-- Table data → clean and readable
+Create a consistent button hierarchy.
 
-Do not change the global font configuration.
+Primary:
 
----
+Create New Batch
+Approve
+Submit
 
-10. Spacing and Layout
+Use primary blue.
 
-Improve the overall spacing.
+Secondary:
 
-The current screen has too much unused white space.
+View
+Edit
+Cancel
 
-Use the available page width effectively.
+Use white background with border.
 
-Maintain:
+Danger:
 
-- consistent page padding
-- consistent gaps between cards
-- consistent table spacing
-- proper alignment
-- balanced vertical spacing
+Delete
+Reject
 
-Avoid making the UI crowded.
+Use subtle red styling.
 
-The result should feel spacious but not empty.
+All buttons should have:
 
----
+- Consistent height
+- Consistent padding
+- Same border radius
+- Same font
+- Same font size
 
-11. Responsive Design
+==================================================
+20. MODALS
 
-Make the Payroll Batches page responsive.
+Do NOT use browser alert() or confirm().
 
-It should work properly on:
+Use the existing Modal component.
 
-- laptop screens
-- smaller desktop screens
-- tablet-sized screens
+For example:
 
-If the table becomes too wide, allow horizontal scrolling rather than breaking the layout.
+Delete Draft Batch?
 
-Do not change the application's global responsive behavior.
+Are you sure you want to delete this draft batch?
+This action cannot be undone.
 
----
+Cancel     Delete
 
-12. Pagination
+Use Toast for successful operations.
 
-If the existing application already has pagination, improve its appearance without changing its functionality.
+Examples:
 
-If pagination does not exist, do not implement complex backend pagination.
+Batch created successfully.
 
-A simple UI can be added only if it can work safely with the existing data.
+Batch submitted successfully.
 
----
+Draft deleted successfully.
 
-DESIGN GOAL
+==================================================
+21. RESPONSIVE DESIGN
 
-The final UI should feel like:
+The dashboard should work correctly on:
 
-A real production-level corporate banking payroll dashboard
+- Laptop
+- Desktop
+- Tablet
 
-rather than a basic student/project application.
+Sidebar should not overlap content.
 
-Use this visual hierarchy:
+Header should remain usable.
 
-Payroll Batches                         + Create New Batch
-Create, manage and track payroll...
+Tables should handle smaller widths appropriately.
 
-┌────────────┐ ┌────────────┐ ┌────────────┐ ┌────────────┐
-│Total       │ │Pending     │ │Total       │ │Draft       │
-│Batches     │ │Approval    │ │Payroll     │ │Batches     │
-│    24      │ │     6      │ │  $1.24M    │ │     3      │
-└────────────┘ └────────────┘ └────────────┘ └────────────┘
+==================================================
+22. IMPORTANT SHARED COMPONENT REQUIREMENT
 
-[ 🔍 Search Batch ID... ] [ Status ▼ ] [ Payment Date ▼ ]
+Before creating anything new, inspect the project for existing:
 
-┌───────────────────────────────────────────────────────────────┐
-│ Batch ID | Payment Date | Debit Account | Amount | Status    │
-├───────────────────────────────────────────────────────────────┤
-│ BATCH... | 25 Aug 2026  | 1000293847    | $50,000 | Pending   │
-│ BATCH... | 30 Aug 2026  | 1000293847    | $0      | Draft     │
-└───────────────────────────────────────────────────────────────┘
+Header
+Navbar
+Sidebar
+DashboardLayout
+Layout
+Modal
+Toast
+Button
+Icon
+Theme
+CSS variables
+Tailwind configuration
 
-FINAL SAFETY REQUIREMENT
-
-Before finishing:
-
-1. Verify that no shared/global component was modified unnecessarily.
-2. Verify that no global CSS variables were changed.
-3. Verify that no global styles were changed.
-4. Verify that existing API calls still work.
-5. Verify that View/Edit/Delete functionality still works.
-6. Verify that routing still works.
-7. Verify that existing data is displayed correctly.
-8. Verify that other pages are not affected.
-9. Keep all changes limited to the Payroll Batches page/component and its locally scoped styles.
-
-Do not rewrite the application. Make targeted UI improvements only.
-
-
-
-
-
-
-
-
-
-1. Login — POST /api/v1/auth/login
-Input (Request body):
-{
-  "username": "john",
-  "password": "pass123"
-}
-Output (Response body):
-{
-  "token": "abc123",
-  "user": {
-    "id": 1,
-    "name": "John",
-    "email": "john@example.com"
-  }
-}
-HTTP status:
-200 OK → login successful
-400 Bad Request → invalid/missing input
-401 Unauthorized → wrong username/password
-2. Products — GET /api/v1/products
-Input: Query parameters
-/api/v1/products?category=electronics&search=phone
-So:
-category = input
-search = input
-Output:
-[
-  {
-    "id": 101,
-    "name": "Phone",
-    "price": 299,
-    "category": "electronics"
-  }
-]
-HTTP status:
-200 OK → products returned
-400 Bad Request → invalid query parameters
-404 Not Found → if the API treats no matching resource as not found
-3. Cart Sync — POST /api/v1/cart/sync
-Input:
-{
-  "cartItems": [
-    {
-      "id": 101,
-      "qty": 2
-    }
-  ]
-}
-Here:
-id = product ID
-qty = quantity
-Output:
-{
-  "subtotal": 598,
-  "status": "SYNCHRONIZED"
-}
-Because 299 × 2 = 598.
-HTTP status:
-200 OK → cart successfully synchronized
-400 Bad Request → invalid cart data
-404 Not Found → product doesn't exist
-4. Payment — POST /api/v1/payments/process
-Input:
-{
-  "orderId": "ORD-123",
-  "amount": 598,
-  "cardNumber": "..."
-}
-The screenshot shows cardNumber as a string.
-Output:
-{
-  "transactionId": "TXN-99812",
-  "status": "APPROVED",
-  "timestamp": "ISO8601"
-}
-HTTP status:
-200 OK → payment successfully processed/approved
-400 Bad Request → invalid payment request
-402 Payment Required → payment failed/declined, if your API uses this convention
-500 Internal Server Error → payment-processing/server problem
-5. User Profile — PUT /api/v1/user/profile
-Input:
-{
-  "name": "John",
-  "email": "john@example.com",
-  "role": "USER"
-}
-Output:
-{
-  "success": true,
-  "updatedUser": {
-    "name": "John",
-    "email": "john@example.com"
-  }
-}
-HTTP status:
-200 OK → profile successfully updated
-400 Bad Request → invalid input
-401 Unauthorized → user isn't authenticated
-404 Not Found → user doesn't exist
-6. Analytics — GET /api/v1/admin/analytics
-Input:
-No request body and no query parameters are shown.
-So essentially:
-GET /api/v1/admin/analytics
-Output:
-{
-  "activeUsers": 1420,
-  "dailySales": "$12,450.00",
-  "systemHealth": "99.98%"
-}
-HTTP status:
-200 OK → analytics retrieved
-401 Unauthorized → not logged in
-403 Forbidden → logged in but not an admin
-500 Internal Server Error → server problem
+Reuse these components.
+
+If Header and Sidebar are already shared by multiple pages, modify the shared components rather than duplicating them.
+
+This is especially important because multiple user stories are being developed by different team members.
+
+For example:
+
+DashboardLayout
+├── Header
+├── Sidebar
+└── Page Content
+
+Then:
+
+Manage Transactions
+Payroll Batches
+Approvals
+Create Payroll
+
+should all use the same DashboardLayout.
+
+==================================================
+23. DO NOT BREAK EXISTING USER STORIES
+
+The application currently contains multiple user stories implemented by different developers.
+
+Do not modify routes or page functionality unnecessarily.
+
+If a developer already has:
+
+Manage Transactions
+
+and another developer has:
+
+Payroll Batches
+
+both must continue working.
+
+Only the common visual shell should be standardized.
+
+==================================================
+24. FINAL VISUAL GOAL
+
+The final application should feel like one professional corporate banking application.
+
+The visual characteristics should be:
+
+- Dark navy/blue header
+- Clean sidebar
+- Blue active navigation state
+- Light gray/blue page background
+- White content cards
+- Consistent typography
+- Professional profile icon
+- Profile dropdown
+- Clean icons
+- Subtle borders
+- Subtle shadows
+- Consistent spacing
+- Professional buttons
+- Clean status badges
+- Clear page hierarchy
+
+The design should take inspiration from the existing company Pulse dashboard but should NOT copy proprietary source code.
+
+Use the existing application's components, data, routes and business logic.
+
+==================================================
+25. IMPLEMENTATION ORDER
+
+Because this is an existing application, implement in this order:
+
+1. Inspect existing Dashboard/Layout component.
+2. Identify shared Header.
+3. Identify shared Sidebar.
+4. Identify existing theme/CSS/Tailwind configuration.
+5. Update Header.
+6. Update Sidebar.
+7. Add profile icon/dropdown.
+8. Update application background.
+9. Update typography.
+10. Update common buttons/cards.
+11. Update Payroll page styling.
+12. Verify Manage Transactions still works.
+13. Verify Create Payroll still works.
+14. Verify Approve still works.
+15. Verify routes have not changed.
+16. Verify no backend/API/business logic has changed.
+
+Do not spend time rewriting components that already work.
+
+The priority is to make the application visually consistent with the company dashboard while preserving all existing functionality.
