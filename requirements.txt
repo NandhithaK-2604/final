@@ -1,307 +1,40 @@
-Update the existing shared Dashboard/Header/Sidebar UI based on the current screenshot.
+Modify the existing shared Header component.
 
-DO NOT change any business logic, APIs, backend, routes, validations, or existing page functionality.
+I want the header to contain ONLY:
 
-I specifically need these UI changes:
+LEFT:
+1. Hamburger/menu button
+2. Standard Chartered logo
+3. Straight2Bank application name
 
-HEADER
-------
+RIGHT:
+4. Notification/bell icon
+5. Profile/user icon
 
-1. Remove these navigation items completely from the top header:
-   - Explore
-   - Connect
-   - Resources
+REMOVE COMPLETELY from the header:
+- Explore
+- Connect
+- Resources
+- Search icon
+- Calendar icon
+- Application/grid icon
+- Any other navigation icons
 
-2. Keep the header simple:
+Do not remove or modify the sidebar navigation.
 
-   LEFT:
-   Hamburger
-   Standard Chartered logo
-   Straight2Bank
+Do not change any routes, APIs, business logic or existing functionality.
 
-   RIGHT:
-   Search icon
-   Calendar icon
-   Notification/Bell icon
-   Profile icon
+The final header should visually be:
 
-3. The right-side icons must be clearly visible and properly sized.
+☰  Standard Chartered  Straight2Bank                         🔔  👤
 
-4. Use the existing icon library in the project if available.
-   Do NOT use text emojis such as 🔍 📅 🔔 👤 if a proper icon library is already installed.
+The hamburger must continue controlling the sidebar open/close behavior.
 
-5. Give the icons suitable corporate colors.
+The notification bell should remain visible and clickable, but full notification functionality is not required yet.
 
-6. Search icon:
-   - proper search icon
-   - approximately 20–22px
-   - blue/white depending on header contrast
-   - clickable
-
-7. Calendar icon:
-   - proper calendar icon
-   - approximately 20–22px
-   - same visual style as search
-
-8. Notification:
-   - proper bell icon
-   - approximately 20–22px
-   - same visual style
-   - clickable
-   - full notification functionality is NOT required yet
-
-9. Profile:
-   - circular profile/avatar
-   - approximately 38–44px
-   - light/white circular background
-   - green person/user icon inside
-   - visually similar to the Pulse dashboard reference
-   - clickable
-   - existing profile dropdown should open when clicked
-
-SIDEBAR
--------
-
-Keep the existing sidebar routes:
-
-Create
-Manage
-Approve
-Upload
-Balances
-
-Add a suitable professional icon to EACH menu item.
-
-Use the project's existing icon library.
-
-Preferred icons:
-
-Create:
-FilePlus / FilePlus2
-
-Manage:
-ClipboardList / List
-
-Approve:
-CircleCheck / CheckCircle
-
-Upload:
-Upload
-
-Balances:
-Wallet / Banknote / Landmark
-
-Choose the closest available icons from the existing icon library.
-
-Do NOT use random emoji characters if proper icons are available.
-
-ICON + TEXT
------------
-
-When sidebar is expanded:
-
-[icon] Create
-[icon] Manage
-[icon] Approve
-[icon] Upload
-[icon] Balances
-
-Icons should be:
-- approximately 18–20px
-- vertically centered
-- consistently spaced
-- same icon style
-
-ACTIVE SIDEBAR
---------------
-
-When the user is on a particular route, its sidebar item must become BLUE.
-
-Examples:
-
-/dashboard/createPayroll
-    → Create active
-
-/dashboard/manage
-    → Manage active
-
-/dashboard/approve
-    → Approve active
-
-/dashboard/upload
-    → Upload active
-
-/dashboard/balances
-    → Balances active
-
-Use the existing router/current pathname to determine the active item.
-
-Do NOT rely only on a temporary onClick state.
-
-The active item must remain blue after page refresh.
-
-Use a professional blue active state.
-
-Preferred:
-
-background: #E6F3FF
-color: #0072CE
-
-or use the company's existing blue theme color if one already exists.
-
-Do NOT use the current bright neon-green active state.
-
-HAMBURGER / SIDEBAR COLLAPSE
-----------------------------
-
-The hamburger button must work.
-
-When clicked while sidebar is open:
-
-→ sidebar should smoothly slide/collapse toward the left.
-
-When clicked again:
-
-→ sidebar should smoothly slide/open toward the right.
-
-Use React state.
-
-Example:
-
-const [sidebarOpen, setSidebarOpen] = useState(true);
-
-Toggle:
-
-setSidebarOpen(prev => !prev);
-
-Use a smooth CSS transition.
-
-The important behavior is:
-
-EXPANDED:
-
-┌──────────────────────┐
-│ 📝  Create           │
-│ 📋  Manage           │
-│ ✓   Approve          │
-│ ⬆   Upload           │
-│ 💰  Balances         │
-└──────────────────────┘
-
-COLLAPSED:
-
-┌──────┐
-│ ☰    │
-│ 📝   │
-│ 📋   │
-│ ✓    │
-│ ⬆    │
-│ 💰   │
-└──────┘
+The profile icon should remain visible and clickable and should open the existing profile dropdown.
 
 IMPORTANT:
-When collapsed, DO NOT hide the icons.
-
-The icons must remain visible.
-
-Only the text should disappear/collapse.
-
-The main content area should expand into the available space when the sidebar is collapsed.
-
-HEADER + SIDEBAR
-----------------
-
-There must be only ONE header and ONE sidebar.
-
-Do not render duplicate Header/Navbar/Sidebar components.
-
-Before creating anything new, inspect the existing project for:
-
-- DashboardLayout
-- Layout
-- Header
-- Navbar
-- Sidebar
-- Navigation
-- Profile
-- ProfileDropdown
-
-Modify the existing shared components instead of creating duplicates.
-
-The final architecture should preferably be:
-
-DashboardLayout
-│
-├── Header
-│   ├── Hamburger
-│   ├── Logo
-│   ├── Search
-│   ├── Calendar
-│   ├── Notification
-│   └── Profile
-│
-├── Sidebar
-│   ├── Create + icon
-│   ├── Manage + icon
-│   ├── Approve + icon
-│   ├── Upload + icon
-│   └── Balances + icon
-│
-└── MainContent
-    └── Existing page
-
-Do not change existing page functionality.
-
-VISUAL STYLE
-------------
-
-Keep the corporate Pulse-inspired design:
-
-Header:
-dark navy
-
-Sidebar:
-white/light background
-
-Main content:
-very light gray/blue background
-
-Cards:
-white
-
-Borders:
-subtle light gray
-
-Active navigation:
-professional blue
-
-Profile person:
-green icon inside light circular background
-
-Avoid neon green except where specifically required for status/profile styling.
-
-FINAL CHECK
------------
-
-After implementation verify:
-
-1. Explore is removed.
-2. Connect is removed.
-3. Resources is removed.
-4. Search icon is visible.
-5. Calendar icon is visible.
-6. Notification icon is visible.
-7. Profile icon is visible and resembles the Pulse profile icon.
-8. Create has a suitable icon.
-9. Manage has a suitable icon.
-10. Approve has a suitable icon.
-11. Upload has a suitable icon.
-12. Balances has a suitable icon.
-13. Clicking a sidebar item makes it blue.
-14. Active state follows the current route.
-15. Hamburger opens/closes the sidebar.
-16. Sidebar slides smoothly.
-17. Icons remain visible when sidebar is collapsed.
-18. Main content expands when sidebar is collapsed.
-19. No duplicate header/sidebar exists.
-20. Existing application functionality continues to work.
+Find the existing shared Header/Navbar component and modify it.
+Do NOT create a second Header.
+Remove the unwanted elements from the existing Header JSX rather than hiding them only with CSS.
