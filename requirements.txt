@@ -1,89 +1,143 @@
-There is still a layout issue across ALL User Story 2 dashboard pages.
+I want you to professionally improve the UI of User Story 2 / Payroll pages.
 
-The main content is positioned too far away from the Sidebar, leaving a large unnecessary empty horizontal gap.
-
-I can see this consistently on:
-- Create Payroll
-- Manage
-- Approve
-- Upload
-- Balances
+The goal is to make the UI look clean, modern, polished, professional, and consistent with a corporate banking application like Standard Chartered Straight2Bank.
 
 IMPORTANT:
-Fix this at the SHARED DASHBOARD LAYOUT level instead of adding separate margins to each page.
+Do not change the existing functionality, business logic, API calls, routing, validation, state management, or behavior. This task is primarily for UI/UX improvement.
 
-Requirements:
+DESIGN REQUIREMENTS:
 
-1. Keep the Sidebar width fixed/consistent.
+1. FONT & TYPOGRAPHY
+- Use the existing application font if one is already configured.
+- If there is no suitable font, use a clean professional sans-serif font.
+- Establish a consistent typography hierarchy:
+  - Page titles: approximately 24px, semibold
+  - Section headings: 18–20px, semibold
+  - Body/table text: 14px
+  - Labels: 13–14px, medium/semibold
+  - Secondary/helper text: 13–14px
+- Avoid overly large, bold, or decorative text.
+- Make all text easy to read and visually balanced.
 
-2. Main content should start reasonably close to the Sidebar with a small, consistent gap.
+2. COLORS
+- Follow a professional corporate banking color palette.
+- Use Standard Chartered-inspired blue as the primary/accent color.
+- Keep the overall UI mostly white/light neutral backgrounds.
+- Use dark navy/dark gray for important text.
+- Use muted gray for secondary text.
+- Use subtle colors for borders and backgrounds.
+- Avoid excessive bright colors, gradients, or unnecessary visual effects.
 
-3. Remove the excessive horizontal whitespace between Sidebar and Main Content.
+3. SPACING & ALIGNMENT
+- Make spacing consistent throughout all User Story 2 pages.
+- Use a consistent content padding and gap between the sidebar and main content.
+- Align page titles, buttons, cards, tables, forms, and other elements properly.
+- Use consistent margins and padding instead of page-specific random values.
+- Avoid excessive empty space.
+- Make the UI feel balanced and not cramped.
 
-4. Use a layout such as:
+4. CARDS & CONTAINERS
+- Use clean white cards with subtle borders.
+- Use small, professional border-radius values.
+- Use very subtle shadows only where necessary.
+- Keep card padding consistent, approximately 20–24px.
+- Avoid overly large cards or unnecessary decoration.
 
-   .dashboard-body {
-       display: flex;
-       width: 100%;
-   }
+5. TABLES
+- Make tables clean and professional.
+- Use a consistent blue table header with readable white text.
+- Use approximately 14px table text.
+- Give cells appropriate padding.
+- Align numbers, dates, statuses, and actions properly.
+- Use subtle row borders/dividers.
+- Make sure the table fits naturally within the content area.
+- If horizontal scrolling is required, apply it ONLY to the table container, not the entire page.
+- Prevent unnecessary page-level horizontal scrolling.
 
-   .sidebar {
-       flex: 0 0 [existing sidebar width];
-   }
+6. BUTTONS
+- Make buttons consistent throughout User Story 2.
+- Use approximately 40px height.
+- Use appropriate horizontal padding.
+- Use a professional 6px–8px border radius.
+- Primary actions should use the primary blue.
+- Secondary actions should use clean outlined styling.
+- Destructive actions such as Delete should be visually distinguishable but not overly aggressive.
+- Keep button text around 14px and medium/semibold.
 
-   .main-content {
-       flex: 1;
-       min-width: 0;
-       padding: 24px 32px;
-   }
+7. STATUS BADGES
+- Make Draft, Pending, Approved, Rejected, etc. look like clean professional status badges.
+- Use subtle background colors with readable text.
+- Keep the badge size and padding consistent.
 
-5. Do NOT use a large margin-left on the page content.
+8. FORMS & MODALS
+- Make labels, inputs, dropdowns, and date fields consistent.
+- Inputs should have comfortable padding and a consistent height.
+- Use subtle borders and clear focus states.
+- Improve spacing between form fields.
+- Make modal titles, content, and action buttons properly aligned.
+- The Create Payroll Batch modal should look clean and professional.
 
-6. Do NOT use fixed positioning to manually place each page.
+9. PAYROLL DETAIL PAGE
+- Improve the hierarchy of Batch ID, Debit Account, Currency, and Payment Date.
+- Keep metadata aligned and easy to scan.
+- Organize Add Payee, Reset Rows, pagination, and bottom action buttons neatly.
+- Make the page look like a professional banking workflow rather than a basic CRUD page.
 
-7. Do NOT use width: 100vw on the main content if it causes overflow.
+10. RESPONSIVENESS
+- The layout should work properly at different screen sizes.
+- Do not allow the sidebar and main content to overlap.
+- Do not introduce unnecessary horizontal scrolling.
+- Make sure tables and cards adapt properly to the available width.
 
-8. The main content should use the remaining available width after the Sidebar.
+11. CONSISTENCY
+Apply the same design language across all User Story 2 / Payroll-related pages:
+- Create Payroll
+- Payroll Batches/List
+- Payroll Batch Detail
+- Create Payroll modal
+- Any other pages/components belonging to User Story 2
 
-9. Keep a consistent small gap/padding between Sidebar and Main Content on every User Story 2 page.
+IMPORTANT SCOPE RESTRICTION:
+Do NOT modify global styles unless they are already specifically shared by User Story 2.
 
-10. The following pages must all have the SAME content starting position:
-    - Create Payroll
-    - Manage
-    - Approve
-    - Upload
-    - Balances
+Do NOT make changes that affect other user stories or unrelated pages.
 
-11. The content cards themselves can have their own internal padding, but their outer position relative to the Sidebar must be consistent.
+If a shared component is used by multiple pages, do not globally change its appearance just for User Story 2. Instead, use a User Story 2-specific class, wrapper, variant, or scoped styling where appropriate.
 
-12. Do not make the content too narrow. It should use the available horizontal space efficiently.
+Reuse existing shared components and existing design variables whenever possible.
 
-13. Tables should use the available content width. If a table genuinely needs horizontal scrolling, only the table wrapper should scroll.
+Do not unnecessarily create duplicate components.
 
-14. Do not introduce page-level horizontal scrolling.
+Before modifying anything, inspect the existing project structure and identify:
+- shared layout
+- sidebar
+- header
+- global styles
+- design variables
+- shared buttons
+- shared tables
+- shared modal/input components
 
-15. Keep the existing Header and Sidebar design unchanged.
+Only make the minimum necessary changes to achieve a polished UI.
 
-16. Keep the current fonts, colors, icons and active-sidebar styling.
+IMPORTANT:
+Do not rewrite working functionality.
+Do not change API/backend logic.
+Do not change routing.
+Do not change validation.
+Do not change state management.
+Do not modify unrelated files.
 
-17. Do NOT modify:
-    - API
-    - routing
-    - state
-    - validation
-    - service layer
-    - business logic
+The final result should feel like a polished, professional enterprise banking application:
+- clean
+- modern
+- minimal
+- consistent
+- well-spaced
+- easy to read
+- professional typography
+- professional colors
+- properly aligned
+- visually balanced
 
-18. This is ONLY for User Story 2.
-    Do not affect unrelated pages or other user stories.
-
-19. Avoid broad global CSS changes that could affect unrelated pages.
-
-20. Prefer fixing the shared Dashboard/Layout component so all User Story 2 pages inherit the same layout.
-
-VISUAL GOAL:
-The Sidebar should end, then there should be a reasonable small gap, and then the main content/card should begin.
-
-Do NOT leave the large blank area currently visible between the Sidebar and the content.
-
-After changing it, verify all five User Story 2 pages at the same browser resolution and make sure their content starts at the same horizontal position.
+Before finishing, verify that the User Story 2 pages look consistent and that other pages/user stories have not been visually or functionally affected.
