@@ -1,169 +1,68 @@
-I need you to fix the EXISTING dashboard UI to closely match the company Pulse dashboard shown in the reference screenshots.
+Update the existing shared Dashboard/Header/Sidebar UI based on the current screenshot.
 
-This is a UI/layout task only.
+DO NOT change any business logic, APIs, backend, routes, validations, or existing page functionality.
 
-DO NOT change:
-- Backend
-- APIs
-- Business logic
-- Existing routes
-- Payroll logic
-- Transaction logic
-- Approval logic
-- Validation
-- CRUD functionality
-- Existing page functionality
+I specifically need these UI changes:
 
-Only modify the shared UI components, CSS/theme and layout.
+HEADER
+------
 
-==================================================
-1. REMOVE DUPLICATE HEADER
-==================================================
+1. Remove these navigation items completely from the top header:
+   - Explore
+   - Connect
+   - Resources
 
-My current implementation is displaying the header twice.
+2. Keep the header simple:
 
-There must be ONLY ONE top header.
+   LEFT:
+   Hamburger
+   Standard Chartered logo
+   Straight2Bank
 
-Find why the Header/Navbar is rendered twice and remove the duplicate.
+   RIGHT:
+   Search icon
+   Calendar icon
+   Notification/Bell icon
+   Profile icon
 
-Final structure:
+3. The right-side icons must be clearly visible and properly sized.
 
-------------------------------------------------------
-☰   Standard Chartered   Straight2Bank          🔔  👤
-------------------------------------------------------
-|                                                    |
-| Sidebar                    Main Content             |
-|                                                    |
-------------------------------------------------------
+4. Use the existing icon library in the project if available.
+   Do NOT use text emojis such as 🔍 📅 🔔 👤 if a proper icon library is already installed.
 
-==================================================
-2. HEADER
-==================================================
+5. Give the icons suitable corporate colors.
 
-Create ONE clean dark-navy header similar to the Pulse dashboard.
+6. Search icon:
+   - proper search icon
+   - approximately 20–22px
+   - blue/white depending on header contrast
+   - clickable
 
-Header:
+7. Calendar icon:
+   - proper calendar icon
+   - approximately 20–22px
+   - same visual style as search
 
-- Full width
-- Approximately 60–70px height
-- Dark navy background
-- White/light text
+8. Notification:
+   - proper bell icon
+   - approximately 20–22px
+   - same visual style
+   - clickable
+   - full notification functionality is NOT required yet
 
-LEFT:
+9. Profile:
+   - circular profile/avatar
+   - approximately 38–44px
+   - light/white circular background
+   - green person/user icon inside
+   - visually similar to the Pulse dashboard reference
+   - clickable
+   - existing profile dropdown should open when clicked
 
-☰  Standard Chartered logo  Straight2Bank
+SIDEBAR
+-------
 
-The hamburger must be on the far left.
-
-REMOVE these from the header completely:
-
-- Explore
-- Connect
-- Resources
-- Search icon
-- Application/grid icon
-
-RIGHT:
-
-- Notification/bell icon
-- Profile/user icon
-
-The notification icon does NOT need complete notification functionality yet.
-
-It only needs to be displayed correctly and styled like the reference.
-
-Make the notification icon a clickable button/component so functionality can be added later.
-
-==================================================
-3. PROFILE ICON — IMPORTANT
-==================================================
-
-The profile icon must visually match the company Pulse dashboard.
-
-It should NOT look like a random emoji or generic icon.
-
-Use a circular profile/avatar container.
-
-Appearance:
-
-- Circular shape
-- Light/white circular background
-- Green user/person silhouette inside
-- Approximately 38–44px diameter
-- Center the person icon perfectly
-
-Example:
-
-       ( white circle )
-          🟢
-         👤
-
-Use the existing icon library if available.
-
-Prefer a proper user/person icon rather than an emoji.
-
-The profile icon should be placed at the far right of the header.
-
-When clicked, show the existing profile dropdown if one already exists.
-
-The dropdown should contain:
-
-User Name
-User Role
-
-Edit Profile
-
-Terms & Conditions
-Privacy Notice
-Terms of Use
-
-Sign Out
-
-Use existing logged-in user information.
-
-Do NOT hardcode user information if the application already provides it.
-
-==================================================
-4. NOTIFICATION ICON
-==================================================
-
-Add a bell/notification icon immediately to the LEFT of the profile icon.
-
-Example:
-
-                    🔔   👤
-
-Use a proper icon from the project's existing icon library.
-
-Style:
-
-- White/light icon
-- Approximately 20–22px
-- Transparent button background
-- No large colored square around it
-- Proper spacing between bell and profile icon
-
-It does NOT need backend functionality now.
-
-It only needs to be visually present and clickable.
-
-If needed:
-
-onClick={() => {
-   // notification functionality can be implemented later
-}}
-
-Do not create fake notification data.
-
-==================================================
-5. SIDEBAR
-==================================================
-
-Keep the existing application sidebar/navigation.
-
-Existing menu items should remain.
-
-For example:
+Keep the existing sidebar routes:
 
 Create
 Manage
@@ -171,116 +70,99 @@ Approve
 Upload
 Balances
 
-Do NOT invent new routes.
+Add a suitable professional icon to EACH menu item.
 
-The sidebar should visually resemble the Pulse dashboard:
+Use the project's existing icon library.
 
-- White/light background
-- Clean spacing
-- Consistent icons
-- Dark gray/navy text
-- Light borders
-- Scrollable when necessary
+Preferred icons:
 
-==================================================
-6. SIDEBAR ACTIVE ITEM — VERY IMPORTANT
-==================================================
+Create:
+FilePlus / FilePlus2
 
-Whenever I click a sidebar item, that item must become BLUE.
+Manage:
+ClipboardList / List
 
-For example:
+Approve:
+CircleCheck / CheckCircle
 
-Create
-Manage
-Approve
+Upload:
 Upload
-Balances
 
-If I click:
+Balances:
+Wallet / Banknote / Landmark
 
-Manage
+Choose the closest available icons from the existing icon library.
 
-then Manage should have a blue active state.
+Do NOT use random emoji characters if proper icons are available.
 
-If I click:
+ICON + TEXT
+-----------
 
-Approve
+When sidebar is expanded:
 
-then Approve should become blue.
+[icon] Create
+[icon] Manage
+[icon] Approve
+[icon] Upload
+[icon] Balances
 
-The previously selected item should lose its active state.
+Icons should be:
+- approximately 18–20px
+- vertically centered
+- consistently spaced
+- same icon style
 
-The active item should have:
+ACTIVE SIDEBAR
+--------------
 
-- Blue background OR very light blue background
-- Blue/white text depending on the chosen style
-- Blue icon
-- Clear visual indication that it is selected
+When the user is on a particular route, its sidebar item must become BLUE.
 
-Do NOT use the current neon-green active state.
+Examples:
 
-Use the same blue color family as the company Pulse dashboard.
+/dashboard/createPayroll
+    → Create active
 
-Preferred active styling:
+/dashboard/manage
+    → Manage active
+
+/dashboard/approve
+    → Approve active
+
+/dashboard/upload
+    → Upload active
+
+/dashboard/balances
+    → Balances active
+
+Use the existing router/current pathname to determine the active item.
+
+Do NOT rely only on a temporary onClick state.
+
+The active item must remain blue after page refresh.
+
+Use a professional blue active state.
+
+Preferred:
 
 background: #E6F3FF
 color: #0072CE
 
-If the Pulse reference uses a stronger blue filled state for the selected item, use:
+or use the company's existing blue theme color if one already exists.
 
-background: #0A9FE8
-color: #FFFFFF
+Do NOT use the current bright neon-green active state.
 
-Choose whichever matches the reference more closely.
+HAMBURGER / SIDEBAR COLLAPSE
+----------------------------
 
-The important requirement is:
+The hamburger button must work.
 
-CLICKED SIDEBAR ITEM = BLUE ACTIVE STATE.
+When clicked while sidebar is open:
 
-==================================================
-7. SIDEBAR CLICK BEHAVIOR
-==================================================
+→ sidebar should smoothly slide/collapse toward the left.
 
-The sidebar items must continue navigating to their existing routes.
+When clicked again:
 
-Do not break navigation.
-
-The active state should ideally be based on the current route rather than only a temporary click state.
-
-For example:
-
-/dashboard/createPayroll
-    → Create is active
-
-/dashboard/manage
-    → Manage is active
-
-/dashboard/approve
-    → Approve is active
-
-/dashboard/upload
-    → Upload is active
-
-/dashboard/balances
-    → Balances is active
-
-Use the application's existing routing system.
-
-Do not hardcode the active item if route information is already available.
-
-==================================================
-8. HAMBURGER BUTTON
-==================================================
-
-The hamburger/three-line icon must actually work.
-
-When clicked:
-
-IF sidebar is open:
-    smoothly slide/collapse sidebar toward the left.
-
-IF sidebar is closed:
-    smoothly slide/open sidebar from the left.
+→ sidebar should smoothly slide/open toward the right.
 
 Use React state.
 
@@ -288,257 +170,138 @@ Example:
 
 const [sidebarOpen, setSidebarOpen] = useState(true);
 
-Then:
+Toggle:
 
-onClick={() => setSidebarOpen(prev => !prev)}
+setSidebarOpen(prev => !prev);
 
-Use a smooth transition:
+Use a smooth CSS transition.
 
-transition: transform 0.25s ease;
+The important behavior is:
 
-or equivalent existing styling.
+EXPANDED:
 
-Do NOT reload the page.
+┌──────────────────────┐
+│ 📝  Create           │
+│ 📋  Manage           │
+│ ✓   Approve          │
+│ ⬆   Upload           │
+│ 💰  Balances         │
+└──────────────────────┘
 
-Do NOT navigate to another page.
+COLLAPSED:
 
-==================================================
-9. MAIN CONTENT
-==================================================
+┌──────┐
+│ ☰    │
+│ 📝   │
+│ 📋   │
+│ ✓    │
+│ ⬆    │
+│ 💰   │
+└──────┘
 
-Main page background should match the clean Pulse dashboard style.
+IMPORTANT:
+When collapsed, DO NOT hide the icons.
 
-Use a very light gray/blue background.
+The icons must remain visible.
 
-Suggested:
+Only the text should disappear/collapse.
 
-#F5F7FA
+The main content area should expand into the available space when the sidebar is collapsed.
 
-Content should use white cards.
+HEADER + SIDEBAR
+----------------
 
-Cards:
+There must be only ONE header and ONE sidebar.
 
-background: #FFFFFF
-border: 1px solid #E5E7EB
-border-radius: 8px–12px
+Do not render duplicate Header/Navbar/Sidebar components.
 
-Use subtle shadows only.
+Before creating anything new, inspect the existing project for:
 
-==================================================
-10. FONT — VERY IMPORTANT
-==================================================
-
-The font currently does not look close enough to the reference dashboard.
-
-Inspect the existing project and identify:
-
-- Current font-family
-- Existing theme
-- CSS variables
-- Tailwind configuration
-- Any imported company font
-
-Use the same font family used by the company Pulse dashboard if it is available to the application.
-
-Do NOT randomly introduce a decorative font.
-
-Apply the font consistently to:
-
+- DashboardLayout
+- Layout
 - Header
+- Navbar
 - Sidebar
-- Page titles
-- Cards
-- Tables
-- Buttons
-- Forms
-- Status badges
-- Profile dropdown
+- Navigation
+- Profile
+- ProfileDropdown
 
-Typography should be clean and compact.
+Modify the existing shared components instead of creating duplicates.
 
-Approximate sizes:
-
-Page title: 24–28px
-Section title: 18–20px
-Normal text: 14–16px
-Sidebar text: 14–15px
-Header text: 14–15px
-Table text: 13–14px
-Button text: 14px
-Secondary text: 12–14px
-
-Do not make everything bold.
-
-Use medium/semibold only where appropriate.
-
-==================================================
-11. COLORS
-==================================================
-
-Use the company's Pulse dashboard visual style.
-
-Primary header:
-
-Dark navy
-
-approximately:
-
-#071B3A
-
-Primary blue:
-
-approximately:
-
-#0072CE
-
-Light page background:
-
-#F5F7FA
-
-White:
-
-#FFFFFF
-
-Normal text:
-
-#1F2937
-
-Secondary text:
-
-#6B7280
-
-Borders:
-
-#E5E7EB
-
-Active sidebar:
-
-#E6F3FF
-with primary blue text/icon
-
-Avoid neon green.
-
-Green should only be used for appropriate success/status indicators and the profile person icon if matching the reference.
-
-==================================================
-12. PROFILE DROPDOWN
-==================================================
-
-Make the profile dropdown look like the Pulse reference.
-
-White background.
-
-Subtle border.
-
-Subtle shadow.
-
-Rounded corners.
-
-Position it directly below the profile icon and aligned toward the right edge.
-
-Structure:
-
---------------------------------
-| 👤  User Name               |
-|     User Role                |
-|                              |
-|      Edit Profile            |
-|                              |
-| Terms & Conditions            |
-| Privacy Notice               |
-| Terms of Use                 |
-|                              |
-| Sign Out                     |
---------------------------------
-
-Use the same typography and colors as the rest of the dashboard.
-
-==================================================
-13. IMPORTANT — DO NOT CREATE DUPLICATE COMPONENTS
-==================================================
-
-Before modifying anything, inspect the project.
-
-Find existing:
-
-Header
-Navbar
-Sidebar
-DashboardLayout
-Layout
-Profile
-ProfileDropdown
-
-If these already exist, modify them.
-
-Do NOT create another Header on top of an existing Header.
-
-Do NOT create another Sidebar on top of an existing Sidebar.
-
-The architecture should preferably be:
+The final architecture should preferably be:
 
 DashboardLayout
 │
 ├── Header
 │   ├── Hamburger
 │   ├── Logo
+│   ├── Search
+│   ├── Calendar
 │   ├── Notification
 │   └── Profile
 │
 ├── Sidebar
-│   ├── Create
-│   ├── Manage
-│   ├── Approve
-│   ├── Upload
-│   └── Balances
+│   ├── Create + icon
+│   ├── Manage + icon
+│   ├── Approve + icon
+│   ├── Upload + icon
+│   └── Balances + icon
 │
 └── MainContent
-    └── Current Page
+    └── Existing page
 
-==================================================
-14. PRIORITY
-==================================================
+Do not change existing page functionality.
 
-I have limited time, so prioritize the changes in this exact order:
+VISUAL STYLE
+------------
 
-1. Remove duplicate header.
-2. Make one dark navy header.
-3. Put hamburger on left.
-4. Remove Explore / Connect / Resources.
-5. Add notification bell on right.
-6. Make profile icon look like the Pulse reference.
-7. Make hamburger open/close sidebar.
-8. Make clicked sidebar item BLUE.
-9. Fix font family/style.
-10. Fix page background.
-11. Fix card styling.
-12. Verify all existing pages still work.
+Keep the corporate Pulse-inspired design:
 
-Do NOT spend time redesigning individual page functionality.
+Header:
+dark navy
 
-==================================================
-15. FINAL RESULT
-==================================================
+Sidebar:
+white/light background
 
-The application should visually feel like the same corporate banking design system as the Pulse dashboard:
+Main content:
+very light gray/blue background
 
-- ONE dark navy header
-- Hamburger on left
-- Standard Chartered/Straight2Bank branding
-- Notification bell on right
-- Circular green-person profile icon on right
-- Working profile dropdown
-- White/light sidebar
-- Clicked sidebar item becomes BLUE
-- Working hamburger sidebar slide animation
-- Light gray/blue main background
-- White content cards
-- Consistent company-style font
-- Consistent spacing
-- Professional enterprise banking appearance
+Cards:
+white
 
-Most importantly:
+Borders:
+subtle light gray
 
-DO NOT BREAK EXISTING FUNCTIONALITY.
+Active navigation:
+professional blue
 
-Implement these changes directly in the existing shared layout/components rather than creating a separate UI.
+Profile person:
+green icon inside light circular background
+
+Avoid neon green except where specifically required for status/profile styling.
+
+FINAL CHECK
+-----------
+
+After implementation verify:
+
+1. Explore is removed.
+2. Connect is removed.
+3. Resources is removed.
+4. Search icon is visible.
+5. Calendar icon is visible.
+6. Notification icon is visible.
+7. Profile icon is visible and resembles the Pulse profile icon.
+8. Create has a suitable icon.
+9. Manage has a suitable icon.
+10. Approve has a suitable icon.
+11. Upload has a suitable icon.
+12. Balances has a suitable icon.
+13. Clicking a sidebar item makes it blue.
+14. Active state follows the current route.
+15. Hamburger opens/closes the sidebar.
+16. Sidebar slides smoothly.
+17. Icons remain visible when sidebar is collapsed.
+18. Main content expands when sidebar is collapsed.
+19. No duplicate header/sidebar exists.
+20. Existing application functionality continues to work.
