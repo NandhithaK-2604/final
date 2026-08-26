@@ -1,723 +1,113 @@
-I want you to improve the COMMON APPLICATION UI / SHELL first.
+IMPORTANT — LAYOUT-ONLY CHANGE. DO NOT MODIFY USER STORY FUNCTIONALITY.
 
-IMPORTANT:
-Do NOT start User Story 2 / Payroll styling yet.
+For this task, make ONLY the following visual/layout changes to the
+application's common dashboard layout:
 
-The goal of this phase is to improve the shared Dashboard/application layout so the entire application has a clean, compact, professional enterprise-banking appearance.
+1. HEADER
+- Change the main/top header background to a clean, professional
+  NAVY BLUE.
+- The navy blue should be similar to the dark navy tone used in the
+  Standard Chartered / Pulse-style corporate interface.
+- Keep the existing header content, icons, logo, navigation, and
+  functionality unchanged.
+- Make the header slightly taller/bigger, similar to the proportion
+  of the Pulse website header.
+- Do NOT make it excessively tall.
+- Keep the header clean and compact.
+- Ensure the header has consistent height across all dashboard pages.
 
-I want the visual language to feel similar to a professional Standard Chartered/Pulse-style banking portal: compact, clean, minimal, consistent, well-aligned, and not oversized.
+2. HEADER-TO-CONTENT SPACING
+- Reduce the excessive empty space between the top header and the
+  page content.
+- The page content should start closer to the header.
+- Keep a small, consistent amount of breathing room so the layout
+  does not look cramped.
+- The spacing must be consistent when navigating between dashboard
+  pages.
+- Do NOT change the spacing between individual form fields, tables,
+  buttons, cards, or other User Story components yet.
 
-I cannot provide the company website/reference screenshots to the coding environment, so follow the detailed visual requirements below.
+3. COMMON LAYOUT CONSISTENCY
+- Apply ONLY the header height/color and header-to-content spacing
+  consistently across the existing dashboard layout.
+- The sidebar should remain unchanged.
+- Do NOT redesign the sidebar.
+- Do NOT change page-specific layouts.
+- Do NOT change tables, forms, cards, buttons, modals, fonts,
+  typography, colors, padding, margins, or component sizes inside
+  individual pages at this stage.
+- Do NOT change any business logic, API calls, routing, validation,
+  state management, or functionality.
 
-============================================================
-1. STRICT SCOPE — DO NOT DISTURB OTHER USER STORIES
-============================================================
+4. STRICT PROTECTION OF OTHER USER STORIES
+This is a preliminary common-layout change BEFORE working on User
+Story 2.
 
-This is a shared application-shell improvement only.
-
-Work on:
-- Common Header
-- Common Sidebar
-- Dashboard/common layout
-- Common page background
-- Common content positioning
-- Shared typography only where it is genuinely part of the application shell
-- Shared design variables only when appropriate
-
-DO NOT modify User Story 2 / Payroll-specific UI in this phase.
+DO NOT modify, rename, delete, replace, or restructure anything
+belonging to other User Stories.
 
 DO NOT modify:
-- Payroll Batches
-- Create Payroll
-- Create Payroll modal
-- Payroll Batch Details
-- Payee table
-- Payroll forms
-- Payroll buttons
-- Payroll-specific cards
-- Payroll business logic
-
-Those will be handled separately after the common shell is finalized.
-
-DO NOT change:
-- API calls
-- Backend logic
-- Routing
-- Validation
-- State management
-- Event handling
-- Data
-- Existing functionality
-
-Do not remove existing components.
-
-Do not rewrite working functionality just for styling.
-
-============================================================
-2. VERY IMPORTANT — OTHER DEVELOPERS / OTHER USER STORIES
-============================================================
-
-This application contains other user stories and pages that may use shared components.
-
-Do NOT make changes that unintentionally disturb other developers' pages.
-
-Before editing, inspect the project structure and determine:
-- Which components are shared
-- Which styles are global
-- Which styles belong to the common application shell
-- Which styles are specific to individual user stories
-
-Do not blindly modify a shared component.
-
-If a shared component is used by many user stories, only change it when the change is genuinely intended as a common application-wide improvement.
-
-If a visual change is required only for a particular user story, use scoped styling instead of changing the global style.
-
-============================================================
-3. GLOBAL STYLE SAFETY
-============================================================
-
-IMPORTANT:
-
-Do not modify global styles unless they are already shared specifically by the common application shell and the change is genuinely required for this common UI improvement.
-
-Avoid broad global changes such as:
-
-button
-input
-table
-h1
-h2
-.card
-*
-body
-
-if those changes could unexpectedly alter unrelated user stories.
-
-Do not change global component behavior.
-
-Reuse existing:
+- existing global variables
 - CSS variables
 - theme variables
-- shared components
 - design tokens
-- font configuration
-
-where possible.
-
-Do not create unnecessary duplicate styles or a second design system.
-
-============================================================
-4. OVERALL DESIGN GOAL
-============================================================
-
-The application should look like a professional enterprise banking portal.
-
-The desired visual characteristics are:
-
-- Clean
-- Compact
-- Professional
-- Minimal
-- Modern
-- Easy to scan
-- Consistent
-- Well aligned
-- Restrained colors
-- Clear typography
-- Controlled spacing
-- Subtle borders
-- Minimal shadows
-- No unnecessary decoration
-
-The UI should NOT feel:
-- oversized
-- spacious for no reason
-- colourful
-- flashy
-- consumer-app-like
-- heavily rounded
-- heavily shadowed
-
-The most important concept is:
-
-COMPACT + CLEAN + CONSISTENT
-
-Do not simply make everything smaller.
-
-Create a consistent visual hierarchy using:
-- font size
-- font weight
-- spacing
-- alignment
-- subtle colors
-
-============================================================
-5. HEADER
-============================================================
-
-The current header feels slightly too large/tall.
-
-Make the shared header more compact and professional.
-
-Target approximately:
-- 60–65px height
-
-Requirements:
-- Deep dark navy background
-- Reduce unnecessary vertical padding
-- Keep existing Standard Chartered branding
-- Keep existing logo
-- Keep "Straight2Bank" product name
-- Slightly reduce logo/product-name size if currently oversized
-- Keep notification icon
-- Keep profile icon
-- Align all header elements vertically
-- Keep consistent horizontal spacing
-- Do not redesign the header structure unnecessarily
-
-The header should feel like a compact enterprise banking header rather than a large banner.
-
-Do NOT:
-- add unnecessary navigation
-- add decorative elements
-- add gradients
-- make the header taller
-- make the product name excessively large
-
-============================================================
-6. HEADER COLOR
-============================================================
-
-Use a consistent dark navy header.
-
-Suggested color:
-#071B3A
-
-If the project already has an appropriate shared navy variable, reuse it instead of creating a duplicate.
-
-The header should remain visually consistent across all pages.
-
-============================================================
-7. SIDEBAR
-============================================================
-
-The current sidebar/content relationship has too much empty space.
-
-Make the Sidebar compact and consistent.
-
-Target approximately:
-- 240–260px width when expanded
-
-Requirements:
-- Consistent width across pages
-- Clean white/light surface
-- Subtle right border
-- Compact navigation items
-- Icons approximately 18–20px
-- Navigation text approximately 13–14px
-- Consistent icon/text spacing
-- Consistent vertical spacing
-- No excessive padding
-- No huge gaps between menu items
-
-The Sidebar should occupy a reasonable amount of space and should NOT make the content area feel pushed too far away.
-
-============================================================
-8. SIDEBAR ACTIVE STATE
-============================================================
-
-The selected navigation item should be clearly visible but subtle.
-
-Use:
-- very light blue background
-- Standard Chartered-style blue text/icon
-- small blue visual indicator if the existing design uses one
-
-Suggested:
-
-Active background:
-#E6F3FF
-
-Active color:
-#0072CE
-
-Do NOT use an oversized active button.
-
-Do NOT use a strong/dark blue block.
-
-Keep the existing navigation functionality unchanged.
-
-============================================================
-9. SIDEBAR COLLAPSE
-============================================================
-
-Keep the existing hamburger/collapse functionality.
-
-Expanded:
-- icon + label
-
-Collapsed:
-- icon only
-
-When collapsed:
-- icons remain visible
-- labels disappear
-- navigation still works
-- main content expands naturally
-
-Do not break existing responsive/sidebar behavior.
-
-============================================================
-10. MAIN CONTENT POSITIONING
-============================================================
-
-This is one of the most important changes.
-
-Currently, some pages appear to have too much empty space between the Sidebar and the content.
-
-Fix the common layout so the distance is consistent.
-
-The relationship should be:
-
-SIDEBAR
-   ↓
-small/controlled gap
-   ↓
-MAIN CONTENT
-
-Target approximately:
-- 24–32px horizontal gap/padding
-
-Do NOT use random page-specific margin-left values.
-
-Do NOT give every page a different content offset.
-
-The common layout should control the main content positioning.
-
-Use an appropriate flex/grid structure.
-
-The main content should use the remaining available width.
-
-Prefer a layout concept such as:
-
-display: flex;
-
-Sidebar:
-fixed width
-
-Main content:
-flex: 1;
-min-width: 0;
-
-Avoid unnecessary:
-width: 100vw;
-
-if it causes horizontal overflow.
-
-============================================================
-11. CONSISTENT CONTENT WIDTH AND ALIGNMENT
-============================================================
-
-Every page using the common layout should have:
-
-- same starting position
-- same left spacing
-- same right spacing
-- same top spacing
-- same general content width behavior
-
-When navigating between pages, the content should NOT jump left/right.
-
-The user should feel that every page belongs to the same application.
-
-Do not allow:
-- one page to have a huge left margin
-- another page to sit very close to the Sidebar
-- another page to stretch unnecessarily
-- different pages to have different content containers without a reason
-
-============================================================
-12. DASHBOARD BACKGROUND
-============================================================
-
-The Dashboard/Home page should have a clean WHITE background.
-
-Use:
-#FFFFFF
-
-Do not make the Dashboard strongly grey.
-
-Keep the Dashboard visually clean and open.
-
-============================================================
-13. INNER PAGE BACKGROUND
-============================================================
-
-When navigating from the Dashboard to inner application pages, use a VERY SUBTLE light-grey/off-white background.
-
-Suggested:
-#F7F8FA
-
-This should NOT be a strong grey.
-
-The purpose is to create subtle separation between the page and white content cards.
-
-Visual structure:
-
-Dashboard:
-WHITE background
-
-Inner page:
-VERY LIGHT GREY/OFF-WHITE background
-        ↓
-WHITE content card
-        ↓
-Content
-
-The difference should be subtle and professional.
-
-Do NOT use:
-- dark grey
-- strong grey
-- blue page backgrounds
-- gradients
-- decorative backgrounds
-- background images
-
-If an existing project background variable already exists, inspect and reuse it where appropriate.
-
-Implement this consistently through the common layout rather than manually giving every page a different background.
-
-============================================================
-14. CONTENT SURFACES / CARDS
-============================================================
-
-Content cards should remain WHITE against the very light inner-page background.
-
-Suggested:
-#FFFFFF
-
-Use:
-- subtle 1px light-grey border
-- moderate border radius
-- minimal shadow only when needed
-- comfortable but compact padding
-
-Suggested:
-border-radius: 8px
-padding: 20–24px
-
-Avoid:
-- heavy shadows
-- excessive rounded corners
-- excessive padding
-- huge empty spaces
-
-The card should look clean and professional.
-
-============================================================
-15. GLOBAL TYPOGRAPHY
-============================================================
-
-Use the font already configured in the application if one exists.
-
-First inspect:
-- existing font-family
-- theme
-- CSS variables
-- imported fonts
-- typography configuration
-
-Do NOT randomly introduce a new font.
-
-Use one consistent professional sans-serif throughout the application.
-
-The typography should be compact like a professional enterprise application.
-
-Suggested hierarchy:
-
-Page title:
-22–24px
-font-weight: 600
-
-Section heading:
-16–18px
-font-weight: 600
-
-Normal UI text:
-13–14px
-
-Navigation:
-13–14px
-
-Labels:
-12–13px
-font-weight: 500–600
-
-Secondary/helper text:
-12–13px
-
-Use font weight to create hierarchy instead of making everything large.
-
-Avoid:
-- oversized headings
-- oversized labels
-- oversized navigation text
-- excessive bold text
-
-============================================================
-16. VISUAL DENSITY
-============================================================
-
-This is extremely important.
-
-The application currently feels too large because:
-- fonts are large
-- buttons are large
-- padding is large
-- gaps are large
-- cards have too much empty space
-
-The target should have the compact visual density of a professional corporate banking portal.
-
-Use approximately:
-
-Header:
-60–65px
-
-Sidebar:
-240–260px
-
-Main content padding:
-24–32px
-
-Sidebar → content:
-24–32px
-
-Page title:
-22–24px
-
-Normal text:
-13–14px
-
-Table text:
-13–14px
-
-Labels:
-12–13px
-
-Buttons:
-36–40px high
-
-Icons:
-18–22px
-
-Cards:
-20–24px padding
-
-The result should be:
-
-COMPACT BUT NOT CRAMPED.
-
-There should still be enough whitespace for readability.
-
-============================================================
-17. COLORS
-============================================================
-
-Use a restrained enterprise banking palette.
-
-Header:
-Dark navy
-
-Primary action:
-Consistent Standard Chartered-style blue
-
-Primary text:
-Dark navy/charcoal
-
-Secondary text:
-Muted grey
-
-Borders:
-Very light grey
-
-Dashboard:
-White
-
-Inner pages:
-Very subtle light grey/off-white
-
-Cards:
-White
-
-Suggested values if equivalent variables do not already exist:
-
-Navy:
-#071B3A
-
-Primary blue:
-#0072CE
-
-Primary text:
-#1F2937
-
-Secondary text:
-#6B7280
-
-Border:
-#E5E7EB
-
-Inner page background:
-#F7F8FA
-
-Do not create many slightly different blue shades.
-
-Use ONE primary blue consistently.
-
-Do not use gradients.
-
-Do not use strong decorative colors.
-
-============================================================
-18. BUTTONS
-============================================================
-
-Make common buttons compact and professional.
-
-Target:
-36–40px height
-
-Font:
-13–14px
-
-Border radius:
-6–8px
-
-Primary button:
-- Standard Chartered-style blue
-- white text
-
-Secondary button:
-- white/light background
-- subtle border
-- dark/blue text
-
-Do not make buttons huge.
-
-Do not use unnecessary bright colors.
-
-Do not change button functionality.
-
-============================================================
-19. RESPONSIVENESS / OVERFLOW
-============================================================
-
-The common layout must fit normal laptop/desktop screens.
-
-Do NOT introduce page-wide horizontal scrolling.
-
-Header must fit the viewport.
-
-Sidebar must fit the viewport.
-
-Main content must use the remaining width.
-
-Use:
-
-flex: 1;
-min-width: 0;
-
-where appropriate.
-
-If a genuinely wide table requires horizontal scrolling, only the table/container should scroll.
-
-Do NOT make the entire page horizontally scroll because of layout changes.
-
-============================================================
-20. CONSISTENCY WHEN NAVIGATING
-============================================================
-
-When navigating between Dashboard and other pages, the following must remain consistent:
-
-- Header height
-- Header color
-- Sidebar width
-- Sidebar spacing
-- Sidebar active state
-- Font family
-- Font sizing
-- Main content position
-- Main content padding
-- Background treatment
-- Card style
-- Overall visual density
-
-The application should look like ONE unified application.
-
-============================================================
-21. DO NOT CHANGE USER STORY 2 YET
-============================================================
-
-After the common shell is complete:
-
-STOP.
-
-Do NOT continue into User Story 2.
-
-User Story 2 will be handled in a separate step.
-
-When we later work on User Story 2, its Payroll pages should inherit the common shell without changing unrelated pages.
-
-============================================================
-22. VERIFICATION BEFORE FINISHING
-============================================================
-
-After making the common shell changes, verify multiple existing pages, including Dashboard and other navigation pages.
-
-Check:
-
-1. Header is compact.
-2. Header is approximately 60–65px.
-3. Header branding is not oversized.
-4. Sidebar width is consistent.
-5. Sidebar navigation is compact.
-6. Sidebar icons are correctly aligned.
-7. Sidebar active state is subtle and professional.
-8. Dashboard background is white.
-9. Inner page background is very subtle light grey/off-white.
-10. Content cards remain white.
-11. Sidebar-to-content spacing is consistent.
-12. Content does not start too far from the Sidebar.
-13. No unnecessary horizontal page scrolling exists.
-14. Typography is compact.
-15. Font family is consistent.
-16. Buttons are not oversized.
-17. Colors are consistent.
-18. No gradients were introduced.
-19. No unnecessary shadows were introduced.
-20. Existing navigation still works.
-21. Existing functionality is unchanged.
-22. Other user stories have not been unintentionally restyled.
-23. No unrelated files/components were unnecessarily modified.
-
-============================================================
-23. FINAL SAFETY RULE
-============================================================
-
-DO NOT modify global styles unless they are already shared specifically by the common application shell and the modification is genuinely required for this common UI improvement.
-
-Do NOT disturb other user stories.
-
-Do NOT modify User Story 2 / Payroll in this phase.
-
-Make the smallest clean and maintainable changes necessary.
-
-Reuse existing shared components and global variables where possible.
-
-Do not create unnecessary duplicate components or styles.
-
-First stabilize the common application shell.
-
-STOP after completing the common application shell.
+- shared styles
+- shared components
+- shared buttons
+- shared inputs
+- shared tables
+- shared modals
+- common page components
+- business logic
+- API/service code
+- routing
+- state management
+
+unless the change is absolutely required for the common header/layout
+and does not alter the behavior or appearance of other User Stories.
+
+IMPORTANT:
+Do NOT make broad global styling changes just to achieve this
+appearance.
+
+If a global/shared component must be touched for the header layout,
+make the smallest possible change and preserve all existing behavior.
+
+Do NOT modify unrelated files.
+
+5. NO USER STORY WORK YET
+Do NOT start redesigning User Story 2 or any other User Story in this
+task.
+
+First complete ONLY:
+- Navy blue header
+- Slightly larger header height
+- Reduced header-to-content gap
+- Consistent header/layout positioning across dashboard pages
+
+After this is completed, STOP.
+
+We will handle the detailed UI improvements USER STORY BY USER STORY
+in a separate step.
+
+6. VISUAL GOAL
+The overall result should feel:
+- professional
+- clean
+- corporate
+- consistent
+- compact
+- spacious but not wasteful
+- visually similar in overall header proportions and spacing to a
+  modern Standard Chartered/Pulse-style corporate application
+
+Do NOT copy or reproduce the Pulse website.
+Use it only as a general visual direction for header size,
+professional spacing, and corporate appearance.
+
+MOST IMPORTANT:
+Make ONLY the changes explicitly requested above.
+Do not make additional "improvements" on your own.
+Do not refactor unrelated code.
+Do not modify global/shared styling unnecessarily.
+Do not touch User Story-specific UI yet.
