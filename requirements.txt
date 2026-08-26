@@ -1,775 +1,544 @@
-Yes. Since you need to give this to your company AI/code assistant, the prompt should be very explicit about what to change and what NOT to change. The key is to tell it to modify the shared dashboard layout/header/sidebar, not your payroll business logic.
+I need you to fix the EXISTING dashboard UI to closely match the company Pulse dashboard shown in the reference screenshots.
 
-Use this prompt as-is:
+This is a UI/layout task only.
 
-Redesign the existing Straight2Bank application dashboard UI so that it follows the same visual style, layout, spacing, typography, colors, navigation behavior, and profile interaction as the existing company Pulse dashboard shown in the reference.
+DO NOT change:
+- Backend
+- APIs
+- Business logic
+- Existing routes
+- Payroll logic
+- Transaction logic
+- Approval logic
+- Validation
+- CRUD functionality
+- Existing page functionality
 
-IMPORTANT:
-
-- This is a UI/UX redesign only.
-- DO NOT change business logic.
-- DO NOT change API calls.
-- DO NOT change backend logic.
-- DO NOT change existing routes.
-- DO NOT remove existing functionality.
-- DO NOT change payroll calculations, validations, CRUD operations, approval logic, or transaction logic.
-- Reuse existing components and libraries wherever possible.
-- Make the changes in the shared Dashboard/Layout/Header/Sidebar components so that all user stories automatically get the same design.
-- Do not create a separate dashboard only for Payroll.
-- The existing Manage Transactions, Payroll, Approve, Create, Manage, etc. pages must continue working exactly as before.
-
-REFERENCE DESIGN:
-The target design is the existing company Pulse dashboard.
+Only modify the shared UI components, CSS/theme and layout.
 
 ==================================================
+1. REMOVE DUPLICATE HEADER
+==================================================
 
-1. OVERALL APPLICATION STRUCTURE
-   ==================================================
+My current implementation is displaying the header twice.
 
-Create a dashboard layout with:
+There must be ONLY ONE top header.
 
-1. Fixed top header
-2. Left navigation sidebar
-3. Main content area
-4. Light background behind the main content
-5. White cards/content containers
-6. User profile icon and dropdown in the top-right
+Find why the Header/Navbar is rendered twice and remove the duplicate.
 
-Overall structure:
+Final structure:
 
-Header
-
-Sidebar          Main Content
-Page content
-Cards
-Tables
-Forms
-
-The header and sidebar must be shared by all pages.
+------------------------------------------------------
+☰   Standard Chartered   Straight2Bank          🔔  👤
+------------------------------------------------------
+|                                                    |
+| Sidebar                    Main Content             |
+|                                                    |
+------------------------------------------------------
 
 ==================================================
 2. HEADER
+==================================================
 
-Redesign the current Straight2Bank header to have a cleaner corporate banking appearance similar to the Pulse dashboard.
+Create ONE clean dark-navy header similar to the Pulse dashboard.
 
-Header should contain:
+Header:
+
+- Full width
+- Approximately 60–70px height
+- Dark navy background
+- White/light text
 
 LEFT:
 
-- Hamburger/menu icon
-- Standard Chartered/Straight2Bank logo
-- Application name
-- Navigation items such as:
-  - Explore
-  - Connect
-  - Resources
+☰  Standard Chartered logo  Straight2Bank
+
+The hamburger must be on the far left.
+
+REMOVE these from the header completely:
+
+- Explore
+- Connect
+- Resources
+- Search icon
+- Application/grid icon
 
 RIGHT:
 
-- Search icon
-- Applications/grid icon
 - Notification/bell icon
-- User profile icon
+- Profile/user icon
 
-The header should have a dark navy/blue background.
+The notification icon does NOT need complete notification functionality yet.
 
-Use a consistent height around 60–68px.
+It only needs to be displayed correctly and styled like the reference.
 
-Use proper horizontal spacing between items.
-
-Do not overcrowd the header.
-
-Header text should be small/medium sized and professional.
-
-Use white/light text on the dark header.
+Make the notification icon a clickable button/component so functionality can be added later.
 
 ==================================================
-3. HEADER COLORS
+3. PROFILE ICON — IMPORTANT
+==================================================
 
-Use a professional banking color palette.
+The profile icon must visually match the company Pulse dashboard.
 
-Primary header:
+It should NOT look like a random emoji or generic icon.
 
-- Dark navy blue
+Use a circular profile/avatar container.
 
-Example starting value:
-#071B3A
+Appearance:
 
-Primary action blue:
-
-- Blue similar to the company's existing banking blue
-
-Example:
-#0072CE
-
-Main page background:
-
-- Very light blue/gray
+- Circular shape
+- Light/white circular background
+- Green user/person silhouette inside
+- Approximately 38–44px diameter
+- Center the person icon perfectly
 
 Example:
+
+       ( white circle )
+          🟢
+         👤
+
+Use the existing icon library if available.
+
+Prefer a proper user/person icon rather than an emoji.
+
+The profile icon should be placed at the far right of the header.
+
+When clicked, show the existing profile dropdown if one already exists.
+
+The dropdown should contain:
+
+User Name
+User Role
+
+Edit Profile
+
+Terms & Conditions
+Privacy Notice
+Terms of Use
+
+Sign Out
+
+Use existing logged-in user information.
+
+Do NOT hardcode user information if the application already provides it.
+
+==================================================
+4. NOTIFICATION ICON
+==================================================
+
+Add a bell/notification icon immediately to the LEFT of the profile icon.
+
+Example:
+
+                    🔔   👤
+
+Use a proper icon from the project's existing icon library.
+
+Style:
+
+- White/light icon
+- Approximately 20–22px
+- Transparent button background
+- No large colored square around it
+- Proper spacing between bell and profile icon
+
+It does NOT need backend functionality now.
+
+It only needs to be visually present and clickable.
+
+If needed:
+
+onClick={() => {
+   // notification functionality can be implemented later
+}}
+
+Do not create fake notification data.
+
+==================================================
+5. SIDEBAR
+==================================================
+
+Keep the existing application sidebar/navigation.
+
+Existing menu items should remain.
+
+For example:
+
+Create
+Manage
+Approve
+Upload
+Balances
+
+Do NOT invent new routes.
+
+The sidebar should visually resemble the Pulse dashboard:
+
+- White/light background
+- Clean spacing
+- Consistent icons
+- Dark gray/navy text
+- Light borders
+- Scrollable when necessary
+
+==================================================
+6. SIDEBAR ACTIVE ITEM — VERY IMPORTANT
+==================================================
+
+Whenever I click a sidebar item, that item must become BLUE.
+
+For example:
+
+Create
+Manage
+Approve
+Upload
+Balances
+
+If I click:
+
+Manage
+
+then Manage should have a blue active state.
+
+If I click:
+
+Approve
+
+then Approve should become blue.
+
+The previously selected item should lose its active state.
+
+The active item should have:
+
+- Blue background OR very light blue background
+- Blue/white text depending on the chosen style
+- Blue icon
+- Clear visual indication that it is selected
+
+Do NOT use the current neon-green active state.
+
+Use the same blue color family as the company Pulse dashboard.
+
+Preferred active styling:
+
+background: #E6F3FF
+color: #0072CE
+
+If the Pulse reference uses a stronger blue filled state for the selected item, use:
+
+background: #0A9FE8
+color: #FFFFFF
+
+Choose whichever matches the reference more closely.
+
+The important requirement is:
+
+CLICKED SIDEBAR ITEM = BLUE ACTIVE STATE.
+
+==================================================
+7. SIDEBAR CLICK BEHAVIOR
+==================================================
+
+The sidebar items must continue navigating to their existing routes.
+
+Do not break navigation.
+
+The active state should ideally be based on the current route rather than only a temporary click state.
+
+For example:
+
+/dashboard/createPayroll
+    → Create is active
+
+/dashboard/manage
+    → Manage is active
+
+/dashboard/approve
+    → Approve is active
+
+/dashboard/upload
+    → Upload is active
+
+/dashboard/balances
+    → Balances is active
+
+Use the application's existing routing system.
+
+Do not hardcode the active item if route information is already available.
+
+==================================================
+8. HAMBURGER BUTTON
+==================================================
+
+The hamburger/three-line icon must actually work.
+
+When clicked:
+
+IF sidebar is open:
+    smoothly slide/collapse sidebar toward the left.
+
+IF sidebar is closed:
+    smoothly slide/open sidebar from the left.
+
+Use React state.
+
+Example:
+
+const [sidebarOpen, setSidebarOpen] = useState(true);
+
+Then:
+
+onClick={() => setSidebarOpen(prev => !prev)}
+
+Use a smooth transition:
+
+transition: transform 0.25s ease;
+
+or equivalent existing styling.
+
+Do NOT reload the page.
+
+Do NOT navigate to another page.
+
+==================================================
+9. MAIN CONTENT
+==================================================
+
+Main page background should match the clean Pulse dashboard style.
+
+Use a very light gray/blue background.
+
+Suggested:
+
 #F5F7FA
+
+Content should use white cards.
 
 Cards:
 
-- White
+background: #FFFFFF
+border: 1px solid #E5E7EB
+border-radius: 8px–12px
 
-Text:
+Use subtle shadows only.
 
-- Dark navy/gray
+==================================================
+10. FONT — VERY IMPORTANT
+==================================================
+
+The font currently does not look close enough to the reference dashboard.
+
+Inspect the existing project and identify:
+
+- Current font-family
+- Existing theme
+- CSS variables
+- Tailwind configuration
+- Any imported company font
+
+Use the same font family used by the company Pulse dashboard if it is available to the application.
+
+Do NOT randomly introduce a decorative font.
+
+Apply the font consistently to:
+
+- Header
+- Sidebar
+- Page titles
+- Cards
+- Tables
+- Buttons
+- Forms
+- Status badges
+- Profile dropdown
+
+Typography should be clean and compact.
+
+Approximate sizes:
+
+Page title: 24–28px
+Section title: 18–20px
+Normal text: 14–16px
+Sidebar text: 14–15px
+Header text: 14–15px
+Table text: 13–14px
+Button text: 14px
+Secondary text: 12–14px
+
+Do not make everything bold.
+
+Use medium/semibold only where appropriate.
+
+==================================================
+11. COLORS
+==================================================
+
+Use the company's Pulse dashboard visual style.
+
+Primary header:
+
+Dark navy
+
+approximately:
+
+#071B3A
+
+Primary blue:
+
+approximately:
+
+#0072CE
+
+Light page background:
+
+#F5F7FA
+
+White:
+
+#FFFFFF
+
+Normal text:
+
+#1F2937
 
 Secondary text:
 
-- Muted gray
+#6B7280
 
 Borders:
 
-- Very light gray
+#E5E7EB
 
-Do not use excessive bright green.
+Active sidebar:
 
-Green should mainly be used for:
-
-- Success
-- Approved status
-- Positive indicators
-
-Use subtle colors rather than very saturated colors.
-
-If the existing project already contains company color variables/theme values, REUSE those values instead of introducing new ones.
-
-==================================================
-4. SIDEBAR
-
-Redesign the sidebar to visually match the Pulse dashboard.
-
-Sidebar should:
-
-- Be positioned below the header.
-- Have a clean light/white background OR the existing company's sidebar background depending on the existing design system.
-- Have consistent icons.
-- Have consistent spacing between menu items.
-- Have clear active/selected state.
-- Be vertically scrollable if menu items exceed the viewport.
-
-Existing functionality must remain.
-
-Current menu items such as:
-
-Create
-Manage
-Approve
-Upload
-Balances
-
-must remain available if they are existing application features.
-
-Organize menu items logically.
-
-Example:
-
-PAYROLL
-
-Create
-Manage
-Approve
-
-OPERATIONS
-
-Transactions
-Upload
-Balances
-
-Do not invent routes that don't exist.
-
-==================================================
-5. SIDEBAR ACTIVE STATE
-
-The currently selected page must have a clear active state.
-
-Do NOT use the current very bright neon-green rectangular block.
-
-Instead use a professional blue active state similar to the Pulse dashboard.
-
-Example:
-
-background:
 #E6F3FF
+with primary blue text/icon
 
-text:
-primary blue
+Avoid neon green.
 
-icon:
-primary blue
-
-Optionally add a small blue indicator on the left.
-
-The active menu item should have slightly rounded corners.
-
-Example visual:
-
-[ icon ]  Manage
-^ active blue background
-
-Inactive items should have:
-
-- Dark gray text
-- Muted icon
-- White/light background
-
-Hover state should use a very subtle light-blue/gray background.
+Green should only be used for appropriate success/status indicators and the profile person icon if matching the reference.
 
 ==================================================
-6. SIDEBAR ICONS
-
-Use consistent professional icons.
-
-Do not mix different icon styles.
-
-If the project already uses an icon library such as:
-
-- Lucide
-- React Icons
-- Material Icons
-
-reuse the existing library.
-
-Icons should be approximately 18–20px.
-
-Text and icon should be vertically centered.
-
-Keep consistent spacing between icon and text.
-
+12. PROFILE DROPDOWN
 ==================================================
-7. PROFILE ICON
 
-Add a profile icon in the top-right corner of the header similar to the Pulse dashboard.
+Make the profile dropdown look like the Pulse reference.
 
-The profile icon should be circular.
+White background.
 
-It can contain:
+Subtle border.
 
-- User silhouette
-  OR
-- User avatar if one already exists.
+Subtle shadow.
 
-Use a subtle circular background.
+Rounded corners.
 
-When clicked, open a profile dropdown.
+Position it directly below the profile icon and aligned toward the right edge.
 
-==================================================
-8. PROFILE DROPDOWN
+Structure:
 
-The profile dropdown should visually resemble the company Pulse profile menu.
-
-Example structure:
-
----
-
-| 👤  User Name                |
+--------------------------------
+| 👤  User Name               |
 |     User Role                |
 |                              |
-|       Edit Profile           |
+|      Edit Profile            |
 |                              |
 | Terms & Conditions            |
 | Privacy Notice               |
 | Terms of Use                 |
 |                              |
 | Sign Out                     |
+--------------------------------
 
-The dropdown should:
-
-- Be positioned below the profile icon.
-- Have white background.
-- Have subtle border.
-- Have subtle shadow.
-- Have rounded corners.
-- Have proper padding.
-- Have clear separation between profile information and actions.
-
-Profile section:
-
-User name
-User role
-
-For the current application, use the logged-in user's existing data.
-
-Do NOT hardcode a user if the application already has logged-in user information available.
+Use the same typography and colors as the rest of the dashboard.
 
 ==================================================
-9. PROFILE DROPDOWN COLORS
-
-Profile dropdown:
-
-background:
-#FFFFFF
-
-text:
-dark navy/gray
-
-secondary text:
-muted gray
-
-hover:
-very light blue/gray
-
-primary profile action:
-light blue background
-
-Sign Out:
-subtle danger styling if appropriate.
-
-Do not make the dropdown bright or colorful.
-
+13. IMPORTANT — DO NOT CREATE DUPLICATE COMPONENTS
 ==================================================
-10. MAIN PAGE BACKGROUND
 
-The current application uses too much plain white space.
+Before modifying anything, inspect the project.
 
-Change the main dashboard content background to a very light gray/blue.
-
-Suggested:
-
-#F5F7FA
-
-The main page should occupy the remaining viewport after the header and sidebar.
-
-Example:
-
-.header
-height: 64px
-
-.main-layout
-display: flex
-
-.sidebar
-width: approximately 220–250px
-
-.main-content
-flex: 1
-background: #F5F7FA
-
-==================================================
-11. PAGE CONTENT CONTAINERS
-
-Use white cards for important content.
-
-Cards should have:
-
-background:
-white
-
-border:
-1px solid light gray
-
-border-radius:
-8–12px
-
-subtle shadow if appropriate.
-
-Do NOT use heavy shadows.
-
-Do NOT make everything extremely rounded.
-
-The UI should look like an enterprise banking application, not a consumer social-media application.
-
-==================================================
-12. TYPOGRAPHY
-
-Make typography consistent throughout the application.
-
-Use the existing company/project font if it is already configured.
-
-DO NOT randomly introduce a new font.
-
-If the project already has a typography/theme configuration, reuse it.
-
-Recommended hierarchy:
-
-Page title:
-24–28px
-medium/semibold
-
-Section heading:
-18–20px
-medium/semibold
-
-Normal text:
-14–16px
-
-Secondary text:
-12–14px
-
-Table text:
-13–14px
-
-Sidebar text:
-14–15px
-
-Header navigation:
-14–15px
-
-Button text:
-14px
-
-Do not make every text element bold.
-
-Use font-weight consistently.
-
-==================================================
-13. PAGE TITLE
-
-For pages such as:
-
-Payroll Batches
-Manage Transactions
-Approvals
-
-use a clean page title at the top.
-
-Example:
-
-Payroll Batches
-
-Create, manage and track your payroll batches.
-
-The title should be dark navy.
-
-Subtitle should be muted gray.
-
-Maintain consistent spacing below the title.
-
-==================================================
-14. PAYROLL DASHBOARD
-
-Do not change the existing Payroll functionality.
-
-Improve only its presentation.
-
-The Payroll page should have:
-
-Page title:
-
-Payroll Batches
-
-Subtitle:
-
-Create, manage and track your payroll batches.
-
-Then summary cards:
-
-Total Batches
-Drafts
-Pending Approval
-Approved
-Total Payees
-Total Amount
-
-Cards should be white with subtle borders.
-
-Numbers should be larger than labels.
-
-Example:
-
-TOTAL BATCHES
-12
-
-DRAFT BATCHES
-3
-
-PENDING APPROVAL
-2
-
-Use icons only if the project already has an icon library.
-
-==================================================
-15. QUICK ACTIONS
-
-Add a clean Quick Actions section if it fits the existing Payroll page.
-
-Examples:
-
-Create New Batch
-View Drafts
-Pending Approvals
-Payment History
-
-The primary action should be:
-
-+ Create New Batch
-
-Use the company's primary blue.
-
-Do not add functionality that does not exist.
-
-If an action does not have an existing route/functionality, do not implement it.
-
-==================================================
-16. SEARCH AND FILTERS
-
-Make search and filters look consistent.
-
-Use:
-
-Search batches...
-
-Status
-Payment Date
-Currency
-
-Inputs should have:
-
-- White background
-- Light border
-- Consistent height
-- Small border radius
-- Proper padding
-- Clear labels
-
-Do not use oversized inputs.
-
-==================================================
-17. TABLE DESIGN
-
-Keep the existing Payroll table functionality.
-
-Improve only its styling.
-
-Use:
-
-White table container
-Light borders
-Clear header
-Proper row spacing
-Consistent typography
-
-Table header:
-
-- Slightly darker/muted text
-- Medium font weight
-- Light background
-
-Rows:
-
-- White background
-- Subtle bottom border
-- Hover state
-
-Avoid excessive grid lines.
-
-Amounts should be consistently aligned.
-
-Dates should be consistently aligned.
-
-==================================================
-18. STATUS BADGES
-
-Keep status badges but make them professional.
-
-Draft:
-neutral gray
-
-Pending:
-subtle amber
-
-Approved:
-subtle green
-
-Rejected:
-subtle red
-
-Use small rounded badges.
-
-Example:
-
-● Pending
-
-Do not use highly saturated colors.
-
-==================================================
-19. BUTTONS
-
-Create a consistent button hierarchy.
-
-Primary:
-
-Create New Batch
-Approve
-Submit
-
-Use primary blue.
-
-Secondary:
-
-View
-Edit
-Cancel
-
-Use white background with border.
-
-Danger:
-
-Delete
-Reject
-
-Use subtle red styling.
-
-All buttons should have:
-
-- Consistent height
-- Consistent padding
-- Same border radius
-- Same font
-- Same font size
-
-==================================================
-20. MODALS
-
-Do NOT use browser alert() or confirm().
-
-Use the existing Modal component.
-
-For example:
-
-Delete Draft Batch?
-
-Are you sure you want to delete this draft batch?
-This action cannot be undone.
-
-Cancel     Delete
-
-Use Toast for successful operations.
-
-Examples:
-
-Batch created successfully.
-
-Batch submitted successfully.
-
-Draft deleted successfully.
-
-==================================================
-21. RESPONSIVE DESIGN
-
-The dashboard should work correctly on:
-
-- Laptop
-- Desktop
-- Tablet
-
-Sidebar should not overlap content.
-
-Header should remain usable.
-
-Tables should handle smaller widths appropriately.
-
-==================================================
-22. IMPORTANT SHARED COMPONENT REQUIREMENT
-
-Before creating anything new, inspect the project for existing:
+Find existing:
 
 Header
 Navbar
 Sidebar
 DashboardLayout
 Layout
-Modal
-Toast
-Button
-Icon
-Theme
-CSS variables
-Tailwind configuration
+Profile
+ProfileDropdown
 
-Reuse these components.
+If these already exist, modify them.
 
-If Header and Sidebar are already shared by multiple pages, modify the shared components rather than duplicating them.
+Do NOT create another Header on top of an existing Header.
 
-This is especially important because multiple user stories are being developed by different team members.
+Do NOT create another Sidebar on top of an existing Sidebar.
 
-For example:
+The architecture should preferably be:
 
 DashboardLayout
+│
 ├── Header
+│   ├── Hamburger
+│   ├── Logo
+│   ├── Notification
+│   └── Profile
+│
 ├── Sidebar
-└── Page Content
-
-Then:
-
-Manage Transactions
-Payroll Batches
-Approvals
-Create Payroll
-
-should all use the same DashboardLayout.
+│   ├── Create
+│   ├── Manage
+│   ├── Approve
+│   ├── Upload
+│   └── Balances
+│
+└── MainContent
+    └── Current Page
 
 ==================================================
-23. DO NOT BREAK EXISTING USER STORIES
+14. PRIORITY
+==================================================
 
-The application currently contains multiple user stories implemented by different developers.
+I have limited time, so prioritize the changes in this exact order:
 
-Do not modify routes or page functionality unnecessarily.
+1. Remove duplicate header.
+2. Make one dark navy header.
+3. Put hamburger on left.
+4. Remove Explore / Connect / Resources.
+5. Add notification bell on right.
+6. Make profile icon look like the Pulse reference.
+7. Make hamburger open/close sidebar.
+8. Make clicked sidebar item BLUE.
+9. Fix font family/style.
+10. Fix page background.
+11. Fix card styling.
+12. Verify all existing pages still work.
 
-If a developer already has:
-
-Manage Transactions
-
-and another developer has:
-
-Payroll Batches
-
-both must continue working.
-
-Only the common visual shell should be standardized.
+Do NOT spend time redesigning individual page functionality.
 
 ==================================================
-24. FINAL VISUAL GOAL
+15. FINAL RESULT
+==================================================
 
-The final application should feel like one professional corporate banking application.
+The application should visually feel like the same corporate banking design system as the Pulse dashboard:
 
-The visual characteristics should be:
-
-- Dark navy/blue header
-- Clean sidebar
-- Blue active navigation state
-- Light gray/blue page background
+- ONE dark navy header
+- Hamburger on left
+- Standard Chartered/Straight2Bank branding
+- Notification bell on right
+- Circular green-person profile icon on right
+- Working profile dropdown
+- White/light sidebar
+- Clicked sidebar item becomes BLUE
+- Working hamburger sidebar slide animation
+- Light gray/blue main background
 - White content cards
-- Consistent typography
-- Professional profile icon
-- Profile dropdown
-- Clean icons
-- Subtle borders
-- Subtle shadows
+- Consistent company-style font
 - Consistent spacing
-- Professional buttons
-- Clean status badges
-- Clear page hierarchy
+- Professional enterprise banking appearance
 
-The design should take inspiration from the existing company Pulse dashboard but should NOT copy proprietary source code.
+Most importantly:
 
-Use the existing application's components, data, routes and business logic.
+DO NOT BREAK EXISTING FUNCTIONALITY.
 
-==================================================
-25. IMPLEMENTATION ORDER
-
-Because this is an existing application, implement in this order:
-
-1. Inspect existing Dashboard/Layout component.
-2. Identify shared Header.
-3. Identify shared Sidebar.
-4. Identify existing theme/CSS/Tailwind configuration.
-5. Update Header.
-6. Update Sidebar.
-7. Add profile icon/dropdown.
-8. Update application background.
-9. Update typography.
-10. Update common buttons/cards.
-11. Update Payroll page styling.
-12. Verify Manage Transactions still works.
-13. Verify Create Payroll still works.
-14. Verify Approve still works.
-15. Verify routes have not changed.
-16. Verify no backend/API/business logic has changed.
-
-Do not spend time rewriting components that already work.
-
-The priority is to make the application visually consistent with the company dashboard while preserving all existing functionality.
+Implement these changes directly in the existing shared layout/components rather than creating a separate UI.
