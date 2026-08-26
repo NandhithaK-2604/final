@@ -692,3 +692,128 @@ Before finishing:
 9. Keep all changes limited to the Payroll Batches page/component and its locally scoped styles.
 
 Do not rewrite the application. Make targeted UI improvements only.
+
+
+
+
+
+
+
+
+
+1. Login — POST /api/v1/auth/login
+Input (Request body):
+{
+  "username": "john",
+  "password": "pass123"
+}
+Output (Response body):
+{
+  "token": "abc123",
+  "user": {
+    "id": 1,
+    "name": "John",
+    "email": "john@example.com"
+  }
+}
+HTTP status:
+200 OK → login successful
+400 Bad Request → invalid/missing input
+401 Unauthorized → wrong username/password
+2. Products — GET /api/v1/products
+Input: Query parameters
+/api/v1/products?category=electronics&search=phone
+So:
+category = input
+search = input
+Output:
+[
+  {
+    "id": 101,
+    "name": "Phone",
+    "price": 299,
+    "category": "electronics"
+  }
+]
+HTTP status:
+200 OK → products returned
+400 Bad Request → invalid query parameters
+404 Not Found → if the API treats no matching resource as not found
+3. Cart Sync — POST /api/v1/cart/sync
+Input:
+{
+  "cartItems": [
+    {
+      "id": 101,
+      "qty": 2
+    }
+  ]
+}
+Here:
+id = product ID
+qty = quantity
+Output:
+{
+  "subtotal": 598,
+  "status": "SYNCHRONIZED"
+}
+Because 299 × 2 = 598.
+HTTP status:
+200 OK → cart successfully synchronized
+400 Bad Request → invalid cart data
+404 Not Found → product doesn't exist
+4. Payment — POST /api/v1/payments/process
+Input:
+{
+  "orderId": "ORD-123",
+  "amount": 598,
+  "cardNumber": "..."
+}
+The screenshot shows cardNumber as a string.
+Output:
+{
+  "transactionId": "TXN-99812",
+  "status": "APPROVED",
+  "timestamp": "ISO8601"
+}
+HTTP status:
+200 OK → payment successfully processed/approved
+400 Bad Request → invalid payment request
+402 Payment Required → payment failed/declined, if your API uses this convention
+500 Internal Server Error → payment-processing/server problem
+5. User Profile — PUT /api/v1/user/profile
+Input:
+{
+  "name": "John",
+  "email": "john@example.com",
+  "role": "USER"
+}
+Output:
+{
+  "success": true,
+  "updatedUser": {
+    "name": "John",
+    "email": "john@example.com"
+  }
+}
+HTTP status:
+200 OK → profile successfully updated
+400 Bad Request → invalid input
+401 Unauthorized → user isn't authenticated
+404 Not Found → user doesn't exist
+6. Analytics — GET /api/v1/admin/analytics
+Input:
+No request body and no query parameters are shown.
+So essentially:
+GET /api/v1/admin/analytics
+Output:
+{
+  "activeUsers": 1420,
+  "dailySales": "$12,450.00",
+  "systemHealth": "99.98%"
+}
+HTTP status:
+200 OK → analytics retrieved
+401 Unauthorized → not logged in
+403 Forbidden → logged in but not an admin
+500 Internal Server Error → server problem
