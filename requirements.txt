@@ -1,1 +1,57 @@
 Fix only the profile dropdown behavior in Header.jsx. The existing toggle logic onClick={() => setOpen(prev => !prev)} is already correct, so do not replace it. Add an outside-click behavior so that when the profile dropdown is open and the user clicks anywhere outside the profile button/dropdown, setOpen(false) is triggered and the dropdown closes. Keep clicking the profile icon as a toggle. Use React useRef and useEffect if needed. Make sure clicks inside the profile dropdown do not immediately close it. Do not change the existing profile UI, styling, profile information, logout functionality, header design, shared components, variables.css, global CSS, or any other file. This is only a small interaction/behavior fix in the existing Header component.
+const profileRef = useRef(null);
+
+useEffect(() => {
+  const handleClickOutside = (event) => {
+    if (
+      profileRef.current &&
+      !profileRef.current.contains(event.target)
+    ) {
+      setOpen(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleClickOutside);
+
+  return () => {
+    document.removeEventListener("mousedown", handleClickOutside);
+  };
+}, []);
+
+
+
+
+
+<div className="header__profile" ref={profileRef}>
+  <button
+    className="header__avatar"
+    onClick={() => setOpen(prev => !prev)}
+    aria-label="Profile"
+  >
+    ...
+  </button>
+
+  {open && (
+    <div className="header__profile-dropdown">
+      <div className="profile__info">
+        <div className="profile__name">{user?.name}</div>
+        <div className="profile__role">
+          {roles?.join(" / ")}
+        </div>
+      </div>
+
+      <div className="profile__actions">
+        <button className="profile__action">
+          Edit Profile
+        </button>
+
+        <button
+          className="profile__action"
+          onClick={handleLogout}
+        >
+          Sign Out
+        </button>
+      </div>
+    </div>
+  )}
+</div>
