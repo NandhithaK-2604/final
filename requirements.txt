@@ -1,102 +1,89 @@
-Redesign ONLY the Create Payroll / Payroll Batch Details page so that its UI style closely matches the existing Approve page shown in the reference screenshot.
+Refine the Create Payroll page using the current page as the base.
 
-The goal is to make the Create Payroll page feel like it belongs to the exact same application and design system as the Approve page.
+The goal is to make it clean, compact, neatly aligned, and professional, matching the visual style of the existing Approve page.
 
-IMPORTANT — STRICT SCOPE
+STRICT SCOPE
 
-- Modify ONLY the Create Payroll page/component.
-- Do NOT modify the Approve page.
-- Do NOT modify any other page.
+- Change ONLY the Create Payroll page.
+- Do NOT modify the Approve page or any other page.
 - Do NOT modify shared components.
 - Do NOT modify "variables.css".
 - Do NOT modify global CSS or global styles.
-- Do NOT create new global variables.
-- Do NOT hardcode a new color system.
-- Reuse the existing shared components wherever they already exist.
-- Use the existing variables from "variables.css".
-- Preserve all existing functionality and business logic.
-- Do NOT change API calls, state management, validation, handlers, routing, pagination logic, add-payee logic, remove-payee logic, save-draft logic, or submit-for-approval logic.
-- This is a UI/layout/styling improvement only.
+- Reuse existing shared components.
+- Reuse existing values from "variables.css".
+- Do not create new global variables.
+- Do not change any business logic, API calls, state, validation, handlers, routing, or functionality.
 
-DESIGN REFERENCE
+1. Overall layout
 
-Use the provided Approve page screenshot as the visual reference.
+The current page feels too large and has unnecessary empty space.
 
-The Create Payroll page should match its:
+Make the page more compact while keeping it comfortable to read.
 
-- Font style
-- Font sizing and weight hierarchy
-- Page density
-- Spacing
-- Alignment
-- Input styling
-- Button styling
-- Border treatment
-- Table styling
-- Status badge styling
-- Background color
-- Overall enterprise banking/SaaS appearance
+- Reduce the width/height of unnecessary containers.
+- Reduce excessive padding and margins.
+- Reduce the vertical gap between the batch information and Payee Details.
+- Keep the main content centered and properly aligned.
+- Do not stretch the content to fill the entire screen.
+- Avoid one huge oversized card with large empty areas.
 
-Do NOT copy Approve-page-specific content or functionality.
+The page should have a similar density and spacing rhythm to the existing Approve page.
 
-CREATE PAYROLL PAGE CONTENT
+2. Batch information
 
-Keep the existing Create Payroll functionality and information.
-
-The page should contain:
-
-Top section
-
-Use a compact page layout.
-
-Show:
+Keep:
 
 ← Back to Payroll Batches
 
-Then:
+Then display:
 
 BATCH-1787801993513-553
-with the existing Draft status.
+Draft
 
-Below the batch ID, display the existing metadata:
+Below it:
 
-- Debit Account
-- Currency
-- Payment Date
+- Debit Account: 1000293847
+- Currency: INR
+- Payment Date: 27 Aug 2026
 
-Keep these aligned horizontally when space allows.
+Make this section compact.
 
-Do NOT place everything inside an oversized card.
+Keep the three metadata items aligned horizontally.
 
-Payee section
+Do not use excessive spacing between them.
 
-Create a clean section:
+3. Payee Details
+
+Display:
 
 Payee Details (1)
 
-Place:
+Place the buttons on the same row:
 
-+ Add Payee
-Reset Rows
++ Add Payee    Reset Rows
 
-on the same horizontal line where possible.
+Make these buttons smaller and cleaner.
 
-Use the existing shared Button components.
+They currently look too large and occupy too much space.
 
-The buttons should have the same visual language as the buttons on the Approve page:
+Use:
 
-- clean
-- subtle border
 - moderate height
-- consistent radius
-- professional blue accent
-- no excessive rounded/pill styling
+- compact horizontal padding
+- consistent font size
+- subtle border
+- consistent border radius
+- proper spacing between the two buttons
 
-Payee table
+Reuse the existing shared Button component.
 
-Make the table visually similar to the table on the Approve page.
+Do not change their functionality.
 
-Keep the existing columns:
+4. Payee table
+
+Make the table compact and neatly aligned.
+
+Columns:
 
 - Employee ID
 - Name
@@ -105,189 +92,161 @@ Keep the existing columns:
 - Amount
 - Actions
 
-Use:
+Make sure:
 
-- clean white rows
-- subtle horizontal separators
-- compact but comfortable row height
-- clear column headers
-- consistent font sizing
-- proper column alignment
-- sufficient but not excessive padding
+- All columns line up correctly.
+- Column headers are centered/positioned consistently with their data.
+- Inputs have a consistent height.
+- Inputs do not look oversized.
+- Row height is reduced slightly.
+- There is enough padding to remain readable.
+- The Actions column has enough width for the action button.
+- Nothing overlaps or looks squeezed.
 
-The table header should use the application's existing blue design from the shared styles/variables.
+5. Edit / Remove / Action buttons
 
-Do NOT introduce a new gradient or unrelated color.
+Make the action buttons compact and visually clear.
 
-Keep the editable fields exactly as they currently function.
+Do NOT allow buttons to occupy excessive width.
 
-Amount
+For example:
 
-Keep the existing amount field and behavior.
+Edit
+Remove
 
-Display the currency correctly, for example:
+should have consistent height, padding, font size, and alignment.
 
-₹0.00
+Keep the Actions column properly aligned with the other columns.
 
-Keep the amount aligned appropriately with the other table values.
+If the current page uses Edit/Remove buttons, make them visually consistent with the buttons on the Approve page.
 
-Remove action
+Do not change their functionality.
 
-Keep the existing Remove functionality.
+6. Table background
 
-Make the Remove action visually consistent with the Approve page's action buttons.
+Give the table/header area a subtle background treatment using the existing design variables.
 
-Do not change its handler or behavior.
+Use the existing application blue for the table header.
 
-Pagination
+Use a very light neutral/blue background where appropriate.
 
-Keep the existing pagination functionality.
+Do not introduce a completely new color palette.
 
-Use the same visual density and style as the Approve page.
+Keep the overall appearance professional and similar to the Approve page.
 
-Show:
+7. Pagination
+
+Keep pagination exactly as it works now.
+
+Display:
 
 Showing 1–1 of 1
 
 on the left.
 
-Pagination controls should be aligned to the right.
+Place the pagination controls neatly on the right.
 
-Avoid creating a large separate pagination card.
+Keep the controls compact.
 
-Totals
+Do not create a large separate card for pagination.
+
+8. Totals
 
 Keep:
 
 Total Payees: 1
-
-and
-
 Total Amount: ₹0.00
 
-Place these in a compact summary area below the table.
+Make this section compact.
 
-Do not turn them into large dashboard statistic cards.
+Do not turn these into large dashboard statistic cards.
 
-Bottom actions
+Use a subtle light background if appropriate, using existing variables.
 
-Keep the existing:
+9. Bottom buttons
+
+Keep:
 
 Back to list
 Save as Draft
 Submit for Approval
 
-Use the same button styling approach as the Approve page.
+Make them smaller and neatly aligned on the right.
 
-Recommended hierarchy:
+Button hierarchy:
 
-- Back to list → secondary/outlined
-- Save as Draft → secondary/outlined
+- Back to list → secondary
+- Save as Draft → secondary
 - Submit for Approval → primary blue
 
-Keep all existing click handlers and functionality unchanged.
+All three buttons should have the same height.
 
-SPACING — VERY IMPORTANT
+Do not make the buttons excessively wide.
 
-The current Create Payroll page has too much empty space.
+10. Typography
 
-Make it closer to the Approve page screenshot's density.
+Change the page typography to match the existing Approve page.
 
-Reduce:
+Use the application's existing font family and typography variables.
 
-- excessive outer margins
-- excessive card padding
-- large gaps between batch information and Payee Details
-- unnecessary vertical whitespace
-- unnecessary height of containers
+Make:
 
-But do NOT make everything cramped.
+- Batch ID → prominent
+- Section title → medium/bold
+- Metadata → smaller and subtle
+- Table headers → clear
+- Table content → compact and readable
+- Buttons → medium-weight and clean
 
-The page should have the same balanced spacing rhythm as the Approve page.
+Do not add a new font library.
 
-CONTAINER / CARD DESIGN
+11. Important alignment requirement
 
-Do NOT put the entire Create Payroll page inside one huge oversized card.
+Pay special attention to alignment.
 
-Instead:
+The following should line up cleanly:
 
-- Use the normal page background.
-- Use subtle containers only where useful.
-- Keep the main content width aligned with the application's existing page layout.
-- Keep the table visually prominent.
-- Avoid huge empty areas.
+- Batch information
+- Payee Details heading
+- Add Payee / Reset Rows
+- Table columns
+- Input fields
+- Actions
+- Pagination
+- Totals
+- Bottom buttons
 
-The final page should feel compact and professional.
+There should be no feeling that individual elements are floating or taking unnecessary space.
 
-TYPOGRAPHY
+12. Final visual goal
 
-Match the font appearance and hierarchy of the Approve page screenshot.
+The final page should look like a clean enterprise banking application.
 
-Use the existing application's typography variables/styles.
+Think:
 
-Do NOT introduce a new font library.
+Simple + Compact + Professional + Consistent
 
-Use existing:
+Do NOT make it flashy.
 
-- font family
-- font weights
-- font sizes
-- line heights
+Do NOT add:
 
-from the application's existing styling system.
+- extra cards
+- statistics
+- charts
+- illustrations
+- help sections
+- unnecessary information
+- extra navigation
+- decorative elements
 
-The page title/batch ID should be prominent, section headings should be clear, and table text should remain compact and readable.
+MOST IMPORTANT
 
-COLORS
+Use the existing shared components and "variables.css".
 
-Use the existing colors from "variables.css".
+Do not modify them.
 
-The visual direction should be:
+Do not modify any other file.
 
-- dark navy application header
-- blue primary actions
-- light/neutral page background
-- white content areas
-- subtle borders
-- existing status colors
+Only make page-specific UI/layout/styling changes to the Create Payroll page.
 
-Do NOT change "variables.css".
-
-Do NOT add global color variables.
-
-RESPONSIVENESS
-
-Maintain the existing responsive behavior.
-
-Do not introduce horizontal scrolling for the entire page unnecessarily.
-
-If the payee table requires horizontal scrolling at smaller widths, keep the scrolling limited to the table area.
-
-CODE QUALITY
-
-Before making changes:
-
-1. Inspect the existing Create Payroll component.
-2. Inspect the shared components already used by the project.
-3. Inspect "variables.css" only to understand and reuse existing variables.
-4. Reuse existing Button, Table, Input, Badge, Pagination, Card, and other shared components where applicable.
-5. Do not modify those shared components.
-6. Keep existing JSX/React logic wherever possible.
-7. Change only the layout and page-specific styling required for the redesign.
-
-FINAL CHECK
-
-After implementation, verify:
-
-- Approve page remains completely unchanged.
-- Other pages remain unchanged.
-- Shared components remain unchanged.
-- "variables.css" remains unchanged.
-- Global styles remain unchanged.
-- API/business logic remains unchanged.
-- Create Payroll functionality still works exactly as before.
-- Only the Create Payroll page's appearance has changed.
-
-Target result
-
-The final Create Payroll page should look like it was designed by the same UI designer who created the Approve page in the reference screenshot — same font feel, same spacing rhythm, same table style, same button treatment, same blue/white enterprise banking aesthetic — while retaining all of the Create Payroll page's existing content and functionality.
+Preserve 100% of the existing functionality.
