@@ -1,63 +1,73 @@
-Use this prompt as-is in your UI/code generation tool:
+Improve the Payroll Batch Details page to make it look clean, compact, modern, and professional.
 
-Improve the Payroll Batch Details page shown in the reference image and make it look polished, modern, professional, and consistent with the existing Pulse application.
+The current implementation feels too large because the entire page is placed inside one oversized card with excessive empty space. Reduce the overall footprint of the page and improve the visual hierarchy.
 
-Important scope restrictions
+VERY IMPORTANT — DO NOT CHANGE ANYTHING ELSE
 
-- Modify ONLY the Payroll Batch Details page/component.
-- Do NOT modify any other page, component, route, service, API, functionality, or business logic.
-- Do NOT create or modify global styles.
-- Continue using the existing "variables.css" for all colors, spacing, typography, borders, shadows, radii, etc.
-- Do NOT hardcode new global colors or CSS variables.
-- Reuse the application's existing shared components wherever available, such as Button, Card, Table, Badge/Status, Pagination, Input, etc.
-- Do NOT create duplicate versions of existing shared components.
-- Do not change the implementation or styling of shared components themselves.
-- Do not change global variables or "variables.css".
-- Keep all existing functionality, API calls, state management, validation, pagination, add-payee, remove-payee, save-draft, submit-for-approval, and navigation behavior exactly as they currently work.
-- This is a UI-only improvement to this page.
+- Modify ONLY the Payroll Batch Details page/component and its page-specific styling.
+- Do NOT modify any other page.
+- Do NOT modify any shared component.
+- Do NOT modify "variables.css".
+- Do NOT modify global CSS/global styles.
+- Do NOT change global variables.
+- Reuse the existing shared components and existing design system.
+- Use the existing variables from "variables.css" wherever styling values are required.
+- Do not introduce new hardcoded global colors, spacing variables, typography variables, etc.
+- Do not create duplicate components when an existing shared component can be reused.
+- Do not change routing, API calls, state management, validation, handlers, business logic, or existing functionality.
 
-Header / navigation
+Main design direction
 
-Keep the existing application header and sidebar unchanged. The page should naturally fit into the existing Pulse layout.
+Do NOT make the whole page one large card.
 
-Use the existing shared header/sidebar components rather than recreating them.
+The current page has too much empty space and the outer container occupies almost the entire screen.
 
-Page layout
+Instead:
 
-Improve the overall spacing and visual hierarchy.
+- Use the normal page background.
+- Remove/reduce the oversized outer card.
+- Use small, purposeful containers/cards only where necessary.
+- Reduce vertical padding and margins.
+- Keep the content visually compact.
+- Make the payee table the main focus of the page.
 
-At the top of the content area:
+The page should look like a professional enterprise transaction/detail page, not a dashboard.
 
-- Add a subtle "Back to Payroll Batches" navigation link with a back/left arrow.
-- Show the batch ID prominently:
-  BATCH-1787801993513-553
-- Display the current Draft status as a compact status badge.
-- Below the batch ID, present the batch information in a clean horizontal metadata section:
-  - Debit Account
-  - Currency
-  - Payment Date
-- Use icons only if existing shared icon components are available.
+Page structure
 
-Put this information inside a clean card/container with proper spacing and alignment.
+Use this hierarchy:
+
+Back navigation
+
+"← Back to Payroll Batches"
+
+Then a compact batch header:
+
+"BATCH-1787801993513-553"                              "Draft"
+
+Below it, display the metadata in one compact horizontal row:
+
+"Debit Account: 1000293847   |   Currency: INR   |   Payment Date: 27 Aug 2026"
+
+Do not create a large empty card around this information.
 
 Payee section
 
-Create a clear section titled:
+Keep:
 
 Payee Details (1)
 
-Place the existing:
+Place these actions on the same row:
 
-- "+ Add Payee"
-- "Reset Rows"
+"+ Add Payee"   "Reset Rows"
 
-actions in a logical position without making them visually dominant.
+Keep the spacing compact.
 
 Payee table
 
-Improve the existing table visually while keeping all existing columns and functionality.
+The table should be the primary content area.
 
-Columns should remain:
+Keep the existing columns:
 
 - Employee ID
 - Name
@@ -66,98 +76,132 @@ Columns should remain:
 - Amount
 - Actions
 
-Use:
+Improve:
 
-- Clean table headers
-- Proper column spacing
-- Consistent row height
-- Subtle borders/dividers
-- Good typography hierarchy
-- Right alignment for monetary values
-- Existing shared table components if available
+- column alignment
+- typography
+- row height
+- padding
+- borders
+- header styling
+- spacing
+- readability
 
-For the Amount column, display the currency consistently, for example:
+Do not make the table unnecessarily tall.
 
-₹0.00
+Keep the existing editable fields and functionality exactly as they are.
 
-Keep the existing Remove functionality exactly as it is.
-
-If a shared destructive button/icon component exists, reuse it instead of creating a new component.
+Keep the existing Remove action.
 
 Pagination
 
-Keep the existing pagination functionality.
+Keep the existing pagination logic and controls.
 
-Improve only its visual alignment and spacing.
+Place:
 
-Display:
+"Showing 1–1 of 1"
 
-Showing 1 to 1 of 1 payee
+on the left and pagination controls on the right.
 
-along with the existing First, Previous, page number, Next, and Last controls.
+Do not give pagination a large separate card.
 
-Do not change pagination logic.
+Totals
 
-Summary
+Keep:
 
-Keep the existing summary information:
+"Total Payees: 1"
 
-- Total Payees: 1
-- Total Amount: ₹0.00
+and
 
-Present these in a compact, visually clean summary area below the table.
+"Total Amount: ₹0.00"
 
-Do not add unnecessary dashboard statistics.
+Place them in a small, compact summary/footer area, preferably below the table.
+
+Do not create large statistic cards.
 
 Bottom actions
 
-Keep the existing actions:
+Keep the existing buttons:
 
 - Back to list
 - Save as Draft
 - Submit for Approval
 
-Make the hierarchy clear:
+Align them neatly toward the bottom-right.
 
-- Back to list → secondary/outlined
-- Save as Draft → secondary action
-- Submit for Approval → primary action
+Use the existing shared Button component.
 
-Reuse existing shared Button components.
+Maintain the existing visual hierarchy:
 
-Do not change their functionality, handlers, or API behavior.
+- Back to list → secondary
+- Save as Draft → secondary
+- Submit for Approval → primary
 
-Visual design
+Do not change their handlers or functionality.
 
-Aim for a professional enterprise SaaS/Pulse-style interface:
+Spacing
 
-- Spacious but not excessive
-- Clean white/light background
-- Existing Pulse navy/blue color system
-- Subtle card borders/shadows
-- Consistent border radius
-- Strong typography hierarchy
-- Good alignment
-- Avoid excessive gradients
-- Avoid unnecessary decorative elements
-- Avoid adding extra statistics/cards that are not relevant to this page
-- Keep the page easy to scan
+This is especially important.
 
-Responsive behavior
+Reduce:
 
-Make the page responsive using the application's existing responsive patterns and shared styles.
+- excessive top padding
+- excessive card padding
+- large gaps between sections
+- unnecessary whitespace around the table
+- unnecessary height of containers
 
-On smaller screens, the table and metadata should remain usable without breaking the existing functionality.
+The content should fit naturally within the viewport without feeling stretched.
 
-Code requirements
+Aim for a layout where the user can immediately see:
 
-Before adding any styling:
+1. Batch ID/status
+2. Batch metadata
+3. Payee Details
+4. Payee table
+5. Totals
+6. Actions
 
-1. Inspect the existing Payroll Batch Details component.
-2. Identify which shared components are already available.
-3. Reuse those components.
-4. Check "variables.css" and use the existing variables.
-5. Do not introduce duplicate styles or components.
-6. Make the smallest possible code changes required for this UI improvement.
+without the page feeling oversized.
 
-Final requirement: Only modify the Payroll Batch Details page and its page-specific styling. Do not modify "variables.css", shared components, global styles, other pages, routes, services, APIs, or business logic.
+Visual style
+
+Keep the existing Pulse design language:
+
+- existing navy/blue colors
+- existing typography
+- existing border radius
+- existing shadows
+- existing spacing system
+- existing buttons
+- existing status badges
+
+All of these must come from the existing shared design system and "variables.css".
+
+Do not introduce a new visual theme.
+
+Do NOT add
+
+Do not add:
+
+- Pending/Approved/Rejected statistic cards
+- Last Batch ID card
+- dashboard statistics
+- charts
+- help sections
+- tips sections
+- unnecessary illustrations
+- additional information cards
+- Manage navigation
+- new sidebar items
+- unrelated functionality
+
+This is specifically a Payroll Batch Details page.
+
+Final requirement
+
+Before making changes, inspect the existing component and identify the shared components and variables already being used.
+
+Make the minimum necessary UI changes to achieve a compact, polished design.
+
+Only the Payroll Batch Details page should change. Everything else in the application must remain untouched.
