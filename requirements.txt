@@ -1,89 +1,109 @@
-Refine the Create Payroll page using the current page as the base.
+Polish the existing Create Payroll page based on its current implementation.
 
-The goal is to make it clean, compact, neatly aligned, and professional, matching the visual style of the existing Approve page.
+The current layout and overall spacing are acceptable. Do not redesign the page from scratch. Make only the UI refinements needed to improve clarity, alignment, readability, and button styling.
 
 STRICT SCOPE
 
-- Change ONLY the Create Payroll page.
-- Do NOT modify the Approve page or any other page.
+- Modify ONLY the Create Payroll page.
+- Do NOT modify any other page.
+- Do NOT modify the Approve page.
 - Do NOT modify shared components.
 - Do NOT modify "variables.css".
-- Do NOT modify global CSS or global styles.
+- Do NOT modify global CSS/global styles.
 - Reuse existing shared components.
-- Reuse existing values from "variables.css".
-- Do not create new global variables.
-- Do not change any business logic, API calls, state, validation, handlers, routing, or functionality.
+- Reuse existing variables from "variables.css".
+- Do not introduce new global variables.
+- Do not change API calls, state, validation, handlers, routing, pagination, or business logic.
+- Do not change any existing functionality.
 
-1. Overall layout
+1. Overall page
 
-The current page feels too large and has unnecessary empty space.
+Keep the current layout and current compact spacing.
 
-Make the page more compact while keeping it comfortable to read.
+Make the page look:
 
-- Reduce the width/height of unnecessary containers.
-- Reduce excessive padding and margins.
-- Reduce the vertical gap between the batch information and Payee Details.
-- Keep the main content centered and properly aligned.
-- Do not stretch the content to fill the entire screen.
-- Avoid one huge oversized card with large empty areas.
+- clean
+- professional
+- balanced
+- easy to scan
+- consistent with the existing Approve page
 
-The page should have a similar density and spacing rhythm to the existing Approve page.
+Do not add unnecessary cards, statistics, illustrations, or extra sections.
 
-2. Batch information
+Do not increase the overall height of the page.
+
+2. Batch header
 
 Keep:
 
 ← Back to Payroll Batches
 
-Then display:
-
 BATCH-1787801993513-553
+
 Draft
 
-Below it:
+And:
 
-- Debit Account: 1000293847
-- Currency: INR
-- Payment Date: 27 Aug 2026
+- Debit Account
+- Currency
+- Payment Date
 
-Make this section compact.
+Improve the alignment and readability.
 
-Keep the three metadata items aligned horizontally.
+The batch ID should be slightly more prominent.
 
-Do not use excessive spacing between them.
+The metadata should have clear spacing between each item instead of looking like one continuous line.
 
-3. Payee Details
+Keep the Draft status neatly aligned to the right.
 
-Display:
+Do not create excessive whitespace.
+
+3. Payee Details section
+
+Keep:
 
 Payee Details (1)
 
-Place the buttons on the same row:
+Place:
 
-+ Add Payee    Reset Rows
++ Add Payee   Reset Rows
 
-Make these buttons smaller and cleaner.
+on the same row.
 
-They currently look too large and occupy too much space.
+Improve these buttons
+
+The current Add Payee and Reset Rows buttons look slightly oversized and visually inconsistent.
+
+Make them:
+
+- smaller
+- equal in height
+- compact
+- clearly readable
+- properly aligned
+- consistent with the existing application button style
 
 Use:
 
-- moderate height
-- compact horizontal padding
-- consistent font size
-- subtle border
-- consistent border radius
-- proper spacing between the two buttons
+Add Payee
 
-Reuse the existing shared Button component.
+- blue outline/primary-accent appearance
+- plus icon if the existing shared icon is available
+
+Reset Rows
+
+- neutral/secondary outline appearance
+- reset icon only if an existing shared icon is available
+
+Do not make them heavily rounded or oversized.
+
+Keep a small, consistent gap between the buttons.
 
 Do not change their functionality.
 
 4. Payee table
 
-Make the table compact and neatly aligned.
-
-Columns:
+Keep the existing table and columns:
 
 - Employee ID
 - Name
@@ -92,78 +112,107 @@ Columns:
 - Amount
 - Actions
 
+Improve the table so that the content is easier to read.
+
+Alignment
+
+This is very important.
+
 Make sure:
 
-- All columns line up correctly.
-- Column headers are centered/positioned consistently with their data.
-- Inputs have a consistent height.
-- Inputs do not look oversized.
-- Row height is reduced slightly.
-- There is enough padding to remain readable.
-- The Actions column has enough width for the action button.
-- Nothing overlaps or looks squeezed.
+- Employee ID is aligned correctly.
+- Name is aligned correctly.
+- Account Number is aligned correctly.
+- IFSC/SWIFT is aligned correctly.
+- Amount is aligned consistently.
+- Actions is aligned exactly under the Actions header.
 
-5. Edit / Remove / Action buttons
+The table should not look shifted or uneven.
 
-Make the action buttons compact and visually clear.
+5. Table inputs
 
-Do NOT allow buttons to occupy excessive width.
+Keep the existing editable inputs.
+
+Make the inputs:
+
+- consistent in height
+- consistent in padding
+- properly aligned within their columns
+- not unnecessarily wide
+- not unnecessarily tall
+
+Use the existing shared Input component/style if available.
+
+Do not change validation or input behavior.
+
+6. Remove button
+
+The current Remove button is too faint/small and does not look properly aligned with the Actions column.
+
+Improve it so it is:
+
+- clearly visible
+- compact
+- properly aligned under Actions
+- easy to understand
+- visually consistent with the application
+
+Use a subtle destructive/red treatment if an existing shared destructive button style is available.
+
+Do not make it large.
+
+Do not change its functionality.
+
+7. Table background
+
+Give the table a subtle visual separation from the page.
+
+Use the existing design variables.
 
 For example:
 
-Edit
-Remove
+- very light neutral/blue table background
+- subtle border
+- clean blue table header
+- white/light table rows
 
-should have consistent height, padding, font size, and alignment.
+Do not introduce new colors.
 
-Keep the Actions column properly aligned with the other columns.
+Do not use a strong gradient.
 
-If the current page uses Edit/Remove buttons, make them visually consistent with the buttons on the Approve page.
+8. Pagination
 
-Do not change their functionality.
+Keep the existing pagination functionality.
 
-6. Table background
+Align it cleanly:
 
-Give the table/header area a subtle background treatment using the existing design variables.
+Showing 1–1 of 1 on the left.
 
-Use the existing application blue for the table header.
+Pagination controls on the right:
 
-Use a very light neutral/blue background where appropriate.
+First | Prev | 1 | Next | Last
 
-Do not introduce a completely new color palette.
+Make all pagination buttons compact and equal in height.
 
-Keep the overall appearance professional and similar to the Approve page.
+Do not create a separate large card for pagination.
 
-7. Pagination
-
-Keep pagination exactly as it works now.
-
-Display:
-
-Showing 1–1 of 1
-
-on the left.
-
-Place the pagination controls neatly on the right.
-
-Keep the controls compact.
-
-Do not create a large separate card for pagination.
-
-8. Totals
+9. Totals
 
 Keep:
 
 Total Payees: 1
+
 Total Amount: ₹0.00
 
-Make this section compact.
+Give this section a subtle light background and enough separation from pagination.
 
-Do not turn these into large dashboard statistic cards.
+Keep it compact.
 
-Use a subtle light background if appropriate, using existing variables.
+Do not turn it into large dashboard cards.
 
-9. Bottom buttons
+Align the two values neatly.
+
+10. Bottom action buttons
 
 Keep:
 
@@ -171,82 +220,83 @@ Back to list
 Save as Draft
 Submit for Approval
 
-Make them smaller and neatly aligned on the right.
+Improve their styling and alignment.
 
-Button hierarchy:
+All three buttons should:
 
-- Back to list → secondary
-- Save as Draft → secondary
-- Submit for Approval → primary blue
+- have the same height
+- have consistent padding
+- have consistent font size
+- have consistent border radius
+- have consistent spacing
 
-All three buttons should have the same height.
+Use this hierarchy:
 
-Do not make the buttons excessively wide.
+Back to list
 
-10. Typography
+- secondary
+- outlined/neutral
 
-Change the page typography to match the existing Approve page.
+Save as Draft
 
-Use the application's existing font family and typography variables.
+- secondary
+- blue outlined or neutral style
+- DO NOT use bright green
 
-Make:
+Submit for Approval
 
-- Batch ID → prominent
-- Section title → medium/bold
-- Metadata → smaller and subtle
-- Table headers → clear
-- Table content → compact and readable
-- Buttons → medium-weight and clean
+- primary
+- solid application blue
 
-Do not add a new font library.
+Keep them compact.
 
-11. Important alignment requirement
+Do not make them unnecessarily wide.
 
-Pay special attention to alignment.
+Align all three buttons neatly on the right.
 
-The following should line up cleanly:
+Do not change their handlers or functionality.
 
-- Batch information
-- Payee Details heading
-- Add Payee / Reset Rows
-- Table columns
-- Input fields
-- Actions
-- Pagination
-- Totals
-- Bottom buttons
+11. Typography
 
-There should be no feeling that individual elements are floating or taking unnecessary space.
+Match the existing Approve page typography as closely as possible.
 
-12. Final visual goal
+Use the existing application's font and typography variables.
 
-The final page should look like a clean enterprise banking application.
+Improve:
 
-Think:
+- heading weight
+- table readability
+- button text
+- metadata readability
 
-Simple + Compact + Professional + Consistent
+Do not add a new font.
 
-Do NOT make it flashy.
+Do not change global typography.
 
-Do NOT add:
+12. Spacing
 
-- extra cards
-- statistics
-- charts
-- illustrations
-- help sections
-- unnecessary information
-- extra navigation
-- decorative elements
+The current spacing is mostly good, so make only small refinements.
 
-MOST IMPORTANT
+Specifically:
+
+- reduce any remaining unnecessary gap between batch information and Payee Details
+- keep Payee Details close to the table
+- keep pagination close to the table
+- keep totals close to pagination
+- keep bottom actions close to totals
+
+Do not make the page cramped.
+
+Do not increase the page height.
+
+FINAL REQUIREMENT
+
+This is a UI polish task, not a functional or architectural change.
 
 Use the existing shared components and "variables.css".
 
-Do not modify them.
+Do not modify "variables.css", shared components, global styles, or any other file.
 
-Do not modify any other file.
+Only improve the visual presentation of the existing Create Payroll page.
 
-Only make page-specific UI/layout/styling changes to the Create Payroll page.
-
-Preserve 100% of the existing functionality.
+Preserve all existing functionality exactly as it is.
