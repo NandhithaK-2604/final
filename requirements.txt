@@ -1,113 +1,163 @@
-IMPORTANT — LAYOUT-ONLY CHANGE. DO NOT MODIFY USER STORY FUNCTIONALITY.
+Use this prompt as-is in your UI/code generation tool:
 
-For this task, make ONLY the following visual/layout changes to the
-application's common dashboard layout:
+Improve the Payroll Batch Details page shown in the reference image and make it look polished, modern, professional, and consistent with the existing Pulse application.
 
-1. HEADER
-- Change the main/top header background to a clean, professional
-  NAVY BLUE.
-- The navy blue should be similar to the dark navy tone used in the
-  Standard Chartered / Pulse-style corporate interface.
-- Keep the existing header content, icons, logo, navigation, and
-  functionality unchanged.
-- Make the header slightly taller/bigger, similar to the proportion
-  of the Pulse website header.
-- Do NOT make it excessively tall.
-- Keep the header clean and compact.
-- Ensure the header has consistent height across all dashboard pages.
+Important scope restrictions
 
-2. HEADER-TO-CONTENT SPACING
-- Reduce the excessive empty space between the top header and the
-  page content.
-- The page content should start closer to the header.
-- Keep a small, consistent amount of breathing room so the layout
-  does not look cramped.
-- The spacing must be consistent when navigating between dashboard
-  pages.
-- Do NOT change the spacing between individual form fields, tables,
-  buttons, cards, or other User Story components yet.
+- Modify ONLY the Payroll Batch Details page/component.
+- Do NOT modify any other page, component, route, service, API, functionality, or business logic.
+- Do NOT create or modify global styles.
+- Continue using the existing "variables.css" for all colors, spacing, typography, borders, shadows, radii, etc.
+- Do NOT hardcode new global colors or CSS variables.
+- Reuse the application's existing shared components wherever available, such as Button, Card, Table, Badge/Status, Pagination, Input, etc.
+- Do NOT create duplicate versions of existing shared components.
+- Do not change the implementation or styling of shared components themselves.
+- Do not change global variables or "variables.css".
+- Keep all existing functionality, API calls, state management, validation, pagination, add-payee, remove-payee, save-draft, submit-for-approval, and navigation behavior exactly as they currently work.
+- This is a UI-only improvement to this page.
 
-3. COMMON LAYOUT CONSISTENCY
-- Apply ONLY the header height/color and header-to-content spacing
-  consistently across the existing dashboard layout.
-- The sidebar should remain unchanged.
-- Do NOT redesign the sidebar.
-- Do NOT change page-specific layouts.
-- Do NOT change tables, forms, cards, buttons, modals, fonts,
-  typography, colors, padding, margins, or component sizes inside
-  individual pages at this stage.
-- Do NOT change any business logic, API calls, routing, validation,
-  state management, or functionality.
+Header / navigation
 
-4. STRICT PROTECTION OF OTHER USER STORIES
-This is a preliminary common-layout change BEFORE working on User
-Story 2.
+Keep the existing application header and sidebar unchanged. The page should naturally fit into the existing Pulse layout.
 
-DO NOT modify, rename, delete, replace, or restructure anything
-belonging to other User Stories.
+Use the existing shared header/sidebar components rather than recreating them.
 
-DO NOT modify:
-- existing global variables
-- CSS variables
-- theme variables
-- design tokens
-- shared styles
-- shared components
-- shared buttons
-- shared inputs
-- shared tables
-- shared modals
-- common page components
-- business logic
-- API/service code
-- routing
-- state management
+Page layout
 
-unless the change is absolutely required for the common header/layout
-and does not alter the behavior or appearance of other User Stories.
+Improve the overall spacing and visual hierarchy.
 
-IMPORTANT:
-Do NOT make broad global styling changes just to achieve this
-appearance.
+At the top of the content area:
 
-If a global/shared component must be touched for the header layout,
-make the smallest possible change and preserve all existing behavior.
+- Add a subtle "Back to Payroll Batches" navigation link with a back/left arrow.
+- Show the batch ID prominently:
+  BATCH-1787801993513-553
+- Display the current Draft status as a compact status badge.
+- Below the batch ID, present the batch information in a clean horizontal metadata section:
+  - Debit Account
+  - Currency
+  - Payment Date
+- Use icons only if existing shared icon components are available.
 
-Do NOT modify unrelated files.
+Put this information inside a clean card/container with proper spacing and alignment.
 
-5. NO USER STORY WORK YET
-Do NOT start redesigning User Story 2 or any other User Story in this
-task.
+Payee section
 
-First complete ONLY:
-- Navy blue header
-- Slightly larger header height
-- Reduced header-to-content gap
-- Consistent header/layout positioning across dashboard pages
+Create a clear section titled:
 
-After this is completed, STOP.
+Payee Details (1)
 
-We will handle the detailed UI improvements USER STORY BY USER STORY
-in a separate step.
+Place the existing:
 
-6. VISUAL GOAL
-The overall result should feel:
-- professional
-- clean
-- corporate
-- consistent
-- compact
-- spacious but not wasteful
-- visually similar in overall header proportions and spacing to a
-  modern Standard Chartered/Pulse-style corporate application
+- "+ Add Payee"
+- "Reset Rows"
 
-Do NOT copy or reproduce the Pulse website.
-Use it only as a general visual direction for header size,
-professional spacing, and corporate appearance.
+actions in a logical position without making them visually dominant.
 
-MOST IMPORTANT:
-Make ONLY the changes explicitly requested above.
-Do not make additional "improvements" on your own.
-Do not refactor unrelated code.
-Do not modify global/shared styling unnecessarily.
-Do not touch User Story-specific UI yet.
+Payee table
+
+Improve the existing table visually while keeping all existing columns and functionality.
+
+Columns should remain:
+
+- Employee ID
+- Name
+- Account Number
+- IFSC/SWIFT
+- Amount
+- Actions
+
+Use:
+
+- Clean table headers
+- Proper column spacing
+- Consistent row height
+- Subtle borders/dividers
+- Good typography hierarchy
+- Right alignment for monetary values
+- Existing shared table components if available
+
+For the Amount column, display the currency consistently, for example:
+
+₹0.00
+
+Keep the existing Remove functionality exactly as it is.
+
+If a shared destructive button/icon component exists, reuse it instead of creating a new component.
+
+Pagination
+
+Keep the existing pagination functionality.
+
+Improve only its visual alignment and spacing.
+
+Display:
+
+Showing 1 to 1 of 1 payee
+
+along with the existing First, Previous, page number, Next, and Last controls.
+
+Do not change pagination logic.
+
+Summary
+
+Keep the existing summary information:
+
+- Total Payees: 1
+- Total Amount: ₹0.00
+
+Present these in a compact, visually clean summary area below the table.
+
+Do not add unnecessary dashboard statistics.
+
+Bottom actions
+
+Keep the existing actions:
+
+- Back to list
+- Save as Draft
+- Submit for Approval
+
+Make the hierarchy clear:
+
+- Back to list → secondary/outlined
+- Save as Draft → secondary action
+- Submit for Approval → primary action
+
+Reuse existing shared Button components.
+
+Do not change their functionality, handlers, or API behavior.
+
+Visual design
+
+Aim for a professional enterprise SaaS/Pulse-style interface:
+
+- Spacious but not excessive
+- Clean white/light background
+- Existing Pulse navy/blue color system
+- Subtle card borders/shadows
+- Consistent border radius
+- Strong typography hierarchy
+- Good alignment
+- Avoid excessive gradients
+- Avoid unnecessary decorative elements
+- Avoid adding extra statistics/cards that are not relevant to this page
+- Keep the page easy to scan
+
+Responsive behavior
+
+Make the page responsive using the application's existing responsive patterns and shared styles.
+
+On smaller screens, the table and metadata should remain usable without breaking the existing functionality.
+
+Code requirements
+
+Before adding any styling:
+
+1. Inspect the existing Payroll Batch Details component.
+2. Identify which shared components are already available.
+3. Reuse those components.
+4. Check "variables.css" and use the existing variables.
+5. Do not introduce duplicate styles or components.
+6. Make the smallest possible code changes required for this UI improvement.
+
+Final requirement: Only modify the Payroll Batch Details page and its page-specific styling. Do not modify "variables.css", shared components, global styles, other pages, routes, services, APIs, or business logic.
