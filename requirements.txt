@@ -1,90 +1,35 @@
-Modify ONLY the Actions dropdown inside the existing Manage → Transaction Management table.
+Modify ONLY the APPROVE page functionality.
 
-DO NOT change the rest of the Manage page, table columns, filters, pagination, colors, header, or overall layout.
+When the user clicks the three-dot (⋮) action menu beside the View button for a batch, provide an option:
 
-ACTION DROPDOWN REQUIREMENTS:
+👁 View Batch Details
 
-1. Keep the current compact Actions layout:
-   - View + three-dot menu (⋮) for Approved/Pending rows
-   - Edit + three-dot menu (⋮) for Draft rows
+When "View Batch Details" is clicked:
 
-2. When the user clicks the three-dot (⋮) button, the dropdown MUST open ABOVE the button, not below it.
+- Reuse the EXISTING "View Payee Details" details UI/component/design already implemented in the application.
+- Do NOT create a new details-page design.
+- Do NOT create a different modal/drawer style.
+- Do NOT change the existing View Payee Details UI.
+- Open the same existing details component, but populate it with the selected BATCH's information instead of payee-specific information.
 
-3. The dropdown must be positioned so that it stays completely inside the visible table/page area.
-   - Never extend below the table.
-   - Never cause the page or table to show a vertical scrollbar.
-   - Never increase the table height.
-   - Never shift or resize the layout.
-   - Use an overlay/popover positioning approach.
+The displayed batch details should correspond to the exact row/batch whose three-dot menu was clicked.
 
-4. The dropdown should be compact and professional:
-   - White background
-   - Subtle border
-   - Soft shadow
-   - Small rounded corners
-   - Comfortable but not excessive padding
-   - Proper spacing between menu items
+Show the relevant batch information such as:
+- Batch ID
+- Maker
+- Debit Account
+- Payees
+- Amount
+- Payment Date
+- Status
+- Any other batch-level fields already supported by the existing details component.
 
-5. Use professional UI icons, NOT emoji characters.
+IMPORTANT:
+The existing View Payee Details functionality must continue working exactly as it currently does.
 
-For Approved/Pending:
-   [Printer icon]  Print
-   [Eye icon]      View Details
+Reuse the existing component and styling wherever possible rather than duplicating the UI.
 
-For Draft:
-   [Printer icon]  Print
-   [Eye icon]      View Details
-   [Pencil icon]   Edit
+Only make the necessary changes to the APPROVE page's three-dot menu and its View Batch Details action.
 
-6. Icons should be small, consistent in size, aligned perfectly with the text, and use the existing application's icon style.
-
-7. Each menu item should have:
-   - Icon on the left
-   - Text label next to it
-   - Comfortable clickable area
-   - Subtle hover state
-
-8. The three-dot button itself should also look clean:
-   - Small compact button
-   - No large filled background
-   - Proper hover/focus state
-   - Vertically aligned with View/Edit
-
-9. IMPORTANT DROPDOWN POSITIONING:
-   Since the table is close to the bottom of the page, calculate available space around the trigger.
-   Prefer opening ABOVE the three-dot button when there isn't enough space below.
-   The dropdown must remain fully visible within the viewport.
-
-10. Do not add Activity Log or any other unnecessary menu options.
-
-FINAL RESULT:
-The Actions column should look like:
-
-Approved:
-View   ⋮
-
-Click ⋮:
-
-        ┌──────────────────┐
-        │ 🖨  Print         │
-        │ 👁  View Details  │
-        └──────────────────┘
-                 ⋮
-              View
-
-Draft:
-Edit   ⋮
-
-Click ⋮:
-
-        ┌──────────────────┐
-        │ 🖨  Print         │
-        │ 👁  View Details  │
-        │ ✎  Edit          │
-        └──────────────────┘
-                 ⋮
-              Edit
-
-The dropdown should open upward when necessary and must NEVER create a scrollbar or push the page content downward.
-
-Keep the implementation limited strictly to the Actions dropdown behavior and styling in the Manage page.
+Do not modify the Manage, Create, Upload, or Balances pages.
+Do not modify the overall page layout.
