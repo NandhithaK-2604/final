@@ -1,57 +1,673 @@
-Fix only the profile dropdown behavior in Header.jsx. The existing toggle logic onClick={() => setOpen(prev => !prev)} is already correct, so do not replace it. Add an outside-click behavior so that when the profile dropdown is open and the user clicks anywhere outside the profile button/dropdown, setOpen(false) is triggered and the dropdown closes. Keep clicking the profile icon as a toggle. Use React useRef and useEffect if needed. Make sure clicks inside the profile dropdown do not immediately close it. Do not change the existing profile UI, styling, profile information, logout functionality, header design, shared components, variables.css, global CSS, or any other file. This is only a small interaction/behavior fix in the existing Header component.
-const profileRef = useRef(null);
+I am working on a banking transaction management project called Straight2Bank.
 
-useEffect(() => {
-  const handleClickOutside = (event) => {
-    if (
-      profileRef.current &&
-      !profileRef.current.contains(event.target)
-    ) {
-      setOpen(false);
-    }
-  };
+I need help implementing the changes requested by my trainer.
 
-  document.addEventListener("mousedown", handleClickOutside);
+IMPORTANT:
+My BACKEND TRANSACTION FUNCTIONALITY has NOT been implemented yet.
+So do not assume that APIs, services, repositories, or transaction entities already exist.
 
-  return () => {
-    document.removeEventListener("mousedown", handleClickOutside);
-  };
-}, []);
+First inspect my existing project structure and understand what is already implemented.
+Then propose the database/entity design, backend APIs, and frontend changes.
+Do not immediately rewrite my code.
 
+==================================================
+TRAINER REQUIREMENTS
+==================================================
 
+1. REMOVE CURRENCY FROM BATCH CREATION
 
+While creating a batch, do not treat currency as a generic/base currency of the batch.
 
+There are TWO different currencies in the application:
 
-<div className="header__profile" ref={profileRef}>
-  <button
-    className="header__avatar"
-    onClick={() => setOpen(prev => !prev)}
-    aria-label="Profile"
-  >
-    ...
-  </button>
+A. ACCOUNT CURRENCY
+   - Currency of the debit account.
+   - Example: INR.
 
-  {open && (
-    <div className="header__profile-dropdown">
-      <div className="profile__info">
-        <div className="profile__name">{user?.name}</div>
-        <div className="profile__role">
-          {roles?.join(" / ")}
-        </div>
-      </div>
+B. TRANSACTION CURRENCY
+   - Currency in which the actual transaction/payment is made.
+   - Example: USD, EUR, GBP, etc.
 
-      <div className="profile__actions">
-        <button className="profile__action">
-          Edit Profile
-        </button>
+Example:
 
-        <button
-          className="profile__action"
-          onClick={handleLogout}
-        >
-          Sign Out
-        </button>
-      </div>
-    </div>
-  )}
-</div>
+Debit Account:       1000293847
+Account Currency:    INR
+
+Transaction:
+Payee:               ABC Ltd
+Amount:              50,000
+Transaction Currency: USD
+
+The system must keep Account Currency and Transaction Currency as two separate concepts.
+
+When creating a transaction/batch, the relevant currency should be the TRANSACTION CURRENCY, not the account/base currency.
+
+Do not overwrite Account Currency with Transaction Currency.
+
+==================================================
+2. MANAGE PAGE
+==================================================
+
+The Manage page currently displays BATCHES.
+
+Example:
+
+Batch ID       Debit Account    Payees    Amount      Currency   Status   Actions
+BATCH-17879    1000293847       3         €200,000    EUR        Pending  View
+
+The Manage page should continue to display batches.
+
+For Draft batches, appropriate actions should be:
+
+Edit | Delete
+
+For non-draft batches, appropriate actions can be:
+
+View | Print
+
+Do not unnecessarily change the existing UI or colors.
+
+==================================================
+3. EXPANDING BATCH TRANSACTIONS
+==================================================
+
+This is VERY IMPORTANT.
+
+The trainer specifically asked for:
+
+"expanding batch transactions"
+
+The user must be able to see ALL INDIVIDUAL TRANSACTIONS belonging to each batch.
+
+The relationship should conceptually be:
+
+Batch
+  |
+  ├── Transaction 1
+  ├── Transaction 2
+  ├── Transaction 3
+  └── ...
+
+For example:
+
+BATCH-17879
+    ↓ Expand
+    ├── TXN-001 - ABC Ltd - €80,000
+    ├── TXN-002 - XYZ Ltd - €70,000
+    └── TXN-003 - PQR Ltd - €50,000
+
+Another batch:
+
+BATCH-SEED-1
+    ↓ Expand
+    └── TXN-004 - ABC Ltd - $50,000
+
+Transactions from one batch MUST NOT appear under another batch.
+
+The frontend should allow the user to expand/collapse a batch.
+
+Example UI:
+
+▼ BATCH-17879 | 1000293847 | 3 | €200,000 | Pending
+
+    Transaction ID | Payee | Amount | Currency | Status
+    ----------------------------------------------------
+    TXN-001        | ABC   | €80,000 | EUR     | Pending
+    TXN-002        | XYZ   | €70,000 | EUR     | Pending
+    TXN-003        | PQR   | €50,000 | EUR     | Pending
+
+▶ BATCH-SEED-1 | 1000293847 | 1 | $50,000 | Pending
+
+When collapsed, only the batch row should be visible.
+
+When expanded, all transactions belonging to that batch should be displayed.
+
+==================================================
+4. BACKEND FOR BATCH → TRANSACTIONS
+==================================================
+
+The backend transaction functionality is NOT implemented yet.
+
+Design and implement it properly.
+
+First determine the existing Batch entity/database structure.
+
+Then create the appropriate Transaction entity/model and relationship.
+
+The expected relationship is approximately:
+
+Batch
+  1
+  |
+  |---- *
+  |
+Transaction
+
+One Batch can contain MANY Transactions.
+
+Each Transaction should reference its parent Batch.
+
+Do not create duplicate entities if an equivalent structure already exists.
+
+Use the project's existing naming conventions and architecture.
+
+==================================================
+5. TRANSACTION DATA
+==================================================
+
+Each individual transaction should support the required information.
+
+At minimum consider:
+
+- Transaction ID
+- Batch ID
+- Payee
+- Payee Account
+- Transaction Type
+- Transaction Currency
+- Debit Amount
+- Credit Amount
+- Running Balance
+- Payment Date
+- Status
+
+Account Currency and Transaction Currency must remain separate.
+
+For example:
+
+Batch / Account:
+
+Debit Account: 1000293847
+Account Currency: INR
+
+Transaction:
+
+Transaction Currency: USD
+Debit Amount: 0
+Credit Amount: 50,000
+Transaction Type: TRANSFER
+
+Do not combine Debit Amount and Credit Amount into one field.
+
+==================================================
+6. DEBIT AMOUNT AND CREDIT AMOUNT
+==================================================
+
+The trainer specifically requested:
+
+"Debit amount and Credit amount (2 columns)"
+
+Therefore the transaction table should have:
+
+Debit Amount | Credit Amount
+
+rather than:
+
+Amount
+
+Example:
+
+Transaction ID | Payee | Debit Amount | Credit Amount | Currency
+TXN-001        | ABC   | 0             | 25,000        | USD
+
+==================================================
+7. TRANSACTION TYPE
+==================================================
+
+Individual transactions should display a Transaction Type.
+
+Example:
+
+TRANSFER
+PAYMENT
+DIRECT_DEBIT
+
+Use the transaction types appropriate for the existing business requirements.
+
+Do not invent unnecessary types.
+
+==================================================
+8. RUNNING BALANCE
+==================================================
+
+Individual transaction details should support Running Balance.
+
+The running balance should be calculated according to the transaction sequence and the existing account/balance business rules.
+
+Do not simply copy the same balance into every transaction.
+
+First understand how balances are currently represented in the project/database.
+
+Then implement the correct calculation.
+
+==================================================
+9. APPROVE PAGE
+==================================================
+
+The Approve page currently displays BATCHES.
+
+Pending batches should appear FIRST.
+
+Example:
+
+Pending
+Pending
+Pending
+Approved
+Rejected
+
+The user should be able to view/expand a batch and see ALL individual transactions belonging to that batch.
+
+Example:
+
+▼ BATCH-SEED-1
+
+Batch Details:
+Maker: Nanditha
+Debit Account: 1000293847
+Account Currency: INR
+Transaction Currency: USD
+Total Amount: $50,000
+Payees: 2
+Status: Pending
+
+Individual Transactions:
+
+Transaction ID | Payee | Type | Debit | Credit | Currency | Running Balance | Status | Action
+
+TXN-001 | ABC Ltd | TRANSFER | $0 | $25,000 | USD | $25,000 | Pending | Approve / Reject
+
+TXN-002 | XYZ Ltd | TRANSFER | $0 | $25,000 | USD | $50,000 | Pending | Approve / Reject
+
+All transactions must belong to the selected batch.
+
+==================================================
+10. INDIVIDUAL BATCH DETAILS
+==================================================
+
+The trainer wrote:
+
+"individual batch details (all transaction details on approve page)"
+
+Interpret this as:
+
+Approve Page
+   ↓
+Batch
+   ↓
+View / Expand
+   ↓
+Batch Details
+   ↓
+ALL transactions inside that batch
+
+Do not show only the batch summary.
+
+The user must be able to see the individual transaction details.
+
+==================================================
+11. MANAGE PAGE VIEW
+==================================================
+
+If the existing Manage page uses a View button, determine whether it is better to:
+
+A. Expand the row inline, OR
+B. Navigate to a Batch Details page.
+
+Prefer the approach that fits the existing project structure and trainer requirement.
+
+The important requirement is:
+
+Click View / Expand
+        ↓
+Show selected batch
+        ↓
+Show ALL individual transactions inside that batch.
+
+Do not show unrelated transactions.
+
+==================================================
+12. DELETE BATCH
+==================================================
+
+When deleting a batch:
+
+Do not show a browser alert.
+
+Use the existing application's UI feedback mechanism if one already exists.
+
+Do not break the delete functionality.
+
+==================================================
+13. ACCOUNT + CURRENCY ON MANAGE
+==================================================
+
+Manage page should clearly show the account and its currency.
+
+Example:
+
+Debit Account: 1000293847
+Account Currency: INR
+
+Transaction currency should remain a separate value.
+
+Do not confuse:
+
+INR = Account Currency
+
+USD/EUR/etc. = Transaction Currency
+
+==================================================
+14. NO MASKING
+==================================================
+
+The trainer said:
+
+"no need to mask"
+
+Where account numbers are currently masked, remove masking where appropriate.
+
+For example, if currently displayed as:
+
+1000****3847
+
+display:
+
+1000293847
+
+Do not apply masking unless there is an actual security/business requirement elsewhere.
+
+==================================================
+15. DATE FORMAT
+==================================================
+
+Keep the date format consistent across the whole application.
+
+Use the same format on:
+
+- Create
+- Manage
+- Approve
+- Transaction details
+- Batch details
+
+Do not have different date formats on different pages.
+
+==================================================
+16. HEADING STYLE
+==================================================
+
+Make heading styles consistent across pages.
+
+Keep:
+
+- same font hierarchy
+- consistent size
+- consistent weight
+- consistent spacing
+
+Do not redesign the whole application.
+
+Keep the existing color scheme.
+
+==================================================
+17. AUTOMATIC LOGOUT
+==================================================
+
+If a user is inactive for a long period:
+
+User inactive
+     ↓
+Session timeout
+     ↓
+Logout
+     ↓
+Login page
+
+First inspect whether authentication/session handling already exists.
+
+Do not create a completely separate authentication system if one already exists.
+
+==================================================
+DATABASE / BACKEND DESIGN
+==================================================
+
+Because transaction backend functionality has not been implemented yet, carefully design the data model.
+
+Determine what information should belong to:
+
+1. Account
+2. Batch
+3. Transaction
+4. Payee
+
+The expected relationship is approximately:
+
+Account
+   |
+   └── Batch
+          |
+          ├── Transaction
+          ├── Transaction
+          └── Transaction
+
+A Batch should contain multiple Transactions.
+
+Each Transaction should belong to exactly one Batch.
+
+Determine whether Payee should be a separate entity or existing entity based on my current project.
+
+Do not duplicate existing tables/entities.
+
+==================================================
+API REQUIREMENTS
+==================================================
+
+Since transaction APIs are not implemented yet, design appropriate REST APIs.
+
+For example, we may need something conceptually like:
+
+POST /batches
+
+POST /batches/{batchId}/transactions
+
+GET /batches/{batchId}/transactions
+
+GET /batches/{batchId}
+
+PUT /transactions/{transactionId}
+
+DELETE /batches/{batchId}
+
+But DO NOT blindly use these exact URLs.
+
+First inspect my existing API naming conventions and follow them.
+
+The most important API requirement is:
+
+Given a batch ID, retrieve ALL transactions belonging to that batch.
+
+For example:
+
+GET [existing convention]/BATCH-17879/transactions
+
+should return only:
+
+TXN-001
+TXN-002
+TXN-003
+
+belonging to BATCH-17879.
+
+==================================================
+IMPLEMENTATION ORDER
+==================================================
+
+Follow this order.
+
+PHASE 1 — ANALYZE EXISTING PROJECT
+
+Inspect:
+
+- Frontend structure
+- Backend structure
+- Database
+- Existing entities
+- Existing repositories
+- Existing services
+- Existing controllers
+- Existing APIs
+- Manage page
+- Approve page
+- Create Batch page
+
+Do not change anything yet.
+
+PHASE 2 — DESIGN DATA MODEL
+
+Explain:
+
+Batch entity
+Transaction entity
+Payee entity
+Account entity
+
+Explain the relationships.
+
+Especially:
+
+Batch 1 → MANY Transactions
+
+Also explain:
+
+Account Currency ≠ Transaction Currency
+
+PHASE 3 — BACKEND TRANSACTION IMPLEMENTATION
+
+Implement:
+
+- Transaction entity/model
+- relationship with Batch
+- repository
+- service
+- controller
+- required DTOs if the project uses DTOs
+- validation
+- transaction retrieval by batch
+
+Make sure multiple transactions can exist under one batch.
+
+PHASE 4 — MANAGE PAGE
+
+Implement:
+
+Batch
+   ↓
+Expand
+   ↓
+ALL individual transactions
+
+Keep existing Manage functionality such as:
+
+- Search
+- Filter
+- Pagination
+- Edit
+- Delete
+- Print
+
+Do not break existing functionality.
+
+PHASE 5 — APPROVE PAGE
+
+Implement:
+
+Pending batches first.
+
+Then:
+
+Batch
+   ↓
+View / Expand
+   ↓
+ALL individual transactions
+   ↓
+Transaction details
+   ↓
+Approve / Reject
+
+PHASE 6 — TRANSACTION DETAILS
+
+Add:
+
+- Transaction Type
+- Debit Amount
+- Credit Amount
+- Transaction Currency
+- Running Balance
+- Payment Date
+- Status
+
+PHASE 7 — OTHER TRAINER REQUIREMENTS
+
+Implement:
+
+- Remove currency from batch creation
+- Account + Account Currency
+- Transaction Currency
+- No masking
+- Consistent dates
+- Consistent headings
+- Delete without browser alert
+- Automatic logout
+
+==================================================
+VERY IMPORTANT
+==================================================
+
+Do not start coding immediately.
+
+First analyze my uploaded project/code.
+
+Then give me:
+
+1. Current architecture
+2. Existing database/entities
+3. Existing Batch structure
+4. How we should introduce Transaction
+5. Batch → Transaction relationship
+6. Required database changes
+7. Required backend APIs
+8. Required frontend components/pages
+9. Manage page flow
+10. Approve page flow
+11. Exact files that need to be changed
+12. Implementation order
+
+Then wait for my confirmation before making changes.
+
+When implementing, make changes incrementally.
+
+Do not rewrite unrelated code.
+
+Do not invent field names when the existing project already has them.
+
+Do not create duplicate entities or APIs.
+
+Preserve all existing working functionality.
+
+The main goal is:
+
+BATCH
+   ↓
+EXPAND / VIEW
+   ↓
+ALL INDIVIDUAL TRANSACTIONS UNDER THAT BATCH
+
+and this must work on BOTH:
+
+MANAGE PAGE
+
+and
+
+APPROVE PAGE.
