@@ -1,72 +1,90 @@
-Modify ONLY the TABLE VIEW / table component inside the existing "Manage" page.
+Modify ONLY the Actions dropdown inside the existing Manage → Transaction Management table.
 
-DO NOT modify the overall Manage page layout.
-DO NOT modify the header, navigation, page title, search/filter section, colors, fonts, spacing outside the table, pagination, or any other component.
-DO NOT modify other pages such as Create, Approve, Review, etc.
+DO NOT change the rest of the Manage page, table columns, filters, pagination, colors, header, or overall layout.
 
-The ONLY goal is to improve the visual design and usability of the existing transaction table.
+ACTION DROPDOWN REQUIREMENTS:
 
-CURRENT TABLE COLUMNS:
-- Batch ID
-- Maker
-- Debit Account
-- Payees
-- Amount
-- Payment Date
-- Status
-- Actions
+1. Keep the current compact Actions layout:
+   - View + three-dot menu (⋮) for Approved/Pending rows
+   - Edit + three-dot menu (⋮) for Draft rows
 
-TABLE CHANGES:
+2. When the user clicks the three-dot (⋮) button, the dropdown MUST open ABOVE the button, not below it.
 
-1. Keep the exact same columns and data.
+3. The dropdown must be positioned so that it stays completely inside the visible table/page area.
+   - Never extend below the table.
+   - Never cause the page or table to show a vertical scrollbar.
+   - Never increase the table height.
+   - Never shift or resize the layout.
+   - Use an overlay/popover positioning approach.
 
-2. Improve table spacing and alignment so the rows look clean and professional.
+4. The dropdown should be compact and professional:
+   - White background
+   - Subtle border
+   - Soft shadow
+   - Small rounded corners
+   - Comfortable but not excessive padding
+   - Proper spacing between menu items
 
-3. RIGHT-ALIGN the Amount values because this is financial data.
+5. Use professional UI icons, NOT emoji characters.
 
-4. Keep Status as compact status pills:
-   - Pending
-   - Approved
-   - Draft
+For Approved/Pending:
+   [Printer icon]  Print
+   [Eye icon]      View Details
 
-5. MOST IMPORTANT — REDESIGN ONLY THE ACTIONS COLUMN.
+For Draft:
+   [Printer icon]  Print
+   [Eye icon]      View Details
+   [Pencil icon]   Edit
 
-Currently each row has multiple buttons such as:
-Print | View | Edit
+6. Icons should be small, consistent in size, aligned perfectly with the text, and use the existing application's icon style.
 
-This looks crowded and takes too much horizontal space.
+7. Each menu item should have:
+   - Icon on the left
+   - Text label next to it
+   - Comfortable clickable area
+   - Subtle hover state
 
-Replace it with a compact action design:
+8. The three-dot button itself should also look clean:
+   - Small compact button
+   - No large filled background
+   - Proper hover/focus state
+   - Vertically aligned with View/Edit
 
-For normal/approved/pending rows:
+9. IMPORTANT DROPDOWN POSITIONING:
+   Since the table is close to the bottom of the page, calculate available space around the trigger.
+   Prefer opening ABOVE the three-dot button when there isn't enough space below.
+   The dropdown must remain fully visible within the viewport.
+
+10. Do not add Activity Log or any other unnecessary menu options.
+
+FINAL RESULT:
+The Actions column should look like:
+
+Approved:
 View   ⋮
 
-For Draft rows:
+Click ⋮:
+
+        ┌──────────────────┐
+        │ 🖨  Print         │
+        │ 👁  View Details  │
+        └──────────────────┘
+                 ⋮
+              View
+
+Draft:
 Edit   ⋮
 
-The vertical ellipsis (⋮) opens a small dropdown menu containing secondary actions such as:
-- Print
-- View Details
-- Edit (only if the transaction is editable)
+Click ⋮:
 
-Do NOT use a large filled green Edit button.
+        ┌──────────────────┐
+        │ 🖨  Print         │
+        │ 👁  View Details  │
+        │ ✎  Edit          │
+        └──────────────────┘
+                 ⋮
+              Edit
 
-The Actions column should be narrow and should not consume unnecessary table width.
+The dropdown should open upward when necessary and must NEVER create a scrollbar or push the page content downward.
 
-6. Keep the existing table header styling and existing blue/white branding.
-Only refine the table appearance; do not introduce a new color scheme.
-
-7. Keep sorting indicators if they already exist.
-
-8. Keep the existing pagination exactly as it is.
-
-9. Do not add cards, charts, new filters, new buttons, new sections, or additional information.
-
-FINAL REQUIREMENT:
-
-The result should look like the SAME Manage page as it currently does, but with a more professional and compact TABLE VIEW.
-
-The change should be clearly limited to:
-TABLE → row spacing/alignment + Actions column.
-
-Everything outside the table must remain unchanged.
+Keep the implementation limited strictly to the Actions dropdown behavior and styling in the Manage page.
