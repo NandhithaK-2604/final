@@ -1,673 +1,165 @@
-I am working on a banking transaction management project called Straight2Bank.
-
-I need help implementing the changes requested by my trainer.
+I want to improve the UI of the Balances → Account Details page to make it look more professional, compact, and like a modern banking web application.
 
 IMPORTANT:
-My BACKEND TRANSACTION FUNCTIONALITY has NOT been implemented yet.
-So do not assume that APIs, services, repositories, or transaction entities already exist.
+- Do NOT change the existing color theme.
+- Keep the existing Standard Chartered / Straight2Bank visual identity: navy header, blue primary actions, green accents, white/light background.
+- Do NOT redesign the entire application.
+- Only improve the Account Details / Recent Transactions UI.
+- Do NOT remove any existing functionality.
 
-First inspect my existing project structure and understand what is already implemented.
-Then propose the database/entity design, backend APIs, and frontend changes.
-Do not immediately rewrite my code.
+1. BACK ARROW
+The current back arrow is inside a large green rectangular button and occupies too much space.
 
-==================================================
-TRAINER REQUIREMENTS
-==================================================
+Change it to a compact navigation button:
+- Approximately 36–40px × 36–40px.
+- Keep the green color if it matches the existing theme.
+- Use a simple white left-arrow icon.
+- Border radius around 6–8px.
+- Reduce unnecessary padding.
+- Align it neatly with the "Account Details" heading.
+- It should look like a navigation control, not a large primary button.
 
-1. REMOVE CURRENCY FROM BATCH CREATION
+Preferred layout:
 
-While creating a batch, do not treat currency as a generic/base currency of the batch.
+[ ← ]  Account Details
 
-There are TWO different currencies in the application:
+2. ACCOUNT HEADER
+Make the account header more compact.
 
-A. ACCOUNT CURRENCY
-   - Currency of the debit account.
-   - Example: INR.
+Display:
 
-B. TRANSACTION CURRENCY
-   - Currency in which the actual transaction/payment is made.
-   - Example: USD, EUR, GBP, etc.
+Account Details
+Main Operating Account
+•••• 3847  [eye icon]
 
-Example:
+Avoid excessive vertical spacing between these elements.
 
-Debit Account:       1000293847
-Account Currency:    INR
-
-Transaction:
-Payee:               ABC Ltd
-Amount:              50,000
-Transaction Currency: USD
-
-The system must keep Account Currency and Transaction Currency as two separate concepts.
-
-When creating a transaction/batch, the relevant currency should be the TRANSACTION CURRENCY, not the account/base currency.
-
-Do not overwrite Account Currency with Transaction Currency.
-
-==================================================
-2. MANAGE PAGE
-==================================================
-
-The Manage page currently displays BATCHES.
+3. CURRENT BALANCE
+Keep the Current Balance card, but make it compact and clean.
 
 Example:
 
-Batch ID       Debit Account    Payees    Amount      Currency   Status   Actions
-BATCH-17879    1000293847       3         €200,000    EUR        Pending  View
+Current Balance
+₹238,000.00
 
-The Manage page should continue to display batches.
+Requirements:
+- Reduce unnecessary card height.
+- Use subtle border/shadow.
+- Keep the balance amount prominent.
+- Do not make the card unnecessarily wide or tall.
 
-For Draft batches, appropriate actions should be:
+4. RECENT TRANSACTIONS
+Improve the Recent Transactions section.
 
-Edit | Delete
+Keep the existing "Request Statement" button aligned to the right of the section heading.
 
-For non-draft batches, appropriate actions can be:
+Example:
 
-View | Print
+Recent Transactions                         [Request Statement]
 
-Do not unnecessarily change the existing UI or colors.
+Then show a clean table.
 
-==================================================
-3. EXPANDING BATCH TRANSACTIONS
-==================================================
+Columns should be:
 
-This is VERY IMPORTANT.
+Date
+Reference
+Initiated By
+Debit Amount
+Credit Amount
+Running Balance
 
-The trainer specifically asked for:
+Example data:
 
-"expanding batch transactions"
+15-08-2026 | BATCH-SEED-2 | Vaibhav | ₹12,000.00 | - | ₹238,000.00
+14-08-2026 | BATCH-001    | Rahul   | ₹5,000.00  | - | ₹250,000.00
+13-08-2026 | BATCH-002    | Priya   | -          | ₹10,000.00 | ₹255,000.00
 
-The user must be able to see ALL INDIVIDUAL TRANSACTIONS belonging to each batch.
+5. RUNNING BALANCE
+Add a "Running Balance" column to the Recent Transactions table.
 
-The relationship should conceptually be:
-
-Batch
-  |
-  ├── Transaction 1
-  ├── Transaction 2
-  ├── Transaction 3
-  └── ...
+Running Balance means the account balance after that transaction.
 
 For example:
 
-BATCH-17879
-    ↓ Expand
-    ├── TXN-001 - ABC Ltd - €80,000
-    ├── TXN-002 - XYZ Ltd - €70,000
-    └── TXN-003 - PQR Ltd - €50,000
+Previous balance = ₹250,000
+Debit = ₹12,000
+Running balance = ₹238,000
 
-Another batch:
+The running balance should be displayed in the table and should be calculated from backend data when the backend is implemented.
 
-BATCH-SEED-1
-    ↓ Expand
-    └── TXN-004 - ABC Ltd - $50,000
+Do NOT hardcode the running balance in the frontend.
 
-Transactions from one batch MUST NOT appear under another batch.
+The frontend should simply display the value returned by the API, for example:
 
-The frontend should allow the user to expand/collapse a batch.
+{
+  "date": "2026-08-15",
+  "reference": "BATCH-SEED-2",
+  "initiatedBy": "Vaibhav",
+  "debitAmount": 12000,
+  "creditAmount": 0,
+  "runningBalance": 238000
+}
 
-Example UI:
+6. TABLE DESIGN
+Make the table look professional:
+- Blue table header matching the existing theme.
+- Clean white rows.
+- Subtle horizontal borders.
+- Comfortable but not excessive row height.
+- Amounts should be right-aligned.
+- Running Balance should be visually prominent.
+- Debit and credit values should be easy to distinguish.
+- Avoid excessive borders and shadows.
+- Keep the table responsive.
 
-▼ BATCH-17879 | 1000293847 | 3 | €200,000 | Pending
+7. PAGINATION
+Keep the existing pagination functionality.
 
-    Transaction ID | Payee | Amount | Currency | Status
-    ----------------------------------------------------
-    TXN-001        | ABC   | €80,000 | EUR     | Pending
-    TXN-002        | XYZ   | €70,000 | EUR     | Pending
-    TXN-003        | PQR   | €50,000 | EUR     | Pending
-
-▶ BATCH-SEED-1 | 1000293847 | 1 | $50,000 | Pending
-
-When collapsed, only the batch row should be visible.
-
-When expanded, all transactions belonging to that batch should be displayed.
-
-==================================================
-4. BACKEND FOR BATCH → TRANSACTIONS
-==================================================
-
-The backend transaction functionality is NOT implemented yet.
-
-Design and implement it properly.
-
-First determine the existing Batch entity/database structure.
-
-Then create the appropriate Transaction entity/model and relationship.
-
-The expected relationship is approximately:
-
-Batch
-  1
-  |
-  |---- *
-  |
-Transaction
-
-One Batch can contain MANY Transactions.
-
-Each Transaction should reference its parent Batch.
-
-Do not create duplicate entities if an equivalent structure already exists.
-
-Use the project's existing naming conventions and architecture.
-
-==================================================
-5. TRANSACTION DATA
-==================================================
-
-Each individual transaction should support the required information.
-
-At minimum consider:
-
-- Transaction ID
-- Batch ID
-- Payee
-- Payee Account
-- Transaction Type
-- Transaction Currency
-- Debit Amount
-- Credit Amount
-- Running Balance
-- Payment Date
-- Status
-
-Account Currency and Transaction Currency must remain separate.
-
-For example:
-
-Batch / Account:
-
-Debit Account: 1000293847
-Account Currency: INR
-
-Transaction:
-
-Transaction Currency: USD
-Debit Amount: 0
-Credit Amount: 50,000
-Transaction Type: TRANSFER
-
-Do not combine Debit Amount and Credit Amount into one field.
-
-==================================================
-6. DEBIT AMOUNT AND CREDIT AMOUNT
-==================================================
-
-The trainer specifically requested:
-
-"Debit amount and Credit amount (2 columns)"
-
-Therefore the transaction table should have:
-
-Debit Amount | Credit Amount
-
-rather than:
-
-Amount
+Make it compact and aligned at the bottom-right of the table.
 
 Example:
 
-Transaction ID | Payee | Debit Amount | Credit Amount | Currency
-TXN-001        | ABC   | 0             | 25,000        | USD
+Showing 1 to 5 of 25 items
 
-==================================================
-7. TRANSACTION TYPE
-==================================================
+                         Rows per page [5]   ‹ 1 2 3 … ›
 
-Individual transactions should display a Transaction Type.
+8. SPACING
+This is very important.
 
-Example:
+The current page feels like it occupies too much space because of excessive empty space and oversized controls.
 
-TRANSFER
-PAYMENT
-DIRECT_DEBIT
+Reduce:
+- Large gaps between heading and account information.
+- Large back button.
+- Excessive card padding.
+- Excessive table row height.
 
-Use the transaction types appropriate for the existing business requirements.
+Use a professional spacing system, approximately:
+- 8px small spacing
+- 16px normal spacing
+- 24px section spacing
+- 32px major section spacing
 
-Do not invent unnecessary types.
+Do NOT make everything cramped. The goal is compact but comfortable.
 
-==================================================
-8. RUNNING BALANCE
-==================================================
+9. RESPONSIVENESS
+Make sure the page still works properly on:
+- Desktop
+- Laptop
+- Smaller screens
 
-Individual transaction details should support Running Balance.
+Do not allow the table to break the layout.
 
-The running balance should be calculated according to the transaction sequence and the existing account/balance business rules.
+10. CODE QUALITY
+Before making changes:
+- Inspect the existing Account Details component.
+- Identify the existing CSS/component structure.
+- Reuse existing components, icons, colors, buttons, and typography wherever possible.
+- Do not create duplicate styles unnecessarily.
+- Do not break existing routing or functionality.
+- Do not modify unrelated pages.
 
-Do not simply copy the same balance into every transaction.
+The final result should look like a polished professional banking dashboard, with the content taking up the appropriate amount of space rather than having oversized buttons and excessive empty areas.
 
-First understand how balances are currently represented in the project/database.
-
-Then implement the correct calculation.
-
-==================================================
-9. APPROVE PAGE
-==================================================
-
-The Approve page currently displays BATCHES.
-
-Pending batches should appear FIRST.
-
-Example:
-
-Pending
-Pending
-Pending
-Approved
-Rejected
-
-The user should be able to view/expand a batch and see ALL individual transactions belonging to that batch.
-
-Example:
-
-▼ BATCH-SEED-1
-
-Batch Details:
-Maker: Nanditha
-Debit Account: 1000293847
-Account Currency: INR
-Transaction Currency: USD
-Total Amount: $50,000
-Payees: 2
-Status: Pending
-
-Individual Transactions:
-
-Transaction ID | Payee | Type | Debit | Credit | Currency | Running Balance | Status | Action
-
-TXN-001 | ABC Ltd | TRANSFER | $0 | $25,000 | USD | $25,000 | Pending | Approve / Reject
-
-TXN-002 | XYZ Ltd | TRANSFER | $0 | $25,000 | USD | $50,000 | Pending | Approve / Reject
-
-All transactions must belong to the selected batch.
-
-==================================================
-10. INDIVIDUAL BATCH DETAILS
-==================================================
-
-The trainer wrote:
-
-"individual batch details (all transaction details on approve page)"
-
-Interpret this as:
-
-Approve Page
-   ↓
-Batch
-   ↓
-View / Expand
-   ↓
-Batch Details
-   ↓
-ALL transactions inside that batch
-
-Do not show only the batch summary.
-
-The user must be able to see the individual transaction details.
-
-==================================================
-11. MANAGE PAGE VIEW
-==================================================
-
-If the existing Manage page uses a View button, determine whether it is better to:
-
-A. Expand the row inline, OR
-B. Navigate to a Batch Details page.
-
-Prefer the approach that fits the existing project structure and trainer requirement.
-
-The important requirement is:
-
-Click View / Expand
-        ↓
-Show selected batch
-        ↓
-Show ALL individual transactions inside that batch.
-
-Do not show unrelated transactions.
-
-==================================================
-12. DELETE BATCH
-==================================================
-
-When deleting a batch:
-
-Do not show a browser alert.
-
-Use the existing application's UI feedback mechanism if one already exists.
-
-Do not break the delete functionality.
-
-==================================================
-13. ACCOUNT + CURRENCY ON MANAGE
-==================================================
-
-Manage page should clearly show the account and its currency.
-
-Example:
-
-Debit Account: 1000293847
-Account Currency: INR
-
-Transaction currency should remain a separate value.
-
-Do not confuse:
-
-INR = Account Currency
-
-USD/EUR/etc. = Transaction Currency
-
-==================================================
-14. NO MASKING
-==================================================
-
-The trainer said:
-
-"no need to mask"
-
-Where account numbers are currently masked, remove masking where appropriate.
-
-For example, if currently displayed as:
-
-1000****3847
-
-display:
-
-1000293847
-
-Do not apply masking unless there is an actual security/business requirement elsewhere.
-
-==================================================
-15. DATE FORMAT
-==================================================
-
-Keep the date format consistent across the whole application.
-
-Use the same format on:
-
-- Create
-- Manage
-- Approve
-- Transaction details
-- Batch details
-
-Do not have different date formats on different pages.
-
-==================================================
-16. HEADING STYLE
-==================================================
-
-Make heading styles consistent across pages.
-
-Keep:
-
-- same font hierarchy
-- consistent size
-- consistent weight
-- consistent spacing
-
-Do not redesign the whole application.
-
-Keep the existing color scheme.
-
-==================================================
-17. AUTOMATIC LOGOUT
-==================================================
-
-If a user is inactive for a long period:
-
-User inactive
-     ↓
-Session timeout
-     ↓
-Logout
-     ↓
-Login page
-
-First inspect whether authentication/session handling already exists.
-
-Do not create a completely separate authentication system if one already exists.
-
-==================================================
-DATABASE / BACKEND DESIGN
-==================================================
-
-Because transaction backend functionality has not been implemented yet, carefully design the data model.
-
-Determine what information should belong to:
-
-1. Account
-2. Batch
-3. Transaction
-4. Payee
-
-The expected relationship is approximately:
-
-Account
-   |
-   └── Batch
-          |
-          ├── Transaction
-          ├── Transaction
-          └── Transaction
-
-A Batch should contain multiple Transactions.
-
-Each Transaction should belong to exactly one Batch.
-
-Determine whether Payee should be a separate entity or existing entity based on my current project.
-
-Do not duplicate existing tables/entities.
-
-==================================================
-API REQUIREMENTS
-==================================================
-
-Since transaction APIs are not implemented yet, design appropriate REST APIs.
-
-For example, we may need something conceptually like:
-
-POST /batches
-
-POST /batches/{batchId}/transactions
-
-GET /batches/{batchId}/transactions
-
-GET /batches/{batchId}
-
-PUT /transactions/{transactionId}
-
-DELETE /batches/{batchId}
-
-But DO NOT blindly use these exact URLs.
-
-First inspect my existing API naming conventions and follow them.
-
-The most important API requirement is:
-
-Given a batch ID, retrieve ALL transactions belonging to that batch.
-
-For example:
-
-GET [existing convention]/BATCH-17879/transactions
-
-should return only:
-
-TXN-001
-TXN-002
-TXN-003
-
-belonging to BATCH-17879.
-
-==================================================
-IMPLEMENTATION ORDER
-==================================================
-
-Follow this order.
-
-PHASE 1 — ANALYZE EXISTING PROJECT
-
-Inspect:
-
-- Frontend structure
-- Backend structure
-- Database
-- Existing entities
-- Existing repositories
-- Existing services
-- Existing controllers
-- Existing APIs
-- Manage page
-- Approve page
-- Create Batch page
-
-Do not change anything yet.
-
-PHASE 2 — DESIGN DATA MODEL
-
-Explain:
-
-Batch entity
-Transaction entity
-Payee entity
-Account entity
-
-Explain the relationships.
-
-Especially:
-
-Batch 1 → MANY Transactions
-
-Also explain:
-
-Account Currency ≠ Transaction Currency
-
-PHASE 3 — BACKEND TRANSACTION IMPLEMENTATION
-
-Implement:
-
-- Transaction entity/model
-- relationship with Batch
-- repository
-- service
-- controller
-- required DTOs if the project uses DTOs
-- validation
-- transaction retrieval by batch
-
-Make sure multiple transactions can exist under one batch.
-
-PHASE 4 — MANAGE PAGE
-
-Implement:
-
-Batch
-   ↓
-Expand
-   ↓
-ALL individual transactions
-
-Keep existing Manage functionality such as:
-
-- Search
-- Filter
-- Pagination
-- Edit
-- Delete
-- Print
-
-Do not break existing functionality.
-
-PHASE 5 — APPROVE PAGE
-
-Implement:
-
-Pending batches first.
-
-Then:
-
-Batch
-   ↓
-View / Expand
-   ↓
-ALL individual transactions
-   ↓
-Transaction details
-   ↓
-Approve / Reject
-
-PHASE 6 — TRANSACTION DETAILS
-
-Add:
-
-- Transaction Type
-- Debit Amount
-- Credit Amount
-- Transaction Currency
-- Running Balance
-- Payment Date
-- Status
-
-PHASE 7 — OTHER TRAINER REQUIREMENTS
-
-Implement:
-
-- Remove currency from batch creation
-- Account + Account Currency
-- Transaction Currency
-- No masking
-- Consistent dates
-- Consistent headings
-- Delete without browser alert
-- Automatic logout
-
-==================================================
-VERY IMPORTANT
-==================================================
-
-Do not start coding immediately.
-
-First analyze my uploaded project/code.
-
-Then give me:
-
-1. Current architecture
-2. Existing database/entities
-3. Existing Batch structure
-4. How we should introduce Transaction
-5. Batch → Transaction relationship
-6. Required database changes
-7. Required backend APIs
-8. Required frontend components/pages
-9. Manage page flow
-10. Approve page flow
-11. Exact files that need to be changed
-12. Implementation order
-
-Then wait for my confirmation before making changes.
-
-When implementing, make changes incrementally.
-
-Do not rewrite unrelated code.
-
-Do not invent field names when the existing project already has them.
-
-Do not create duplicate entities or APIs.
-
-Preserve all existing working functionality.
-
-The main goal is:
-
-BATCH
-   ↓
-EXPAND / VIEW
-   ↓
-ALL INDIVIDUAL TRANSACTIONS UNDER THAT BATCH
-
-and this must work on BOTH:
-
-MANAGE PAGE
-
-and
-
-APPROVE PAGE.
+Most important visual change:
+Replace the large green back-arrow button with a small, clean 36–40px navigation button and improve the overall spacing of the Account Details page.
