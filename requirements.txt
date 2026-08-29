@@ -1,35 +1,157 @@
-Modify ONLY the APPROVE page functionality.
-
-When the user clicks the three-dot (⋮) action menu beside the View button for a batch, provide an option:
-
-👁 View Batch Details
-
-When "View Batch Details" is clicked:
-
-- Reuse the EXISTING "View Payee Details" details UI/component/design already implemented in the application.
-- Do NOT create a new details-page design.
-- Do NOT create a different modal/drawer style.
-- Do NOT change the existing View Payee Details UI.
-- Open the same existing details component, but populate it with the selected BATCH's information instead of payee-specific information.
-
-The displayed batch details should correspond to the exact row/batch whose three-dot menu was clicked.
-
-Show the relevant batch information such as:
-- Batch ID
-- Maker
-- Debit Account
-- Payees
-- Amount
-- Payment Date
-- Status
-- Any other batch-level fields already supported by the existing details component.
-
+Modify ONLY the "Balances → Account Details" page.
+Before making changes, inspect whether the Account Details page uses shared components or CSS. Do not modify shared styles unless absolutely necessary; use scoped/page-specific classes so these changes cannot affect Manage, Approve, Create, Upload, or the sidebar.
 IMPORTANT:
-The existing View Payee Details functionality must continue working exactly as it currently does.
+Do NOT modify the sidebar, header, navigation, Create page, Manage page, Approve page, Upload page, or any other page.
+Do NOT change the existing blue/white branding or overall application theme.
+Do NOT change any functionality or backend logic.
+This is ONLY a UI/layout improvement for the Account Details page.
 
-Reuse the existing component and styling wherever possible rather than duplicating the UI.
+CURRENT PAGE:
+The page currently contains:
+- Account Details heading
+- Main Operating Account
+- Masked account number
+- Current Balance
+- Recent Transactions
+- Request Statement button
+- Recent transactions table
+- Pagination
 
-Only make the necessary changes to the APPROVE page's three-dot menu and its View Batch Details action.
+REDESIGN THE ACCOUNT DETAILS PAGE TO BE MORE COMPACT AND PROFESSIONAL.
 
-Do not modify the Manage, Create, Upload, or Balances pages.
-Do not modify the overall page layout.
+1. ACCOUNT DETAILS HEADER
+
+Keep:
+"← Account Details"
+
+Below it, create a compact account summary section.
+
+Instead of placing the Current Balance in a large separate card, arrange the account information horizontally:
+
+LEFT:
+Main Operating Account
+•••• 3847   [eye icon]
+
+RIGHT:
+Current Balance
+-$262,000.00
+
+The account name and masked account number should be grouped together.
+The current balance should be clearly visible but should NOT occupy a large vertical area.
+
+Use comfortable padding and a clean border/light background.
+
+2. RECENT TRANSACTIONS
+
+Make "Recent Transactions" the main focus of the page.
+
+Place:
+
+Recent Transactions                         [Request Statement]
+
+The Request Statement button should be aligned to the right of the section heading.
+
+Do not create a separate large section just for the button.
+
+3. TRANSACTION TABLE
+
+Keep the EXACT SAME columns and information:
+
+Date
+Reference
+Initiated By
+Debit Amount
+Credit Amount
+Running Balance
+
+Improve only the visual presentation:
+- Clean column alignment
+- Comfortable but compact row height
+- Consistent spacing
+- Subtle row separators
+- Professional blue table header
+- Right-align Debit Amount
+- Right-align Credit Amount
+- Right-align Running Balance
+- Keep dates and references easy to scan
+- Keep the Running Balance column clearly visible
+
+Do NOT remove Running Balance.
+
+4. TABLE WIDTH
+
+Use the available content width efficiently.
+
+Do not allow the table to become unnecessarily wide.
+Do not introduce a horizontal scrollbar at normal desktop resolution.
+
+5. PAGINATION
+
+Keep the existing pagination functionality.
+
+Place it neatly at the bottom of the transaction table:
+
+Showing 1 to 4 of 4 items                         10 ▼   ‹  1  ›
+
+Keep it compact.
+
+6. SPACING
+
+This is VERY IMPORTANT.
+
+The current page has too much empty space.
+
+Reduce:
+- Excessive top padding
+- Excessive spacing between Account Details and Recent Transactions
+- Excessive height of the account summary
+- Excessive table row height
+
+The final page should fit comfortably within a normal desktop viewport without feeling stretched.
+
+7. VISUAL HIERARCHY
+
+The hierarchy should be:
+
+Account Details
+    ↓
+Compact Account Summary
+    ↓
+Recent Transactions
+    ↓
+Transaction Table
+    ↓
+Pagination
+
+The transaction table should receive the most visual attention.
+
+8. PROFESSIONAL ENTERPRISE DESIGN
+
+Make it look like a modern professional banking application.
+
+Use:
+- Clean whitespace
+- Consistent alignment
+- Subtle borders
+- Moderate corner radius
+- Clear typography hierarchy
+- Compact controls
+- Professional icons
+
+Do NOT use:
+- Emojis
+- Large decorative cards
+- Unnecessary icons
+- Charts
+- Extra sections
+- Extra information
+- New colors
+
+IMPORTANT FINAL REQUIREMENT:
+
+Only modify the UI/layout of the existing
+"Balances → Account Details" page.
+
+Everything else in the application must remain unchanged.
+
+Do not modify shared components or global CSS if doing so could affect other pages. Prefer page-specific styling/classes for these changes.
