@@ -1,227 +1,389 @@
-Update the existing "Review & Approve" functionality in the Approve Batches page.
+Update the existing Approve Batches / Review & Approve page UI and functionality.
 
 IMPORTANT:
-- Do NOT change the existing backend functionality, API calls, data models, approval logic, rejection logic, or existing business rules.
-- Do NOT remove or break any functionality that already exists.
-- Reuse the existing Review, Approve, Reject, and Payee Details functionality.
-- This is primarily a UI/UX improvement to make the Review & Approve flow cleaner and more professional.
-- Follow the existing application's colors, typography, spacing, components, and design system.
+Do NOT change, remove, or recreate the existing backend functionality.
+The existing Approve, Reject, Cancel, and View Payee Details functionality must continue to work exactly as it does now.
 
-CURRENT FLOW:
-When the user clicks the Review button for a batch, open a centered modal/dialog titled "Review & Approve".
+First inspect the existing code and identify the current:
+- View button/action
+- Review modal/page
+- Approve handler/API
+- Reject handler/API
+- Cancel behavior
+- View Payee Details functionality
+- Existing validation, confirmation dialogs, loading states, and toast messages
 
-1. REVIEW MODAL — INITIAL STATE
+Reuse the existing functions, APIs, components, and business logic wherever possible.
 
-The modal should contain:
+--------------------------------------------------
+1. CHANGE "VIEW" BUTTON TO "REVIEW"
+--------------------------------------------------
 
-Header:
-- Title: "Review & Approve"
-- Close (X) icon on the top-right.
-- Place a prominent but secondary "View Payee Details" button/link in the top-right area of the modal, below/next to the title.
-- Do NOT place "View Payee Details" next to the Approve/Reject buttons at the bottom.
+On the Approve Batches page, change the existing "View" action/button to:
 
-Body:
-Display the existing batch and transaction information already available in the application.
+"Review"
 
-Use clean sections such as:
+When the user clicks Review, open the Review & Approve modal.
 
-Batch Information
+Do not change the underlying batch selection or data-fetching functionality.
+
+--------------------------------------------------
+2. REVIEW & APPROVE MODAL
+--------------------------------------------------
+
+When Review is clicked, open a professional centered modal similar to the provided reference design.
+
+Modal title:
+
+"Review & Approve"
+
+At the top-right of the modal, provide:
+
+[ View Payee Details → ]
+
+This should use the EXISTING View Payee Details functionality.
+
+Do NOT put View Payee Details beside the Approve/Reject buttons at the bottom.
+
+--------------------------------------------------
+3. BATCH DETAILS
+--------------------------------------------------
+
+At the top of the modal, add a section:
+
+"Batch Details"
+
+Display ONLY these fields:
+
 - Batch ID
-- Batch Reference
+- Maker
 - Batch Date
 - Total Transactions
-- Total Amount
+- Amount
 
-Transaction Summary
-- Account
+Use the existing batch data already available in the application.
+
+Example layout:
+
+Batch Details
+────────────────────────────────────
+
+Batch ID              BATCH-0001
+Maker                 John Doe
+Batch Date            30 Aug 2026
+Total Transactions    25
+Amount                ₹2,50,000.00 INR
+
+Use a clean two-column label/value layout.
+
+Do not add unnecessary fields.
+
+--------------------------------------------------
+4. TRANSACTION SUMMARY
+--------------------------------------------------
+
+Below Batch Details, add:
+
+"Transaction Summary"
+
+Display ONLY these fields:
+
+- Account Name
 - Account Currency
 - Transaction Currency
-- Remarks
-
-Use a clean two-column label/value layout with appropriate spacing and subtle dividers.
-
-Footer:
-- Cancel button
-- Reject button
-- Approve button
-
-Button hierarchy:
-- Approve = primary blue button
-- Reject = secondary/destructive outlined button with red styling
-- Cancel = neutral secondary button
-
-Do NOT show rejection reason/comments fields when the modal initially opens.
-
-
-2. VIEW PAYEE DETAILS
-
-When the user clicks "View Payee Details":
-- Use the existing View Payee Details functionality.
-- Show the existing payee details without changing the underlying data or functionality.
-- Prefer opening the payee details as a clean secondary modal/drawer/page according to the existing application architecture.
-- Provide an obvious way to return to the Review & Approve modal.
-- Do not duplicate or hard-code payee information.
-
-
-3. REJECT FLOW
-
-When the user clicks "Reject":
-
-Do NOT immediately reject the batch.
-
-Change the Review & Approve modal into a rejection state.
-
-Reveal a rejection section at the bottom of the modal containing:
-
-"Rejection Reason *"
-[ Select reason ▼ ]
-
-"Comments (optional)"
-[ Enter comments... ]
-
-The rejection reason is required.
-
-In this rejection state:
-- Hide or disable the Approve button.
-- Keep Cancel available.
-- Show a red "Reject" / "Confirm Reject" action.
-- Keep "View Payee Details" available.
-- Do not reload or navigate away unnecessarily.
+- Debit Account No
+- Payment Date
 
 Example:
 
-------------------------------------------------
-Review & Approve                     View Payee Details
-------------------------------------------------
-
-Batch Information
-...
-
 Transaction Summary
-...
+────────────────────────────────────
 
-------------------------------------------------
+Account Name          Operating Account
+Account Currency      INR
+Transaction Currency  INR
+Debit Account No      XXXXXXXX1234
+Payment Date          30 Aug 2026
+
+Account Currency should default to INR as required by the existing application/business logic.
+
+Use the actual transaction data when available.
+
+Do not hard-code values except the default Account Currency = INR if that is how the current application is designed.
+
+Do not add extra transaction fields.
+
+--------------------------------------------------
+5. MODAL LAYOUT
+--------------------------------------------------
+
+Follow the same visual style as the provided reference image.
+
+Structure:
+
+┌───────────────────────────────────────────────┐
+│ Review & Approve                View Payee → │
+│─────────────────────────────────────────────│
+│                                               │
+│ Batch Details                                 │
+│                                               │
+│ Batch ID              BATCH-0001              │
+│ Maker                 John Doe                │
+│ Batch Date            30 Aug 2026            │
+│ Total Transactions    25                      │
+│ Amount                ₹2,50,000.00 INR       │
+│                                               │
+│─────────────────────────────────────────────│
+│                                               │
+│ Transaction Summary                           │
+│                                               │
+│ Account Name          Operating Account      │
+│ Account Currency      INR                     │
+│ Transaction Currency  INR                     │
+│ Debit Account No      XXXXXXXX1234            │
+│ Payment Date          30 Aug 2026             │
+│                                               │
+│─────────────────────────────────────────────│
+│                                               │
+│                    Cancel  Reject  Approve    │
+└───────────────────────────────────────────────┘
+
+Keep the modal compact and avoid unnecessary whitespace.
+
+Use:
+- Clear section headings
+- Proper alignment
+- Subtle dividers
+- Consistent spacing
+- Rounded corners
+- Professional enterprise banking/payment UI
+- Existing application colors and typography
+- Responsive layout
+- Scrollable modal body if content exceeds viewport
+
+Do not introduce a completely different design system.
+
+--------------------------------------------------
+6. INITIAL BUTTON STATE
+--------------------------------------------------
+
+When the Review & Approve modal first opens, show:
+
+[ Cancel ]   [ Reject ]   [ Approve ]
+
+Approve:
+- Keep the existing primary blue styling/functionality.
+
+Reject:
+- Use a clear destructive/red secondary style.
+- Clicking Reject should NOT immediately reject the batch.
+
+Cancel:
+- Preserve the existing Cancel behavior.
+
+--------------------------------------------------
+7. REJECT FLOW
+--------------------------------------------------
+
+When the user clicks Reject:
+
+Do NOT immediately call the rejection API.
+
+Instead, change the modal into a rejection state.
+
+Only then show:
+
+"Rejection Reason *"
+
+[ Select reason ▼ ]
+
+"Comments (optional)"
+
+[ Enter comments... ]
+
+In the rejection state:
+
+- Keep Batch Details visible.
+- Keep Transaction Summary visible.
+- Keep View Payee Details available.
+- Keep Cancel available.
+- Hide or disable Approve.
+- Show the final red Reject/Confirm Reject action.
+- Do not show rejection fields before the user clicks Reject.
+
+Example:
+
+─────────────────────────────────────────────
 Rejection Reason *
+
 [ Select reason                         ▼ ]
 
 Comments (optional)
-[ Enter comments............................ ]
 
-                         Cancel   Reject
-------------------------------------------------
+[ Enter comments...                         ]
 
+                         [ Cancel ] [ Reject ]
+─────────────────────────────────────────────
 
-4. CONFIRM REJECTION
+The rejection reason must be required.
 
-When the user clicks the final Reject/Confirm Reject button:
+Use the existing rejection reason options and existing validation if they already exist.
 
-- Validate that a rejection reason has been selected.
-- If no reason is selected, show the existing validation behavior or a clear inline validation message.
-- If validation succeeds, use the EXISTING rejection functionality/API.
-- Do NOT create a new rejection API or duplicate backend logic.
-- Preserve the existing success/error handling.
-- If the existing application already has a rejection confirmation dialog, reuse it.
-- Otherwise, show a small confirmation dialog:
+--------------------------------------------------
+8. CONFIRM REJECT
+--------------------------------------------------
+
+When the user clicks the final Reject button:
+
+- Validate the rejection reason.
+- If the reason is missing, use the existing validation behavior or display a clear inline validation message.
+- If validation succeeds, use the EXISTING rejection handler/API.
+- Do NOT create a new rejection API.
+- Do NOT duplicate rejection logic.
+
+If the existing application already has a rejection confirmation dialog, reuse it.
+
+If there is no existing confirmation dialog, show:
 
 "Reject this batch?"
 
 "Are you sure you want to reject this batch? This action cannot be undone."
 
 Buttons:
-Cancel
-Confirm Reject
 
-Confirm Reject should use the existing rejection function.
+[ Cancel ] [ Confirm Reject ]
 
+Confirm Reject must trigger the existing rejection functionality.
 
-5. APPROVE FLOW
+Preserve the existing success/error handling.
 
-When the user clicks Approve from the initial Review & Approve modal:
+--------------------------------------------------
+9. APPROVE FUNCTIONALITY
+--------------------------------------------------
 
-- Keep the EXISTING approve functionality exactly as it currently works.
-- Do NOT add a new API or change the existing approval logic.
-- Trigger the existing approval handler/function.
-- Preserve the existing success/error messages, loading state, and navigation behavior.
-- If the current application already has an approval confirmation dialog, keep using it.
-- The only change should be the improved Review & Approve UI.
+When the user clicks Approve:
 
+Keep the existing approval functionality exactly as it currently works.
 
-6. MODAL DESIGN
+Do NOT create a new approval API.
 
-Make the modal look like a professional enterprise banking/payment application.
+Do NOT change the existing business logic.
 
-Design requirements:
-- Centered modal
-- White background
-- Rounded corners
-- Subtle shadow
-- Proper spacing and padding
-- Clear section headings
-- Consistent label/value alignment
-- Thin dividers between sections
-- Comfortable button sizes
-- Avoid oversized icons or buttons
-- Avoid unnecessary whitespace
-- Make the modal responsive
-- Keep the modal within the viewport
-- If content becomes too tall, make the body scrollable while keeping the header/footer usable.
+Use the existing approval handler/function.
 
-The "View Payee Details" action should look like a secondary navigation/action button, not the primary action.
+Preserve:
+- Existing confirmation behavior
+- Loading state
+- API call
+- Success message
+- Error message
+- Navigation/refresh behavior
 
-Suggested visual hierarchy:
+Only improve the UI around the existing functionality.
 
-Review & Approve
-                         [ View Payee Details → ]
+--------------------------------------------------
+10. VIEW PAYEE DETAILS
+--------------------------------------------------
 
-Batch Information
-────────────────────────────────
+The "View Payee Details" button at the top-right of the Review & Approve modal must use the existing View Payee Details functionality.
 
-Batch ID              BATCH-0001
-Batch Reference       REF123456
-Batch Date            29 Aug 2025
-Total Transactions    25
-Total Amount          ₹2,50,000.00 INR
+Do not hard-code payee information.
 
-Transaction Summary
-────────────────────────────────
+Do not create duplicate payee-detail logic.
 
-Account               1234567890
-Account Currency      INR
-Transaction Currency  INR
-Remarks               Vendor payments
+Keep the user able to return to the Review & Approve modal after viewing the payee details.
 
-────────────────────────────────
+--------------------------------------------------
+11. IMPORTANT DATA RULE
+--------------------------------------------------
 
-              [ Cancel ] [ Reject ] [ ✓ Approve ]
+Use the existing data/model/API responses for:
 
+Batch Details:
+- Batch ID
+- Maker
+- Batch Date
+- Total Transactions
+- Amount
 
-7. IMPORTANT FUNCTIONALITY RULE
+Transaction Summary:
+- Account Name
+- Account Currency
+- Transaction Currency
+- Debit Account No
+- Payment Date
 
-Do NOT rewrite the application's existing business logic.
+Do not invent new fields.
 
-First inspect the existing code and identify:
-- Current Review button handler
-- Current Review modal/component
-- Current Approve handler/API
-- Current Reject handler/API
-- Current View Payee Details handler/component
-- Existing confirmation dialogs
-- Existing validation and toast/notification behavior
+Do not add unnecessary information.
 
-Then modify only the necessary UI/component state to implement the improved flow.
+Account Currency should default to INR according to the existing requirement.
 
-Reuse existing functions and components wherever possible.
+--------------------------------------------------
+12. DO NOT BREAK EXISTING FUNCTIONALITY
+--------------------------------------------------
 
-The final result should feel like the same application, just with a cleaner and more professional Review → View Details → Approve/Reject experience.
+This is primarily a UI/UX improvement.
 
-After implementation, verify:
-- Review opens correctly.
-- View Payee Details works.
-- Approve still works exactly as before.
-- Reject reveals rejection fields only after clicking Reject.
-- Rejection reason is required.
-- Confirm Reject uses the existing rejection functionality.
-- Cancel works in both normal and rejection states.
-- Existing APIs are not duplicated or changed unnecessarily.
-- No existing functionality is broken.
-“First inspect the existing code and reuse the existing handlers/APIs. Do not create new backend logic.”
+Do NOT:
+- Rewrite backend APIs
+- Create duplicate APIs
+- Change database structure
+- Change existing approval logic
+- Change existing rejection logic
+- Remove existing validation
+- Remove existing confirmation dialogs
+- Remove existing success/error handling
+- Hard-code batch or transaction information
+- Remove View Payee Details functionality
+
+Only modify the UI and component state necessary to create the improved Review → Approve/Reject experience.
+
+--------------------------------------------------
+13. FINAL USER FLOW
+--------------------------------------------------
+
+The final flow should be:
+
+Approve Batches page
+        ↓
+Existing "View" action renamed to "Review"
+        ↓
+Click Review
+        ↓
+Review & Approve modal opens
+        ↓
+┌───────────────────────────────────┐
+│ Batch Details                     │
+│ Transaction Summary               │
+│                                   │
+│ View Payee Details                │
+│                                   │
+│ Cancel   Reject   Approve         │
+└───────────────────────────────────┘
+        ↓
+        ├── View Payee Details
+        │       ↓
+        │   Existing payee details
+        │
+        ├── Approve
+        │       ↓
+        │   Existing approve functionality
+        │
+        ├── Cancel
+        │       ↓
+        │   Existing cancel behavior
+        │
+        └── Reject
+                ↓
+        Show rejection fields
+                ↓
+        Select rejection reason
+                ↓
+        Optional comments
+                ↓
+        Confirm Reject
+                ↓
+        Existing reject functionality
+
+Make the final UI visually similar to the provided reference image: clean, compact, professional, enterprise banking/payment application style, with Batch Details at the top, Transaction Summary underneath, View Payee Details in the header area, and Approve/Reject/Cancel actions at the bottom.
