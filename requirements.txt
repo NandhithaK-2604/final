@@ -9,3 +9,32 @@ Only add a clearly visible "Print" option in the View/Transaction Details screen
 The Print option should use the existing print functionality if available.
 
 Do not change, remove, or add any other fields, data, layout, API, or functionality. Keep everything else exactly the same.
+IMPORTANT: PRINT MUST BE ONLY ON THE MANAGE TRANSACTIONS PAGE.
+
+On the Manage Transactions page:
+
+1. Remove the three-dot (⋮) menu from the Actions column.
+2. Keep the existing View button for non-draft transactions and Edit button for Draft transactions.
+3. When the user clicks View on Manage Transactions, open the existing transaction/batch details exactly as it currently appears.
+4. Add a small "Print" button INSIDE THIS VIEW DETAILS SCREEN, at the top-right, next to the Close (X) button.
+
+Example:
+
+Manage Transactions
+        ↓
+      View
+        ↓
+┌─────────────────────────────────────────────┐
+│ Transaction Details              [Print] [X]│
+│                                             │
+│ Existing batch/transaction details          │
+│                                             │
+└─────────────────────────────────────────────┘
+
+IMPORTANT:
+- Do NOT add Print anywhere on the Approve Transactions / Review & Approve page.
+- Do NOT modify the Approve page.
+- Do NOT move Print to the Approve/Review modal.
+- Print belongs ONLY to Manage Transactions → View → Transaction Details.
+- Keep all existing details, data, styling, View/Edit functionality and APIs unchanged.
+- Only remove the three-dot menu and add the Print button in the Manage → View details screen.
