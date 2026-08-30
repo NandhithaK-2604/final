@@ -1,97 +1,15 @@
-Fix ONLY the three-dot (⋮) action menu on the APPROVE page.
-
-IMPORTANT:
-Do NOT change the overall page layout.
-Do NOT change the table.
-Do NOT change the View button.
-Do NOT change the sidebar, header, filters, pagination, colors, or fonts.
-Do NOT modify Manage, Create, Upload, or Balances pages.
-
-The ONLY required action inside the three-dot menu is:
-
-👁 View Payee Details
-
-DO NOT add Print.
-DO NOT add Activity Log.
-DO NOT add any other options.
-
-CURRENT PROBLEM:
-When clicking the three-dot button:
-- The View button becomes enlarged or changes size.
-- The "View Payee Details" menu appears too far down.
-- The menu can go outside the visible page.
-- A scrollbar appears.
-- The menu can be clipped.
-
-FIX THIS BEHAVIOR:
-
-1. Keep the View button exactly the same size before and after clicking ⋮.
-
-2. Keep the three-dot button compact and unchanged when the menu opens.
-
-3. Make the "View Payee Details" menu a floating overlay.
-It must NOT increase the table height or page height.
-
-4. If there is enough space below the three-dot button, the menu may open below it.
-
-5. If there is not enough space below, automatically open ABOVE the three-dot button.
-
-For example:
-
-        ┌─────────────────────────┐
-        │ 👁  View Payee Details  │
-        └─────────────────────────┘
-                    ↓
-              View    ⋮
-
-For a bottom-row action:
-
-              View    ⋮
-                    ↑
-        ┌─────────────────────────┐
-        │ 👁  View Payee Details  │
-        └─────────────────────────┘
-
-6. The menu must always remain completely visible inside the browser viewport.
-
-7. Opening the menu must NEVER:
-- create a vertical scrollbar
-- create a horizontal scrollbar
-- increase table height
-- move pagination
-- move the View button
-- resize the table
-- shift any other table row
-
-8. Use the existing professional icon library.
-Use an eye icon for "View Payee Details".
-DO NOT use emoji characters.
-
-9. Menu styling:
-- white background
-- subtle border
-- subtle shadow
-- small border radius
-- comfortable padding
-- compact height
-- professional hover effect
-- icon and text aligned neatly
-- "View Payee Details" must remain completely visible on one line
-
-10. Use overlay positioning (absolute/fixed/portal as appropriate) so the menu does not participate in the table's normal document flow.
-
-FINAL RESULT:
-
-Clicking ⋮ should show ONLY:
-
-┌─────────────────────────┐
-│ 👁  View Payee Details  │
-└─────────────────────────┘
-
-The menu should intelligently appear above or below depending on available space.
-
-The View button must never enlarge.
-No scrollbar should appear.
-Nothing else on the page should move.
-
-Do not modify anything outside the APPROVE page's three-dot menu behavior..
+Current issue: When clicking the ⋮ button, the dropdown overlaps the View button, looks awkward, and can get too close to or outside the table/pagination area. The menu also needs enough width so text such as “View Payee Details” is displayed properly without being clipped.
+Make these changes:
+Keep the existing View button as the primary action and the ⋮ button as the secondary/more-actions button.
+Make the ⋮ button compact and visually clean, around 32–36px, with the icon properly centered.
+Make the dropdown menu appear anchored to the three-dot button, rather than using hardcoded positioning that causes overlap.
+Give the dropdown a suitable width, approximately 180–200px, so labels like View Payee Details fit completely.
+Add a subtle border, shadow, and appropriate border-radius to make the dropdown look like a professional modern menu.
+Keep menu items properly aligned with consistent icon spacing and around 40–44px height.
+Make the dropdown automatically open upward when there isn't enough space below, especially for rows near the bottom of the table.
+Ensure the dropdown stays within the visible viewport/table area and is never clipped.
+Make sure the menu does not cover or push the View button in an awkward way.
+Preserve the current responsive behavior and make sure it works correctly on different screen sizes.
+Do not remove or rename any existing functionality.
+Do not modify unrelated components or styling.
+After making the changes, check all rows, especially the last row, to ensure the dropdown is positioned correctly.
