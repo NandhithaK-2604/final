@@ -1,17 +1,31 @@
-Fix the three-dot dropdown positioning in the Actions column.
-Required behavior:
-The dropdown should prefer to open on the RIGHT side of the three-dot (⋮) button.
-It must remain completely inside the browser viewport.
-If opening fully to the right would make any part of the dropdown go outside the viewport, automatically shift the dropdown left only by the amount necessary to keep it visible.
-Do NOT always position the dropdown on the left.
-Do NOT let it overflow outside the browser window.
-Do NOT create horizontal scrolling.
-Keep the dropdown close to the ⋮ button with an approximately 6–8px gap.
-Give the dropdown a fixed width around 180–200px.
-Keep View Details and Print fully visible.
-The dropdown should not overlap the View button.
-If there is insufficient vertical space below the button, flip it vertically and open above the button.
-The positioning should dynamically respond when the sidebar is expanded/collapsed and when the browser window is resized.
-Implementation guidance: Use the three-dot button as the positioning anchor and calculate/check the available viewport space before positioning the dropdown. Do not rely on hardcoded left, right, top, or negative offsets that only work at one screen size.
-Also fix the Actions column so the View and ⋮ buttons do not shrink or produce unwanted ... when the sidebar is expanded.
-Do not change the existing colors, fonts, table design, sidebar functionality, backend, or unrelated components. Only fix the Actions column responsiveness and dropdown positioning.
+Redesign the Transaction Approval workflow to make the Actions column cleaner and more professional.
+On the main Approval page, remove the three-dot menu and the separate View Payee Details action from the Actions column.
+The Actions column should contain only:
+[ Review ]
+The Review button is the primary action because this is an Approval page.
+When the user clicks Review, open the existing Transaction Review/Review & Approve page.
+On the Review page, add a small secondary button near the transaction/payee information:
+View Payee Details
+This button should allow the user to view the complete payee details for the transaction.
+When clicked, display the payee information in a clean side panel or modal without leaving the Review page.
+The Review page should contain:
+Batch ID
+Maker
+Debit Account
+Amount
+Transaction Currency
+Payment Date
+Status
+Transaction/payee information
+View Payee Details secondary button
+Reject and Approve actions
+Important UX requirements:
+Review is the primary action.
+View Payee Details is a secondary action.
+Do not use a three-dot dropdown on the main table.
+Do not make the user search through menus to find payee details.
+Do not approve anything when Review is clicked.
+The user should review all information first and then explicitly click Approve or Reject.
+Keep the existing colors, typography, sidebar, table structure, and overall design.
+Do not modify unrelated functionality.
+Make the Review page clean and suitable for an enterprise banking application.
