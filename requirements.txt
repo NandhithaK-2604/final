@@ -1,15 +1,19 @@
-Current issue: When clicking the ⋮ button, the dropdown overlaps the View button, looks awkward, and can get too close to or outside the table/pagination area. The menu also needs enough width so text such as “View Payee Details” is displayed properly without being clipped.
-Make these changes:
-Keep the existing View button as the primary action and the ⋮ button as the secondary/more-actions button.
-Make the ⋮ button compact and visually clean, around 32–36px, with the icon properly centered.
-Make the dropdown menu appear anchored to the three-dot button, rather than using hardcoded positioning that causes overlap.
-Give the dropdown a suitable width, approximately 180–200px, so labels like View Payee Details fit completely.
-Add a subtle border, shadow, and appropriate border-radius to make the dropdown look like a professional modern menu.
-Keep menu items properly aligned with consistent icon spacing and around 40–44px height.
-Make the dropdown automatically open upward when there isn't enough space below, especially for rows near the bottom of the table.
-Ensure the dropdown stays within the visible viewport/table area and is never clipped.
-Make sure the menu does not cover or push the View button in an awkward way.
-Preserve the current responsive behavior and make sure it works correctly on different screen sizes.
-Do not remove or rename any existing functionality.
-Do not modify unrelated components or styling.
-After making the changes, check all rows, especially the last row, to ensure the dropdown is positioned correctly.
+Use this prompt
+Change the three-dot Actions dropdown positioning.
+Currently, when the ⋮ button is clicked, the dropdown appears above or below the button, which looks awkward in this table.
+I want the dropdown to open horizontally to the LEFT of the three-dot button, aligned vertically with the button.
+Desired layout:
+View   ⋮   [ View Payee Details / Print ]
+More specifically:
+Keep the View button and ⋮ button exactly as they are.
+When ⋮ is clicked, position the dropdown to the left of the three-dot button.
+Vertically center the dropdown relative to the ⋮ button.
+Maintain a small gap of approximately 8px between the button and dropdown.
+Give the dropdown enough width (around 190–210px) so View Payee Details is displayed completely.
+Do not overlap the View button.
+Do not push or resize the table row.
+Do not change the sidebar, table, colors, fonts, or other components.
+Make sure the dropdown remains inside the viewport at different screen sizes.
+If there isn't enough space to the left, then intelligently fall back to opening above/below.
+Clicking outside should close the dropdown.
+The preferred/default placement is LEFT of the three-dot button, not above or below. Make the positioning clean and professional like a modern banking/enterprise application.
