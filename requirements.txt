@@ -1,19 +1,17 @@
-Use this prompt
-Change the three-dot Actions dropdown positioning.
-Currently, when the ⋮ button is clicked, the dropdown appears above or below the button, which looks awkward in this table.
-I want the dropdown to open horizontally to the LEFT of the three-dot button, aligned vertically with the button.
-Desired layout:
-View   ⋮   [ View Payee Details / Print ]
-More specifically:
-Keep the View button and ⋮ button exactly as they are.
-When ⋮ is clicked, position the dropdown to the left of the three-dot button.
-Vertically center the dropdown relative to the ⋮ button.
-Maintain a small gap of approximately 8px between the button and dropdown.
-Give the dropdown enough width (around 190–210px) so View Payee Details is displayed completely.
-Do not overlap the View button.
-Do not push or resize the table row.
-Do not change the sidebar, table, colors, fonts, or other components.
-Make sure the dropdown remains inside the viewport at different screen sizes.
-If there isn't enough space to the left, then intelligently fall back to opening above/below.
-Clicking outside should close the dropdown.
-The preferred/default placement is LEFT of the three-dot button, not above or below. Make the positioning clean and professional like a modern banking/enterprise application.
+Fix the three-dot dropdown positioning in the Actions column.
+Required behavior:
+The dropdown should prefer to open on the RIGHT side of the three-dot (⋮) button.
+It must remain completely inside the browser viewport.
+If opening fully to the right would make any part of the dropdown go outside the viewport, automatically shift the dropdown left only by the amount necessary to keep it visible.
+Do NOT always position the dropdown on the left.
+Do NOT let it overflow outside the browser window.
+Do NOT create horizontal scrolling.
+Keep the dropdown close to the ⋮ button with an approximately 6–8px gap.
+Give the dropdown a fixed width around 180–200px.
+Keep View Details and Print fully visible.
+The dropdown should not overlap the View button.
+If there is insufficient vertical space below the button, flip it vertically and open above the button.
+The positioning should dynamically respond when the sidebar is expanded/collapsed and when the browser window is resized.
+Implementation guidance: Use the three-dot button as the positioning anchor and calculate/check the available viewport space before positioning the dropdown. Do not rely on hardcoded left, right, top, or negative offsets that only work at one screen size.
+Also fix the Actions column so the View and ⋮ buttons do not shrink or produce unwanted ... when the sidebar is expanded.
+Do not change the existing colors, fonts, table design, sidebar functionality, backend, or unrelated components. Only fix the Actions column responsiveness and dropdown positioning.
