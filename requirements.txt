@@ -1,3 +1,15 @@
-Perform thorough end-to-end testing and fix any identified issues.
-Validate the complete application flow and ensure all required functionality is working as expected.
-Finalize the application and prepare for Monday’s review.
+1. Vaibhav — Upload Batch Creation Integration
+Description:
+Integrate the frontend batch upload functionality with the backend batch creation API. Parse the uploaded CSV data and send the required request payload containing debit account, payment date, transaction currency, and payee details. Display row-level validation errors returned by the backend and prevent duplicate submissions. Ensure large CSV files are submitted as a single batch.
+2. Aryan — Batch List, Detail, Filters and Print Integration
+Description:
+Integrate the batch list, batch detail, filtering, and print functionality with the backend APIs. Replace the existing mock data with backend responses and implement the required query parameters for filtering. Fetch batch details using the batch ID, display the backend data correctly, and ensure the print preview uses the actual batch information.
+3. Yash — Approval Decision Flow Integration
+Description:
+Integrate the approval and rejection workflow with the backend APIs. Implement password/step-up verification before submitting an approval decision and send the required request data to the approval endpoint. After the decision is completed, refresh the batch details, pending approval list, and KPI data from the backend. Ensure the UI does not update the status optimistically before backend confirmation.
+4. Akshay — Accounts, Balances and Statements Integration
+Description:
+Replace the existing mock account data with backend API integration for account balances, account details, transactions, and statements. Implement the required API calls and query parameters, update the UI to handle the actual backend response format, and ensure CSV statement export works correctly with the real data.
+Cross-cutting — Feature Cleanup & UI Handling
+Description:
+Remove remaining mock service imports after feature integration is completed, handle loading and error states consistently, and disable relevant action buttons while API requests are in progress. Verify that the integrated features continue to work after a hard refresh and that no console errors are present.
