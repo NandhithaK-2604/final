@@ -1,40 +1,19 @@
-On the Manage Transactions page, remove the three-dot (⋮) menu from the Actions column.
-
-Keep the existing View and Edit actions exactly as they are.
-
-When the user clicks View, display the existing transaction/batch details exactly as they are currently shown.
-
-Only add a clearly visible "Print" option in the View/Transaction Details screen, preferably at the top-right near the close (X) button.
-
-The Print option should use the existing print functionality if available.
-
-Do not change, remove, or add any other fields, data, layout, API, or functionality. Keep everything else exactly the same.
-IMPORTANT: PRINT MUST BE ONLY ON THE MANAGE TRANSACTIONS PAGE.
-
-On the Manage Transactions page:
-
-1. Remove the three-dot (⋮) menu from the Actions column.
-2. Keep the existing View button for non-draft transactions and Edit button for Draft transactions.
-3. When the user clicks View on Manage Transactions, open the existing transaction/batch details exactly as it currently appears.
-4. Add a small "Print" button INSIDE THIS VIEW DETAILS SCREEN, at the top-right, next to the Close (X) button.
-
-Example:
-
-Manage Transactions
-        ↓
-      View
-        ↓
-┌─────────────────────────────────────────────┐
-│ Transaction Details              [Print] [X]│
-│                                             │
-│ Existing batch/transaction details          │
-│                                             │
-└─────────────────────────────────────────────┘
-
-IMPORTANT:
-- Do NOT add Print anywhere on the Approve Transactions / Review & Approve page.
-- Do NOT modify the Approve page.
-- Do NOT move Print to the Approve/Review modal.
-- Print belongs ONLY to Manage Transactions → View → Transaction Details.
-- Keep all existing details, data, styling, View/Edit functionality and APIs unchanged.
-- Only remove the three-dot menu and add the Print button in the Manage → View details screen.
+Hi Niranjana,
+Sharing our Week 4 retrospective and the progress we made over the past sprint.
+What went well:
+Implemented the required backend controller functions.
+Created DTOs for handling data transfer between the frontend and backend.
+Developed the required APIs for the core user stories.
+Worked on integrating the backend components and ensuring the APIs follow the expected flow.
+Team collaboration remained smooth while integrating and reviewing the backend changes.
+Learnings:
+Gained a better understanding of structuring backend APIs using Spring Boot.
+Learned how controllers, DTOs, and APIs work together to handle requests and responses.
+Understood the importance of keeping the backend structure modular and maintainable.
+Next Sprint Plan:
+Complete the remaining backend implementation and API integrations.
+Integrate the APIs with the frontend and verify the complete flow.
+Perform testing and fix any issues identified during integration.
+Complete the remaining project tasks and ensure the application is ready for the final review by Monday.
+Thanks & Regards,
+Nandhitha K
