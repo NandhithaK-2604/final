@@ -1,62 +1,145 @@
-Modify the batch management frontend according to the following requirements.
+Modify the EXISTING Batch View/Details page to match the attached/reference UI design as closely as possible.
 
-1. REMOVE THE DUPLICATE BUTTON FROM THE BATCH LIST PAGE
-- In the Create Batches / Batch List table, remove the "Duplicate" button from the Actions column.
-- The Actions column should only show "View" (and existing actions such as Edit/Delete where applicable).
-- Do not remove or modify the existing View functionality.
+IMPORTANT:
+- Do NOT create a new page from scratch.
+- Do NOT change the existing backend API contracts.
+- Reuse the existing components, data, routing, API calls, and styling framework.
+- Only modify the layout, positioning, styling, and required UI logic.
 
-2. ADD DUPLICATE BATCH TO THE VIEW BATCH PAGE
-- When the user clicks "View" for a batch, open the existing Batch Details/View page.
-- Add a "Duplicate Batch" button in the TOP-RIGHT corner of the Batch Details page.
-- Place it near the page heading/status and make it visually prominent but consistent with the existing UI.
-- Use an appropriate duplicate/copy icon.
-- Button label should be "Duplicate Batch".
+TARGET DESIGN:
 
-3. REJECTION REASON
-- If the batch status is "Rejected", display the rejection reason clearly near the top of the View Batch page, below the batch header/basic information.
-- Use a clearly distinguishable alert/card section.
-- Heading: "Rejection Reason"
-- Display the actual rejection reason returned by the backend.
-- Use the existing red/error styling for the rejected status.
-- Do NOT hardcode the rejection reason.
-- If the batch is not rejected, do not display the rejection reason section.
+1. PAGE HEADER
+- Keep the existing SavnyaPay/Standard Chartered header and left sidebar.
+- At the top of the content area show:
+    "Back to list"
+    "Batch Details"
+    Batch ID below the heading.
+- On the TOP-RIGHT of the page header, add:
+    [ Duplicate Batch ]
+- Use a copy/duplicate icon.
+- The button should be BLUE/PRIMARY, NOT green.
+- Do not place the Duplicate button below the batch information.
+- Do not place Duplicate in the payee table.
+- Do not show Duplicate in the batch list/table Actions column.
+
+2. BATCH SUMMARY CARD
+Immediately below the page header, display the batch summary in a clean horizontal card.
+
+Show:
+- Debit Account
+- Transaction Currency
+- Payment Date
+- Created By
+- Status
 
 Example:
 
-Batch Details                         [Duplicate Batch]
+Debit Account       Transaction Currency    Payment Date      Created By
+SC-USD-001          USD                     04-09-2026        Yash Operator
 
-BATCH-SC-PENDING-001
-Debit Account: SC-USD-001
-Transaction Currency: USD
-Payment Date: 04-09-2026
-Creator: Yash Operator                         [Rejected]
+                                                      [ Rejected ]
 
----------------------------------------------------------
-⚠ Rejection Reason
-  Payment details are incomplete. Please review the
-  payee information and resubmit.
----------------------------------------------------------
+Use a red/pink badge for Rejected.
 
-Payee Details (2)
----------------------------------------------------------
-Employee ID | Name | Account Number | IFSC/SWIFT | Amount
-...
+3. REJECTION REASON
+If the batch status is REJECTED, display a full-width rejection alert directly below the summary card.
 
-4. DUPLICATE FUNCTIONALITY
-- When "Duplicate Batch" is clicked, call the duplicate batch API that already exists in the backend.
-- Pass the original batch ID to the API.
-- The backend should generate the new unique Batch ID.
-- After successful duplication, navigate the user to the appropriate Create/Edit Batch page for the newly duplicated batch.
-- The duplicated batch must be treated as a new batch.
-- Do not copy the old approval/rejection status into the new batch.
-- Do not modify the original batch.
+Design it like:
 
-5. IMPORTANT
-- Reuse the existing API service, components, styling, routing and state-management patterns wherever possible.
-- Do not create duplicate components unnecessarily.
-- Do not break the existing View, Create, Edit, approval, rejection, or pagination functionality.
-- Handle API loading, success and error states properly.
-- Show a success/error message after the duplicate operation.
-- Make the UI responsive and consistent with the existing application design.
+┌─────────────────────────────────────────────────────────────┐
+│  !    Rejection Reason                                      │
+│       Payment details are incomplete. Please review the    │
+│       payee information and resubmit.                      │
+└─────────────────────────────────────────────────────────────┘
 
-Before making changes, inspect the existing batch list component, View Batch component/page, routing, API service, and batch DTO/model to understand the current implementation. Then modify only the required files.
+Requirements:
+- Light red/pink background.
+- Red border.
+- Red warning/error icon on the left.
+- "Rejection Reason" should be bold.
+- Actual rejection reason must come dynamically from the backend response.
+- NEVER hardcode the rejection reason.
+- If there is no rejection reason or status is not REJECTED, hide this alert completely.
+
+4. PAYEE DETAILS
+Below the rejection reason, show the existing Payee Details table.
+
+Keep the existing payee data and API functionality.
+
+Use a clean white card with:
+"Payee Details (2)"
+
+Table columns:
+- #
+- Employee ID
+- Name
+- Account Number
+- IFSC/SWIFT
+- Amount
+
+Keep the existing pagination and total amount functionality.
+
+5. SPACING AND DESIGN
+Make the page visually similar to the reference design:
+- White/light background.
+- Rounded cards.
+- Subtle borders/shadows.
+- Consistent spacing.
+- Blue primary buttons.
+- Red only for rejected status/rejection alert.
+- Do not use green for the Duplicate Batch button.
+- Align all content properly.
+- Make the page responsive.
+
+6. DUPLICATE BEHAVIOUR
+When the user clicks "Duplicate Batch":
+- Call the existing duplicate batch API.
+- Pass the current/original Batch ID.
+- Backend must generate a new unique Batch ID.
+- Do NOT modify the original batch.
+- Do NOT copy the REJECTED status to the new batch.
+- The duplicated batch should be treated as a new batch/draft.
+- After successful duplication, navigate to the appropriate Create/Edit Batch page for the newly created batch.
+- Show a success message if duplication succeeds.
+- Show a meaningful error message if the API fails.
+- Disable the button while the API request is in progress to prevent duplicate requests.
+
+7. BATCH LIST PAGE
+Remove the Duplicate button from the Batch List table completely.
+
+The Actions column should NOT contain Duplicate.
+
+The user flow should be:
+
+Batch List
+    ↓
+View
+    ↓
+Batch Details
+    ↓
+See Rejection Reason
+    ↓
+[ Duplicate Batch ]
+    ↓
+New duplicated batch
+
+8. DO NOT BREAK EXISTING FUNCTIONALITY
+Before modifying the code, inspect:
+- Existing Batch List component
+- Existing Batch View/Details component
+- Existing routing
+- Existing batch API service
+- Existing batch model/interface/DTO
+- Existing rejection-status handling
+
+Reuse the existing implementation wherever possible.
+
+The final View Batch page should visually follow the reference image:
+- "Batch Details" on the left
+- "Duplicate Batch" on the top-right
+- Batch summary card underneath
+- Rejection Reason alert underneath the summary for rejected batches
+- Payee Details table underneath
+- Existing pagination and Total Amount at the bottom
+
+Do not introduce unnecessary new APIs, components, or dependencies.
