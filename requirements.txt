@@ -1,103 +1,62 @@
-I need to implement/modify the existing Batch functionality in this Spring Boot + React application.
+Modify the batch management frontend according to the following requirements.
 
-Please inspect the existing Batch entity/model, repositories, services, controllers, DTOs, approval/rejection workflow, and React pages/components before making changes. Follow the existing project architecture and naming conventions. Do not change unrelated functionality.
+1. REMOVE THE DUPLICATE BUTTON FROM THE BATCH LIST PAGE
+- In the Create Batches / Batch List table, remove the "Duplicate" button from the Actions column.
+- The Actions column should only show "View" (and existing actions such as Edit/Delete where applicable).
+- Do not remove or modify the existing View functionality.
 
-### 1. Duplicate Batch
+2. ADD DUPLICATE BATCH TO THE VIEW BATCH PAGE
+- When the user clicks "View" for a batch, open the existing Batch Details/View page.
+- Add a "Duplicate Batch" button in the TOP-RIGHT corner of the Batch Details page.
+- Place it near the page heading/status and make it visually prominent but consistent with the existing UI.
+- Use an appropriate duplicate/copy icon.
+- Button label should be "Duplicate Batch".
 
-When a user clicks "Duplicate Batch" for an existing batch:
+3. REJECTION REASON
+- If the batch status is "Rejected", display the rejection reason clearly near the top of the View Batch page, below the batch header/basic information.
+- Use a clearly distinguishable alert/card section.
+- Heading: "Rejection Reason"
+- Display the actual rejection reason returned by the backend.
+- Use the existing red/error styling for the rejected status.
+- Do NOT hardcode the rejection reason.
+- If the batch is not rejected, do not display the rejection reason section.
 
-- Create a completely NEW batch.
-- The original batch must remain unchanged.
-- The new batch must have a UNIQUE Batch ID.
-- Do NOT copy the original Batch ID to the new entity.
-- If the Batch ID is database-generated using @GeneratedValue/JPA, leave the ID null and let the database generate it.
-- If the project uses custom/business Batch ID generation, use the existing backend mechanism to generate a new unique ID.
-- Do NOT generate/change the Batch ID manually in React.
+Example:
 
-Copy all required batch-level information from the original batch.
+Batch Details                         [Duplicate Batch]
 
-Also duplicate all required transaction/detail records:
-- Create NEW detail/transaction entities.
-- Do NOT reuse the original detail IDs.
-- Each new detail must reference the NEW Batch ID.
-- The original batch's details must remain unchanged.
+BATCH-SC-PENDING-001
+Debit Account: SC-USD-001
+Transaction Currency: USD
+Payment Date: 04-09-2026
+Creator: Yash Operator                         [Rejected]
 
-The duplication should be performed inside a @Transactional service method so that if any part of the duplication fails, the complete operation is rolled back.
+---------------------------------------------------------
+⚠ Rejection Reason
+  Payment details are incomplete. Please review the
+  payee information and resubmit.
+---------------------------------------------------------
 
-Prefer an API such as:
+Payee Details (2)
+---------------------------------------------------------
+Employee ID | Name | Account Number | IFSC/SWIFT | Amount
+...
 
-POST /api/batches/{batchId}/duplicate
+4. DUPLICATE FUNCTIONALITY
+- When "Duplicate Batch" is clicked, call the duplicate batch API that already exists in the backend.
+- Pass the original batch ID to the API.
+- The backend should generate the new unique Batch ID.
+- After successful duplication, navigate the user to the appropriate Create/Edit Batch page for the newly duplicated batch.
+- The duplicated batch must be treated as a new batch.
+- Do not copy the old approval/rejection status into the new batch.
+- Do not modify the original batch.
 
-The backend should return the newly created Batch ID/details.
+5. IMPORTANT
+- Reuse the existing API service, components, styling, routing and state-management patterns wherever possible.
+- Do not create duplicate components unnecessarily.
+- Do not break the existing View, Create, Edit, approval, rejection, or pagination functionality.
+- Handle API loading, success and error states properly.
+- Show a success/error message after the duplicate operation.
+- Make the UI responsive and consistent with the existing application design.
 
-Frontend:
-- Add/reuse a "Duplicate Batch" button/action in the existing batch View page.
-- Call the duplicate API.
-- After successful duplication, use the NEW Batch ID returned by the backend.
-- Navigate to the appropriate Create/Edit Batch page using the NEW Batch ID.
-- The duplicated batch should be editable as a new batch.
-- Do not accidentally continue using the original Batch ID.
-
-### 2. Rejected Batch - Display Rejection Reason
-
-There is an existing approval workflow where a batch can be rejected/reverted.
-
-When a batch is rejected and the user clicks "View" for that batch:
-
-- Clearly display that the batch was rejected.
-- Clearly display the rejection reason provided by the approver/reviewer.
-- The rejection reason should be visible directly on the View page and should not be hidden or require the user to search for it.
-- Use an appropriate UI component such as a clearly labelled "Rejection Reason" section/card/alert.
-- Example:
-
-  Status: REJECTED
-
-  Rejection Reason:
-  "Incorrect account details. Please verify the account number and IFSC."
-
-- If the rejection reason is empty/null, handle it gracefully and display an appropriate message instead of showing an empty section.
-- Make sure the rejection reason is fetched from the backend and displayed using the actual stored value.
-- Do NOT hardcode any rejection reason in the frontend.
-- Ensure the reason belongs to the correct batch.
-
-Backend:
-- Inspect the existing rejection/approval implementation and identify where the rejection reason is stored.
-- If the rejection reason already exists, reuse the existing field/API/DTO.
-- If it is not currently returned by the View API, update the appropriate entity/DTO/service/controller response so the frontend receives it.
-- Do not create duplicate fields if an existing rejection-reason field already exists.
-
-Frontend:
-- Update the existing Batch View page to display the rejection status and rejection reason clearly.
-- Only show the rejection-reason section when the batch is rejected/reverted, according to the existing workflow/status values.
-- Keep the existing UI design and styling conventions.
-
-### 3. Important approval workflow
-
-Preserve the existing workflow:
-
-Create → Submit for Approval → Level 1 Approval → Level 2 Approval
-
-If rejected/reverted according to the existing workflow, the batch should return to the appropriate editable/create state while retaining the rejection reason for viewing.
-
-Do not break the existing approval functionality.
-
-### 4. Validation and testing
-
-After implementation:
-- Check Java compilation errors.
-- Check React/TypeScript/ESLint errors.
-- Verify the duplicate API.
-- Verify that the new Batch ID is different from the original.
-- Verify that new transaction/detail IDs are generated.
-- Verify that new details reference the new Batch ID.
-- Verify that the original batch remains unchanged.
-- Verify that a rejected batch's rejection reason appears correctly on the View page.
-- Verify that non-rejected batches do not incorrectly display a rejection reason.
-- Fix any errors introduced by these changes.
-
-Finally, provide:
-1. List of files changed.
-2. What was changed in each file.
-3. Backend API added/modified.
-4. How the new Batch ID is generated.
-5. How the rejection reason flows from backend to frontend.
+Before making changes, inspect the existing batch list component, View Batch component/page, routing, API service, and batch DTO/model to understand the current implementation. Then modify only the required files.
