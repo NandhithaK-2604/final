@@ -1,145 +1,463 @@
-Modify the EXISTING Batch View/Details page to match the attached/reference UI design as closely as possible.
+Implement a role-based notification system in the existing SavnyaPay application.
 
 IMPORTANT:
-- Do NOT create a new page from scratch.
-- Do NOT change the existing backend API contracts.
-- Reuse the existing components, data, routing, API calls, and styling framework.
-- Only modify the layout, positioning, styling, and required UI logic.
+- First inspect the existing backend and frontend architecture.
+- Reuse the existing authentication, roles, batch workflow, approval, rejection, revert, and payment-date logic.
+- Do not create duplicate business logic.
+- Do not hardcode notifications.
+- Notifications must be generated from actual backend workflow events.
+- Do not break existing functionality.
 
-TARGET DESIGN:
+==================================================
+1. NOTIFICATION BELL
+==================================================
 
-1. PAGE HEADER
-- Keep the existing SavnyaPay/Standard Chartered header and left sidebar.
-- At the top of the content area show:
-    "Back to list"
-    "Batch Details"
-    Batch ID below the heading.
-- On the TOP-RIGHT of the page header, add:
-    [ Duplicate Batch ]
-- Use a copy/duplicate icon.
-- The button should be BLUE/PRIMARY, NOT green.
-- Do not place the Duplicate button below the batch information.
-- Do not place Duplicate in the payee table.
-- Do not show Duplicate in the batch list/table Actions column.
+Use the existing notification/bell icon in the application header.
 
-2. BATCH SUMMARY CARD
-Immediately below the page header, display the batch summary in a clean horizontal card.
-
-Show:
-- Debit Account
-- Transaction Currency
-- Payment Date
-- Created By
-- Status
+When the user logs in, the notification bell should show the unread notification count.
 
 Example:
 
-Debit Account       Transaction Currency    Payment Date      Created By
-SC-USD-001          USD                     04-09-2026        Yash Operator
+🔔 3
 
-                                                      [ Rejected ]
+The count must come from the backend.
 
-Use a red/pink badge for Rejected.
+When the user clicks the bell, show a notification dropdown containing the latest notifications.
 
-3. REJECTION REASON
-If the batch status is REJECTED, display a full-width rejection alert directly below the summary card.
+Include:
 
-Design it like:
+- Notification title
+- Notification message
+- Batch ID where applicable
+- Time/date
+- Read/unread state
+- "Mark all as read"
+- "View all notifications"
 
-┌─────────────────────────────────────────────────────────────┐
-│  !    Rejection Reason                                      │
-│       Payment details are incomplete. Please review the    │
-│       payee information and resubmit.                      │
-└─────────────────────────────────────────────────────────────┘
+Unread notifications should be visually highlighted.
 
-Requirements:
-- Light red/pink background.
-- Red border.
-- Red warning/error icon on the left.
-- "Rejection Reason" should be bold.
-- Actual rejection reason must come dynamically from the backend response.
-- NEVER hardcode the rejection reason.
-- If there is no rejection reason or status is not REJECTED, hide this alert completely.
+==================================================
+2. ROLE-BASED NOTIFICATIONS
+==================================================
 
-4. PAYEE DETAILS
-Below the rejection reason, show the existing Payee Details table.
+Notifications must be sent based on the logged-in user's role and the batch workflow.
 
-Keep the existing payee data and API functionality.
+Do NOT send all notifications to every user.
 
-Use a clean white card with:
-"Payee Details (2)"
+Use the existing role and approval assignment logic.
 
-Table columns:
-- #
-- Employee ID
-- Name
-- Account Number
-- IFSC/SWIFT
-- Amount
+--------------------------------------------------
+CREATOR SUBMITS BATCH
+--------------------------------------------------
 
-Keep the existing pagination and total amount functionality.
+When the creator successfully submits a batch for approval:
 
-5. SPACING AND DESIGN
-Make the page visually similar to the reference design:
-- White/light background.
-- Rounded cards.
-- Subtle borders/shadows.
-- Consistent spacing.
-- Blue primary buttons.
-- Red only for rejected status/rejection alert.
-- Do not use green for the Duplicate Batch button.
-- Align all content properly.
-- Make the page responsive.
+Batch status:
+PENDING_LEVEL_1
 
-6. DUPLICATE BEHAVIOUR
-When the user clicks "Duplicate Batch":
-- Call the existing duplicate batch API.
-- Pass the current/original Batch ID.
-- Backend must generate a new unique Batch ID.
-- Do NOT modify the original batch.
-- Do NOT copy the REJECTED status to the new batch.
-- The duplicated batch should be treated as a new batch/draft.
-- After successful duplication, navigate to the appropriate Create/Edit Batch page for the newly created batch.
-- Show a success message if duplication succeeds.
-- Show a meaningful error message if the API fails.
-- Disable the button while the API request is in progress to prevent duplicate requests.
+Send a notification to the assigned Level 1 approver:
 
-7. BATCH LIST PAGE
-Remove the Duplicate button from the Batch List table completely.
+Title:
+"Approval Required"
 
-The Actions column should NOT contain Duplicate.
+Message:
+"Batch {batchId} has been submitted for your approval."
 
-The user flow should be:
+Optionally notify the creator:
 
-Batch List
-    ↓
-View
-    ↓
-Batch Details
-    ↓
-See Rejection Reason
-    ↓
-[ Duplicate Batch ]
-    ↓
-New duplicated batch
+"Batch {batchId} has been successfully submitted for approval."
 
-8. DO NOT BREAK EXISTING FUNCTIONALITY
-Before modifying the code, inspect:
-- Existing Batch List component
-- Existing Batch View/Details component
-- Existing routing
-- Existing batch API service
-- Existing batch model/interface/DTO
-- Existing rejection-status handling
+--------------------------------------------------
+LEVEL 1 APPROVES
+--------------------------------------------------
 
-Reuse the existing implementation wherever possible.
+When Level 1 approves:
 
-The final View Batch page should visually follow the reference image:
-- "Batch Details" on the left
-- "Duplicate Batch" on the top-right
-- Batch summary card underneath
-- Rejection Reason alert underneath the summary for rejected batches
-- Payee Details table underneath
-- Existing pagination and Total Amount at the bottom
+Batch status:
+PENDING_LEVEL_2
 
-Do not introduce unnecessary new APIs, components, or dependencies.
+Send notification to the assigned Level 2 approver:
+
+Title:
+"Approval Required"
+
+Message:
+"Batch {batchId} has been approved at Level 1 and is awaiting your approval."
+
+Send notification to the creator:
+
+Title:
+"Level 1 Approved"
+
+Message:
+"Batch {batchId} has passed Level 1 approval and is now awaiting Level 2 approval."
+
+--------------------------------------------------
+LEVEL 1 REJECTS
+--------------------------------------------------
+
+When Level 1 rejects:
+
+Batch status:
+REJECTED
+
+Send notification to the creator:
+
+Title:
+"Batch Rejected"
+
+Message:
+"Batch {batchId} has been rejected."
+
+Include the rejection reason when available.
+
+The notification should allow the creator to open the Batch Details page and see the rejection reason.
+
+--------------------------------------------------
+LEVEL 1 REVERTS
+--------------------------------------------------
+
+When Level 1 reverts the batch:
+
+Batch status:
+REVERTED
+
+Send notification to the creator:
+
+Title:
+"Batch Reverted"
+
+Message:
+"Batch {batchId} has been reverted. Please review and update the batch."
+
+--------------------------------------------------
+LEVEL 2 APPROVES
+--------------------------------------------------
+
+When Level 2 approves:
+
+Batch status:
+APPROVED / FULLY_APPROVED
+
+Send notification to the creator:
+
+Title:
+"Batch Fully Approved"
+
+Message:
+"Batch {batchId} has been fully approved."
+
+--------------------------------------------------
+LEVEL 2 REJECTS
+--------------------------------------------------
+
+When Level 2 rejects:
+
+Batch status:
+REJECTED
+
+Send notification to the creator:
+
+Title:
+"Batch Rejected"
+
+Message:
+"Batch {batchId} has been rejected."
+
+Include the rejection reason.
+
+--------------------------------------------------
+LEVEL 2 REVERTS
+--------------------------------------------------
+
+When Level 2 reverts:
+
+Batch status:
+REVERTED
+
+Send notification to the creator:
+
+Title:
+"Batch Reverted"
+
+Message:
+"Batch {batchId} has been reverted. Please review and update the batch."
+
+==================================================
+3. PAYMENT DATE NOTIFICATIONS
+==================================================
+
+Implement automatic payment-date reminder notifications.
+
+Use the existing batch paymentDate field.
+
+When the payment date is approaching, create a notification for the appropriate responsible users according to the existing business rules.
+
+For example:
+
+3 days before:
+
+"Payment Date Approaching"
+
+"Payment date for batch {batchId} is in 3 days."
+
+1 day before:
+
+"Payment Date Tomorrow"
+
+"Payment for batch {batchId} is scheduled for tomorrow."
+
+IMPORTANT:
+- Do not notify every user.
+- Notify only the appropriate creator/approver/responsible user according to the application's business rules.
+- Do not create duplicate reminders for the same batch and reminder period.
+- Do not send reminders for already completed/cancelled batches.
+
+Use a backend scheduled job/scheduler for this.
+Do NOT implement payment-date timers only in the frontend.
+
+==================================================
+4. NOTIFICATION DATABASE
+==================================================
+
+Create a Notification entity/table if one does not already exist.
+
+Suggested fields:
+
+id
+recipientUserId
+batchId
+notificationType
+title
+message
+isRead
+createdAt
+
+Use the existing User entity relationship if available.
+
+Add:
+
+- NotificationRepository
+- NotificationService
+- NotificationDTO
+- NotificationType enum
+- Database migration/schema changes if required
+
+==================================================
+5. BACKEND APIs
+==================================================
+
+Create/reuse these APIs:
+
+GET /api/notifications
+
+Return notifications belonging only to the currently authenticated user.
+
+GET /api/notifications/unread-count
+
+Return:
+
+{
+  "count": 3
+}
+
+PUT /api/notifications/{notificationId}/read
+
+Mark the notification as read.
+
+PUT /api/notifications/read-all
+
+Mark all notifications for the logged-in user as read.
+
+IMPORTANT:
+Never accept a userId from the frontend to determine whose notifications are returned.
+
+Get the authenticated user from the existing Spring Security/authentication mechanism.
+
+==================================================
+6. NOTIFICATION SERVICE
+==================================================
+
+Notification creation must happen in the backend service layer after a workflow operation succeeds.
+
+Example:
+
+Submit Batch
+     ↓
+Update batch status
+     ↓
+Determine Level 1 approver
+     ↓
+Create notification for Level 1 approver
+
+Level 1 Approves
+     ↓
+Update batch status
+     ↓
+Determine Level 2 approver
+     ↓
+Create notification for Level 2 approver
+     ↓
+Notify creator
+
+Reject/Revert
+     ↓
+Update batch
+     ↓
+Create notification for creator
+
+If the batch operation fails, do NOT create a notification.
+
+==================================================
+7. FRONTEND
+==================================================
+
+Integrate the notification APIs into the existing frontend.
+
+Header:
+
+🔔 [unread count]
+
+When clicked:
+
+-----------------------------------------
+Notifications                 Mark all read
+-----------------------------------------
+
+🔵 Approval Required
+Batch BATCH-001 has been submitted
+for your approval.
+5 mins ago
+
+🔴 Batch Rejected
+Batch BATCH-002 was rejected.
+View reason →
+20 mins ago
+
+🟢 Level 1 Approved
+Batch BATCH-003 passed Level 1
+and is awaiting Level 2 approval.
+1 hour ago
+
+⚠ Payment Date Approaching
+Payment date for BATCH-004 is tomorrow.
+2 hours ago
+
+-----------------------------------------
+        View All Notifications
+-----------------------------------------
+
+Clicking a notification should:
+
+1. Mark it as read.
+2. Navigate to the relevant batch page.
+3. If rejected, open Batch Details so the rejection reason can be viewed.
+4. If approval is required, open the appropriate approval/review page.
+5. If reverted, open the appropriate Create/Edit page.
+
+Reuse existing routes.
+
+==================================================
+8. ROLE-SPECIFIC EXAMPLES
+==================================================
+
+Creator sees:
+
+- Batch submitted
+- Level 1 approved
+- Level 2 approved
+- Batch rejected
+- Batch reverted
+- Payment-date reminders
+
+Level 1 Approver sees:
+
+- Batches awaiting Level 1 approval
+- Relevant workflow updates
+- Payment reminders only if applicable to their responsibility
+
+Level 2 Approver sees:
+
+- Batches awaiting Level 2 approval
+- Relevant workflow updates
+- Payment reminders only if applicable to their responsibility
+
+The same notification bell should be available to all roles, but the notifications shown must be different based on the authenticated user.
+
+==================================================
+9. DUPLICATE BATCH
+==================================================
+
+Ensure the duplicate batch functionality works correctly with notifications.
+
+When a rejected batch is duplicated:
+
+- Generate a new unique Batch ID.
+- Treat the duplicate as a new batch.
+- Do not copy the old notification history.
+- Do not copy the rejected status.
+- Do not notify approvers immediately.
+- Only create approval notifications when the new batch is actually submitted for approval.
+
+==================================================
+10. SECURITY
+==================================================
+
+Users must only be able to access their own notifications.
+
+Verify:
+
+- Creator cannot access approver notifications.
+- Level 1 approver cannot access another user's notifications.
+- Level 2 approver cannot access another user's notifications.
+- Users can only mark their own notifications as read.
+
+==================================================
+11. TESTING
+==================================================
+
+Add/update tests for:
+
+1. Creator submits → Level 1 approver receives notification.
+2. Level 1 approves → Level 2 approver receives notification.
+3. Level 1 approves → creator receives notification.
+4. Level 1 rejects → creator receives rejection notification.
+5. Level 1 reverts → creator receives revert notification.
+6. Level 2 approves → creator receives fully-approved notification.
+7. Level 2 rejects → creator receives rejection notification.
+8. Level 2 reverts → creator receives revert notification.
+9. Payment date approaching → appropriate reminder is generated.
+10. Duplicate payment reminders are prevented.
+11. Unread count works.
+12. Mark as read works.
+13. Mark all as read works.
+14. Users cannot access another user's notifications.
+
+==================================================
+12. FINAL REQUIREMENT
+==================================================
+
+Before implementing anything:
+
+- Inspect the existing project structure.
+- Identify the existing batch status values.
+- Identify the existing user roles.
+- Identify how Level 1 and Level 2 approvers are determined.
+- Identify the existing paymentDate field.
+- Identify the existing authentication mechanism.
+- Identify existing notification/bell components if present.
+
+Use the existing naming conventions and architecture.
+
+Do not unnecessarily create new APIs if an existing API can be extended safely.
+
+After implementation, provide a summary of:
+
+- Files changed
+- APIs added/modified
+- Database changes
+- Roles supported
+- Notification events implemented
+- Payment-date reminder logic
+- Tests added
+- Any configuration required
