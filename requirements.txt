@@ -1,3 +1,80 @@
-const t = localStorage.getItem('corporate_auth_token');
-const p = JSON.parse(atob(t.split('.')[1]));
-console.log(p);
+I need to modify the existing Batch/Create Batches functionality for Task 19983.
+
+Please first inspect the existing React frontend and Spring Boot backend implementation for batches, including:
+- Create Batches table/page
+- View Batch page/modal
+- BatchController
+- BatchService
+- BatchRepository/entity
+- Batch DTOs
+- Existing approval/rejection flow
+- Existing API service/client used by React
+
+Do not rewrite or replace the existing implementation. Follow the existing project structure, naming conventions, API patterns, exception handling, and UI components.
+
+Required changes:
+
+1. FRONTEND – Create Batches table
+- Keep the existing table structure and columns.
+- For a batch with status REJECTED/REVERTED, keep the existing View action.
+- Do not allow the rejected batch itself to be edited or overwritten.
+- Add the required UI action to duplicate/create a new batch from the rejected batch.
+- For non-rejected statuses, keep the existing behavior unchanged.
+
+2. FRONTEND – View Batch
+- When the user clicks View for a rejected/reverted batch, display the approver's rejection/revert reason clearly.
+- Show the reason only when one exists.
+- Add a "Duplicate Batch" button for rejected/reverted batches.
+- Keep the existing View UI and functionality unchanged for other statuses.
+
+3. BACKEND – Rejection reason
+- Check how the existing approval/rejection reason is stored.
+- If the reason already exists in the entity/database, expose it through the appropriate Batch DTO/API response.
+- Do not create a duplicate field if one already exists.
+- If it is missing, add it consistently with the existing database/entity design.
+- Make sure the frontend can retrieve and display the rejection reason.
+
+4. BACKEND – Duplicate Batch transaction
+Create a new transactional service operation to duplicate a rejected/reverted batch.
+
+Requirements:
+- Accept the original batch ID.
+- Fetch the original batch and validate that it exists.
+- Allow duplication only when the original batch is in the appropriate REJECTED/REVERTED status.
+- Copy the relevant batch details into a NEW batch.
+- Generate a new unique batch ID for the duplicated batch.
+- Do NOT update, delete, or overwrite the original rejected batch.
+- The new batch should start with the appropriate initial status for a newly created batch (use the existing project's status/design).
+- Do not copy fields that must be unique or generated, such as primary key, batch ID, audit fields, approval status/history, timestamps, etc.
+- Preserve the original batch's rejection history/reason; do not incorrectly carry the old approval state into the new batch.
+- Use @Transactional at the appropriate service-layer method so the duplication is atomic.
+- Follow the project's existing exception handling and response conventions.
+
+5. BACKEND API
+Add an API endpoint for duplication following the existing controller conventions, for example:
+
+POST /batches/{batchId}/duplicate
+
+Do not use this exact path if the project already has an established API naming convention; follow the existing convention instead.
+
+Return the newly created batch details/DTO so that the frontend can navigate to the Create Batch page with the duplicated details.
+
+6. FRONTEND duplicate flow
+When "Duplicate Batch" is clicked:
+- Call the new duplicate API.
+- Receive the newly created batch.
+- Navigate to the existing Create Batch page/form.
+- Pre-populate the form using the new batch's details.
+- Allow the creator to modify the details.
+- The creator can then save/create or submit the new batch using the existing flow.
+- Make sure the original rejected batch remains unchanged.
+
+7. IMPORTANT
+- Reuse existing components, services, DTOs, API clients, validation, routing, and styling wherever possible.
+- Do not introduce unnecessary libraries.
+- Do not break existing Approved, Draft, Pending, or other batch flows.
+- Handle API errors properly and show an appropriate frontend message.
+- Check for lazy-loading/JPA relationship issues when duplicating the entity. Avoid blindly copying lazy-loaded relationships; copy only the data required by the new batch according to the existing domain model.
+- Before making changes, explain which files you plan to modify and why.
+- Then implement the changes.
+- Finally, summarize all modified files and explain the complete frontend → controller → service → repository → database flow.
