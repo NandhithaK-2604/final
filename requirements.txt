@@ -1,46 +1,254 @@
-Update only the existing Account Balances page to display the amount in words directly inside each account card. Do not change the existing sidebar, navigation, page structure, colors, branding, or existing functionality.
-For each account card, keep the existing numeric balance as the main/highlighted value. Below the numeric balance, display the corresponding amount in words directly as a small secondary text.
-Example:
+
+> Redesign the existing SavnyaPay “Account Balances” page to match this exact professional fintech UI structure. Do not redesign the application from scratch and do not change the existing functionality or backend logic. Only improve the frontend UI and layout.
+
+Overall design
+
+Create a clean, premium, enterprise banking interface inspired by modern corporate fintech dashboards.
+
+Keep the existing Standard Chartered SavnyaPay branding.
+
+Keep the existing dark navy left sidebar.
+
+Keep the existing navigation items:
+
+Dashboard
+
+Create
+
+Upload
+
+Approve
+
+Manage
+
+Balances
+
+Reports
+
+Help
+
+Settings
+
+
+Keep Balances highlighted as the active page.
+
+Use a very light blue/gray page background.
+
+Use white cards with subtle borders and very soft shadows.
+
+Use consistent rounded corners around 10–12px.
+
+Use a professional sans-serif font.
+
+Maintain generous spacing and strong visual hierarchy.
+
+Avoid excessive gradients, animations, illustrations, or decorative elements.
+
+
+Header
+
+Add a clean top header containing:
+
+Search bar: “Search transactions, batches, or accounts...”
+
+Notification bell with notification count
+
+User avatar
+
+User name and role
+
+Profile dropdown
+
+
+Page header
+
+Display:
+
+Account Balances
+
+Subtitle:
+
+View available balances across your accounts
+
+On the right:
+
+Display amounts in [INR ▾]
+
+The currency dropdown must continue using the existing currency-conversion functionality.
+
+Total balance card
+
+Create a large horizontal summary card:
+
+Total available funds
+
+₹3,114,037.48
+
+Make the numeric value large and prominent.
+
+Do NOT display the amount in words for the total balance if it creates unnecessary repetition.
+
+Account cards
+
+Display the accounts in a responsive 3-column grid on desktop.
+
+Use the existing account data:
+
 SC Sales (USD)
-SC-USD-001
-$4,925,000.00
-Four Million Nine Hundred Twenty Five Thousand US Dollars Only
+
+Account: ••••001
+
+Balance: $4,925,000.00
+
+Converted balance: ≈ ₹49,250.00
+
+Amount in words: Four Million Nine Hundred Twenty Five Thousand US Dollars Only
+
+
 SC Tech (EUR)
-SC-EUR-001
-€2,000,000.00
-Two Million Euros Only
-SC Treasury (GBP)
-SC-GBP-001
-£1,800,000.00
-One Million Eight Hundred Thousand Pounds Only
+
+Account: ••••001
+
+Balance: €2,000,000.00
+
+Converted balance: ≈ ₹18,181.82
+
+Amount in words: Two Million Euros Only
+
+
 SC CIB (INR)
-SC-INR-001
-₹3,000,000.00
-Thirty Lakh Indian Rupees Only
-Important currency-conversion rule:
-The amount in words must correspond to the original account balance and its original currency.
-Do NOT generate the words from the converted amount.
-Example: if the account balance is €2,000,000 and the selected display currency is USD showing ≈ $1,818,181.82, the words must still be “Two Million Euros Only.”
-The converted amount should remain separate and unchanged.
-If displaying the total available funds in words, generate the words based on the total shown in the currently selected display currency.
-Design requirements:
-Do NOT display the text “Amount in words”.
-Do NOT add a “View in words” button.
-Do NOT use a popup or modal.
+
+Account: ••••001
+
+Balance: ₹3,000,000.00
+
+Converted balance should use the existing conversion logic
+
+Amount in words: Thirty Lakh Indian Rupees Only
+
+
+SC Treasury (GBP)
+
+Account: ••••001
+
+Balance: £1,800,000.00
+
+Converted balance: ≈ ₹14,173.23
+
+Amount in words: One Million Eight Hundred Thousand Pounds Only
+
+
+SC Ops (SGD)
+
+Account: ••••001
+
+Balance: SGD 2,400,000.00
+
+Converted balance: ≈ ₹32,432.43
+
+Amount in words: Two Million Four Hundred Thousand Singapore Dollars Only
+
+
+Account card layout
+
+Every card should follow this hierarchy:
+
+[Currency flag] SC Sales                         [USD]
+
+••••001  ◉
+
+$4,925,000.00
+
+≈ ₹49,250.00
+
+─────────────────────────
+
+Four Million Nine Hundred Twenty Five Thousand
+US Dollars Only
+
+Important:
+
+Do NOT display the label “Amount in words”.
+
+Do NOT create a popup.
+
+Do NOT create a “View in words” button.
+
 Do NOT redirect to another page.
-Keep the written amount subtle and secondary.
-Use a smaller font than the numeric balance.
-Use muted text color.
-Allow the written amount to wrap naturally to a maximum of 2 lines.
-Keep all account cards equal in height.
-Use consistent spacing and alignment.
-Add a very subtle divider between the numeric/converted amount and the written amount if necessary.
-Do not make the written amount bold.
-Do not make the cards excessively tall.
-Maintain a clean, professional enterprise-banking appearance.
-Make the amount in words dynamically generated from the actual numeric balance and currency; do not hardcode values.
-Preserve the existing responsive design.
-The key visual idea is simply:
+
+The written amount must be directly visible inside the card.
+
+Numeric balance must be the most prominent element.
+
+Converted amount must be smaller and muted.
+
+Written amount must be smaller, muted, and secondary.
+
+Written amount can wrap to a maximum of 2 lines.
+
+All cards should have equal height.
+
+Use subtle dividers and consistent spacing.
+
+
+Currency conversion rule
+
+Very important: The amount in words must always describe the account's original balance and original currency, NOT the converted value.
+
+Example:
+
 €2,000,000.00
-≈ $1,818,181.82
+
+≈ ₹18,181.82
+
 Two Million Euros Only
+
+Do not write the converted INR amount in words.
+
+Visual details
+
+Add small currency badges such as USD, EUR, INR, GBP, SGD.
+
+Use appropriate currency flags/icons.
+
+Keep account numbers masked.
+
+Use a small eye icon for account-number visibility.
+
+Use blue/navy for primary text and actions.
+
+Use muted gray-blue for secondary information.
+
+Keep status/action icons subtle.
+
+Add a very subtle hover effect to cards.
+
+Maintain accessibility and readable contrast.
+
+
+Responsive behavior
+
+Desktop: 3-column account grid.
+
+Tablet: 2-column grid.
+
+Mobile: 1-column grid.
+
+Written amounts should wrap naturally without breaking the card layout.
+
+
+Critical instruction
+
+Do not change any backend functionality, API calls, currency conversion logic, account data, routes, or business logic.
+
+Do not redesign the sidebar.
+
+Do not add unnecessary tables, charts, buttons, or extra sections.
+
+Only improve the Account Balances page UI to match this clean, spacious, professional banking design.
+
+The final result should look like a real enterprise corporate banking application, not a generic dashboard template.
+
+
+
+One small correction: use your application's actual conversion values from the backend, rather than the example values in the prompt. The prompt's numbers are only there to explain the visual structure.
