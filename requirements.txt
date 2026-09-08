@@ -1,11 +1,80 @@
+Absolutely. If you're giving the prompt to an AI coding/design tool, use this:
 
-Draft status, replace the current Edit text button and standalone trash icon with two consistent square outline icon buttons, matching the visual style of the existing View button.
-Edit
-Use a Pencil / PencilLine outline icon.
-20px icon size.
-Blue icon and 1px blue border.
-White background.
-40px × 40px button.
-8px border radius.
-Clean, thin professional outline.
-Delete
+> Prompt:
+
+Add a Light Mode / Dark Mode theme toggle to my existing SavnyaPay Transaction Management website.
+
+Important: Do NOT change the existing layout, sidebar, navigation, table structure, spacing, typography, icons, buttons, filters, or functionality. Keep the current UI exactly as it is and only introduce theme support.
+
+Place a small theme toggle icon in the top-right header, positioned between the notification (bell) icon and the user/profile icon.
+
+In Light Mode, show a moon icon 🌙 to indicate that clicking it will switch to Dark Mode.
+
+In Dark Mode, show a sun icon ☀️ to indicate that clicking it will switch back to Light Mode.
+
+Use a clean, professional outlined icon style, matching the existing header icons.
+
+Do not use a large toggle switch; use a compact icon button.
+
+Add a subtle hover effect and tooltip such as "Switch to dark mode" / "Switch to light mode".
+
+
+Light Mode
+
+Keep the current appearance:
+
+Light/white page background
+
+White cards
+
+Dark navy text
+
+Subtle gray borders
+
+Existing blue table header
+
+Existing blue buttons
+
+
+Dark Mode
+
+Convert the same UI into a professional banking-style dark theme:
+
+Page background: dark navy
+
+Cards/table: slightly lighter dark navy
+
+Sidebar: dark navy
+
+Primary text: white/light gray
+
+Secondary text: muted gray
+
+Borders: subtle dark gray
+
+Keep the existing blue as the primary accent
+
+Keep status badges readable
+
+Keep all icons clearly visible
+
+
+The exact same components and layout must be maintained in both modes. Only colors/backgrounds/borders/text colors should change.
+
+Use a centralized theme system such as CSS variables/design tokens, so the entire application can switch themes consistently rather than hardcoding colors separately in every component.
+
+The theme should persist after page refresh using localStorage.
+
+Make the final result look modern, clean, professional, minimal, and suitable for an enterprise banking application.
+
+
+
+📍 The exact placement I recommend
+
+☾ Theme | 🔔 Notification | 👤 Profile
+
+So it would look roughly like:
+
+SavnyaPay                         ☾   🔔   👤
+
+That's probably the cleanest location for your current screen because you don't need to touch the sidebar at all.
