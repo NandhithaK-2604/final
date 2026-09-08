@@ -1,85 +1,28 @@
-
-Use this:
-
-> Improve my existing SavnyaPay Transaction Management dashboard and make it look like a modern, premium enterprise banking application. Do not change any business logic, API calls, routes, functionality, or existing data. Only redesign the UI/UX.
-
-Sidebar:
-Use a clean light-gray/white sidebar with clear section headings:
-
-CREATE
-
-Create — PlusCircle
-
-Upload — CloudUpload
-
-
-MANAGE
-
-Manage — ClipboardList
-
-
-FINANCIALS
-
-Balances — Landmark
-
-Transactions — ArrowLeftRight
-
-Reports — FileBarChart
-
-
-Use professional Lucide-style outline icons, 20–22px, with consistent stroke width and alignment. No emojis or mixed icon styles. Highlight the active menu with a subtle light-blue background and blue left indicator.
-
-Header:
-Keep a dark navy-blue top header with the Standard Chartered/SavnyaPay branding on the left and notification bell + user profile on the right.
-
-Main content:
-Create a spacious white/light-gray dashboard with:
-
-Transaction Management as the main heading and a small subtitle such as “View, search and manage all your transactions across accounts.”
-
-Add four clean KPI cards below the heading:
-
-Total Transactions
-
-Total Amount
-
-Pending Transactions
-
-Completed Transactions
-
-
-Each card should have a simple professional outline icon, large value, small descriptive text, rounded corners, subtle border, and very soft shadow.
-
-Search & Filters:
-Place Search, Status, Date From, and Date To in a clean filter card. Use proper input borders, calendar icons, dropdown arrows, and a prominent blue Search button with a secondary Reset button.
-
-Transaction Table:
-Make the table the main focus. Use a clean white card with:
-
-Soft light-blue table header
-
-Clear column spacing
-
-Professional typography
-
-Subtle horizontal row separators
-
-Sort icons in headers
-
-Status badges such as Pending, Completed, Failed
-
-Clean outlined View buttons
-
-Export button at the top-right
-
-Compact pagination at the bottom
-
-
-Keep the existing columns: Batch ID, Maker, Debit Account, Transaction Currency, Payment Date, Payees, Total Amount, Status, Actions.
-
-Visual style:
-Use a corporate banking aesthetic: navy blue, white, light gray, and subtle blue accents. Use 10–12px rounded corners, generous spacing, consistent alignment, minimal shadows, and professional typography. Avoid excessive colors, gradients, huge icons, unnecessary charts, or decorative elements.
-
-Overall goal: Make the dashboard feel clean, premium, trustworthy, modern, and professional like an enterprise banking portal, while keeping the transaction table as the primary focus.
-
-Important: Do not modify functionality or backend integration. Only improve the frontend appearance and UX.
+Update ONLY the Edit and Delete action controls in my existing transaction table. Do not modify the sidebar, navigation, layout, colors, typography, table structure, API, functionality, or any other UI elements.
+For rows with Draft status, replace the current Edit text button and standalone trash icon with two consistent square outline icon buttons, matching the visual style of the existing View button.
+Edit
+Use a Pencil / PencilLine outline icon.
+20px icon size.
+Blue icon and 1px blue border.
+White background.
+40px × 40px button.
+8px border radius.
+Clean, thin professional outline.
+Delete
+Use a Trash2 outline icon.
+20px icon size.
+Red icon and 1px red border.
+White background.
+40px × 40px button.
+8px border radius.
+Clean, thin professional outline.
+Style
+Both buttons must have exactly the same dimensions, border radius, border thickness, alignment, spacing, and visual weight.
+The final Draft row should look like:
+Draft    [ ✎ ] [ 🗑 ]
+Do not use filled buttons, emojis, or different icon styles.
+Add subtle hover states:
+Edit → very light blue background
+Delete → very light red background
+Keep the existing View button unchanged.
+IMPORTANT: Modify ONLY the Edit and Delete icons/action buttons. Do not change anything else in the application
