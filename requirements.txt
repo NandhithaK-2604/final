@@ -1,80 +1,46 @@
-Absolutely. If you're giving the prompt to an AI coding/design tool, use this:
-
-> Prompt:
-
-Add a Light Mode / Dark Mode theme toggle to my existing SavnyaPay Transaction Management website.
-
-Important: Do NOT change the existing layout, sidebar, navigation, table structure, spacing, typography, icons, buttons, filters, or functionality. Keep the current UI exactly as it is and only introduce theme support.
-
-Place a small theme toggle icon in the top-right header, positioned between the notification (bell) icon and the user/profile icon.
-
-In Light Mode, show a moon icon 🌙 to indicate that clicking it will switch to Dark Mode.
-
-In Dark Mode, show a sun icon ☀️ to indicate that clicking it will switch back to Light Mode.
-
-Use a clean, professional outlined icon style, matching the existing header icons.
-
-Do not use a large toggle switch; use a compact icon button.
-
-Add a subtle hover effect and tooltip such as "Switch to dark mode" / "Switch to light mode".
-
-
-Light Mode
-
-Keep the current appearance:
-
-Light/white page background
-
-White cards
-
-Dark navy text
-
-Subtle gray borders
-
-Existing blue table header
-
-Existing blue buttons
-
-
-Dark Mode
-
-Convert the same UI into a professional banking-style dark theme:
-
-Page background: dark navy
-
-Cards/table: slightly lighter dark navy
-
-Sidebar: dark navy
-
-Primary text: white/light gray
-
-Secondary text: muted gray
-
-Borders: subtle dark gray
-
-Keep the existing blue as the primary accent
-
-Keep status badges readable
-
-Keep all icons clearly visible
-
-
-The exact same components and layout must be maintained in both modes. Only colors/backgrounds/borders/text colors should change.
-
-Use a centralized theme system such as CSS variables/design tokens, so the entire application can switch themes consistently rather than hardcoding colors separately in every component.
-
-The theme should persist after page refresh using localStorage.
-
-Make the final result look modern, clean, professional, minimal, and suitable for an enterprise banking application.
-
-
-
-📍 The exact placement I recommend
-
-☾ Theme | 🔔 Notification | 👤 Profile
-
-So it would look roughly like:
-
-SavnyaPay                         ☾   🔔   👤
-
-That's probably the cleanest location for your current screen because you don't need to touch the sidebar at all.
+Update only the existing Account Balances page to display the amount in words directly inside each account card. Do not change the existing sidebar, navigation, page structure, colors, branding, or existing functionality.
+For each account card, keep the existing numeric balance as the main/highlighted value. Below the numeric balance, display the corresponding amount in words directly as a small secondary text.
+Example:
+SC Sales (USD)
+SC-USD-001
+$4,925,000.00
+Four Million Nine Hundred Twenty Five Thousand US Dollars Only
+SC Tech (EUR)
+SC-EUR-001
+€2,000,000.00
+Two Million Euros Only
+SC Treasury (GBP)
+SC-GBP-001
+£1,800,000.00
+One Million Eight Hundred Thousand Pounds Only
+SC CIB (INR)
+SC-INR-001
+₹3,000,000.00
+Thirty Lakh Indian Rupees Only
+Important currency-conversion rule:
+The amount in words must correspond to the original account balance and its original currency.
+Do NOT generate the words from the converted amount.
+Example: if the account balance is €2,000,000 and the selected display currency is USD showing ≈ $1,818,181.82, the words must still be “Two Million Euros Only.”
+The converted amount should remain separate and unchanged.
+If displaying the total available funds in words, generate the words based on the total shown in the currently selected display currency.
+Design requirements:
+Do NOT display the text “Amount in words”.
+Do NOT add a “View in words” button.
+Do NOT use a popup or modal.
+Do NOT redirect to another page.
+Keep the written amount subtle and secondary.
+Use a smaller font than the numeric balance.
+Use muted text color.
+Allow the written amount to wrap naturally to a maximum of 2 lines.
+Keep all account cards equal in height.
+Use consistent spacing and alignment.
+Add a very subtle divider between the numeric/converted amount and the written amount if necessary.
+Do not make the written amount bold.
+Do not make the cards excessively tall.
+Maintain a clean, professional enterprise-banking appearance.
+Make the amount in words dynamically generated from the actual numeric balance and currency; do not hardcode values.
+Preserve the existing responsive design.
+The key visual idea is simply:
+€2,000,000.00
+≈ $1,818,181.82
+Two Million Euros Only
