@@ -1,5 +1,5 @@
-Update ONLY the Edit and Delete action controls in my existing transaction table. Do not modify the sidebar, navigation, layout, colors, typography, table structure, API, functionality, or any other UI elements.
-For rows with Draft status, replace the current Edit text button and standalone trash icon with two consistent square outline icon buttons, matching the visual style of the existing View button.
+
+Draft status, replace the current Edit text button and standalone trash icon with two consistent square outline icon buttons, matching the visual style of the existing View button.
 Edit
 Use a Pencil / PencilLine outline icon.
 20px icon size.
@@ -9,20 +9,3 @@ White background.
 8px border radius.
 Clean, thin professional outline.
 Delete
-Use a Trash2 outline icon.
-20px icon size.
-Red icon and 1px red border.
-White background.
-40px × 40px button.
-8px border radius.
-Clean, thin professional outline.
-Style
-Both buttons must have exactly the same dimensions, border radius, border thickness, alignment, spacing, and visual weight.
-The final Draft row should look like:
-Draft    [ ✎ ] [ 🗑 ]
-Do not use filled buttons, emojis, or different icon styles.
-Add subtle hover states:
-Edit → very light blue background
-Delete → very light red background
-Keep the existing View button unchanged.
-IMPORTANT: Modify ONLY the Edit and Delete icons/action buttons. Do not change anything else in the application
