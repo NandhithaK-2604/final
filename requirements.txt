@@ -1,30 +1,85 @@
-Prompt
-Modify my existing Transaction Approval page without changing the existing functionality, API calls, backend logic, table data, or approval/rejection functionality.
-I want to redesign the page so that the transaction table is the main/primary content and the charts are moved to a separate Analysis/Reports section.
-Main Transaction Approval page:
-Keep the existing Transaction Approval title.
-Keep the existing summary cards such as Pending Approval, Approved, Rejected, and Total Transactions.
-Keep the existing filters/search functionality.
-Keep the transaction table as the main focus of the page.
-Keep all existing table columns, data, pagination, and actions such as Approve, Reject, and View.
-Add a prominent “View Analysis” button at the top-right of the Transaction Approval page.
-Use a clean, professional banking/finance dashboard style.
-Do not remove or break any existing functionality.
-When “View Analysis” is clicked:
-Navigate to a separate Transaction Analysis / Reports page or section.
-Move the existing charts from the Transaction Approval page to this Analysis page.
-Redesign the charts in a clean dashboard layout similar to the reference design.
-Include:
-Pending Amount by Currency → Pie/Donut chart
-Pending / Approved / Rejected → Bar chart
-Approval Trend (Last 7 Days) → Line chart
-The charts must use the existing data/API responses from my project. Do not create fake/static data.
-Keep the existing chart calculations and business logic unless necessary for the new layout.
-Add a “Back to Transaction Approval” button on the Analysis page.
-UI layout:
-Transaction Approval page = summary cards + filters + detailed transaction table.
-Analysis page = charts and visual reports.
-Make the UI responsive and consistent with the existing application's theme.
-Use proper spacing, cards, borders, and readable chart legends.
-Do not duplicate charts on the main approval page.
-Important: Before modifying the code, inspect the existing components, services, API calls, DTOs/models, routing, and chart implementation. Reuse the existing components and data wherever possible. Only change the UI structure required for this redesign. Do not change backend APIs or business logic.
+
+Use this:
+
+> Improve my existing SavnyaPay Transaction Management dashboard and make it look like a modern, premium enterprise banking application. Do not change any business logic, API calls, routes, functionality, or existing data. Only redesign the UI/UX.
+
+Sidebar:
+Use a clean light-gray/white sidebar with clear section headings:
+
+CREATE
+
+Create — PlusCircle
+
+Upload — CloudUpload
+
+
+MANAGE
+
+Manage — ClipboardList
+
+
+FINANCIALS
+
+Balances — Landmark
+
+Transactions — ArrowLeftRight
+
+Reports — FileBarChart
+
+
+Use professional Lucide-style outline icons, 20–22px, with consistent stroke width and alignment. No emojis or mixed icon styles. Highlight the active menu with a subtle light-blue background and blue left indicator.
+
+Header:
+Keep a dark navy-blue top header with the Standard Chartered/SavnyaPay branding on the left and notification bell + user profile on the right.
+
+Main content:
+Create a spacious white/light-gray dashboard with:
+
+Transaction Management as the main heading and a small subtitle such as “View, search and manage all your transactions across accounts.”
+
+Add four clean KPI cards below the heading:
+
+Total Transactions
+
+Total Amount
+
+Pending Transactions
+
+Completed Transactions
+
+
+Each card should have a simple professional outline icon, large value, small descriptive text, rounded corners, subtle border, and very soft shadow.
+
+Search & Filters:
+Place Search, Status, Date From, and Date To in a clean filter card. Use proper input borders, calendar icons, dropdown arrows, and a prominent blue Search button with a secondary Reset button.
+
+Transaction Table:
+Make the table the main focus. Use a clean white card with:
+
+Soft light-blue table header
+
+Clear column spacing
+
+Professional typography
+
+Subtle horizontal row separators
+
+Sort icons in headers
+
+Status badges such as Pending, Completed, Failed
+
+Clean outlined View buttons
+
+Export button at the top-right
+
+Compact pagination at the bottom
+
+
+Keep the existing columns: Batch ID, Maker, Debit Account, Transaction Currency, Payment Date, Payees, Total Amount, Status, Actions.
+
+Visual style:
+Use a corporate banking aesthetic: navy blue, white, light gray, and subtle blue accents. Use 10–12px rounded corners, generous spacing, consistent alignment, minimal shadows, and professional typography. Avoid excessive colors, gradients, huge icons, unnecessary charts, or decorative elements.
+
+Overall goal: Make the dashboard feel clean, premium, trustworthy, modern, and professional like an enterprise banking portal, while keeping the transaction table as the primary focus.
+
+Important: Do not modify functionality or backend integration. Only improve the frontend appearance and UX.
