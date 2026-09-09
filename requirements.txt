@@ -1,1 +1,64 @@
-> Update only the Actions column. Keep View as a text-only “View” button with no eye icon. For Draft rows, use only the pen/edit icon without the word “Edit”, and keep the Delete trash icon. Align the pen icon button and Delete button horizontally and vertically with the View button, so all actions have the same height, border radius, spacing, and alignment. Keep the Actions column compact and fully visible without horizontal scrolling. Do not change any functionality or other parts of the page.
+> Update ONLY the Actions column of the Create Batches table. Do not change any functionality, API calls, routing, table data, sidebar, header, pagination, or other columns.
+
+Make the Actions column match the clean, uniform style shown in the reference image.
+
+Action buttons
+
+View: text-only View — NO eye icon.
+
+Edit: pen/pencil icon ONLY — do NOT show the word Edit.
+
+Delete: trash icon ONLY.
+
+The Edit and Delete icon buttons must have the same height, width, border radius, border thickness, and vertical alignment as each other.
+
+The View button must have the same height and border radius as the Edit/Delete buttons.
+
+Keep View, Edit, and Delete visually consistent as one action-button family.
+
+View and Edit should use the existing blue outline style.
+
+Delete should use the same outline/button structure but with the existing red delete styling.
+
+Use approximately 40–44px height for all action buttons.
+
+Use approximately 40–44px width for icon-only Edit/Delete buttons.
+
+Keep consistent spacing of approximately 8px between Edit and Delete.
+
+
+Table background / column styling
+
+Add a very subtle light-blue/gray background tint to the entire table, including all columns and rows, not just individual cells.
+
+The background should be uniform across the complete table.
+
+Keep the table header as the existing blue header.
+
+Use very subtle borders/dividers between columns and rows.
+
+Do not make the background too dark or colorful.
+
+Maintain a clean enterprise banking/fintech appearance.
+
+
+Alignment
+
+Keep the Actions column fixed and properly aligned on the right.
+
+Center all action buttons vertically and horizontally inside the Actions column.
+
+Make every View button line up at exactly the same position.
+
+Make every Draft row's Edit/Delete buttons line up consistently with the View buttons above and below.
+
+Ensure the complete Actions column is visible on a normal laptop screen with no horizontal scrolling.
+
+Do not allow other columns to expand and push the Actions column off-screen.
+
+
+Important
+
+Do not redesign the page. Only improve the Actions column and table background/styling. Preserve the existing application behavior exactly.
+
+Final appearance should be compact, aligned, uniform, clean, and professional, matching the reference style.
