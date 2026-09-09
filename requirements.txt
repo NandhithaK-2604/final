@@ -1,19 +1,23 @@
-Improve only the “Clone Batch” button on the Batch Details page. Do not modify the sidebar, header, table, page layout, or any existing functionality.
-Replace the current plain-looking Clone Batch button with a modern secondary action button.
-Design requirements:
-Position it in the top-right of the Batch Details header, immediately beside the Rejected status badge.
-Button text: Clone Batch
-Add a clean duplicate/copy icon to the left of the text.
-Use a blue outline/border with blue text and icon.
-White/transparent background in light mode.
-Border radius: approximately 8px.
-Height: approximately 40–44px.
-Use comfortable horizontal padding, around 16px.
-Font should match the existing application's typography.
-Add a subtle hover state: light blue background and slightly darker blue border.
-Add a subtle transition for hover/focus.
-Keep the button visually secondary; the Rejected badge should remain the stronger visual element.
-Make sure the icon and text are vertically aligned and have consistent spacing.
-Maintain proper responsive behavior so the button doesn't overlap the batch title or status on smaller screens.
-Important: Keep the existing Clone Batch click handler/functionality exactly as it is. Only improve its visual styling and placement. Do not create a new component or change business logic unless necessary for styling.
-The final result should look like a polished enterprise banking/payment application: clean, minimal, professional, and consistent with the existing SavnyaPay UI.
+Fix the Batch List table layout so the entire table, including the Action column, fits within the available viewport without a horizontal scrollbar.
+Do not remove any existing columns or functionality.
+Requirements:
+Make the table fully responsive and compact.
+Ensure the Action column is always completely visible.
+Reserve a fixed width of approximately 70–80px for the Action column.
+Keep the Action column aligned to the far right.
+Prefer making the Action column position: sticky; right: 0 so View/Edit actions remain visible on smaller screens.
+Reduce unnecessary horizontal padding inside table cells.
+Reduce table row height to approximately 44–48px.
+Use approximately 13–14px font size for table content.
+Prevent important short fields such as Currency, Payment Date, Payees, Status and Action from wrapping.
+Give Batch ID and Maker columns flexible widths and use CSS ellipsis (text-overflow: ellipsis; overflow: hidden; white-space: nowrap) when the content is too long.
+Keep Debit Account and Total Amount compact and prevent them from unnecessarily expanding.
+Make the Status badges compact.
+Keep the Edit icon/button fully visible and properly centered inside the Action column.
+Use table-layout: fixed or an appropriate responsive column sizing strategy so columns don't expand unpredictably.
+The table should use width: 100% and max-width: 100%.
+Do not allow the table to create a page-level horizontal scrollbar.
+Make sure the layout works on common laptop resolutions such as 1366×768 and 1920×1080.
+Do not change the sidebar, header, backend, API, or existing button functionality.
+Only improve the table's sizing, spacing, responsiveness, and Action-column visibility.
+Most important: On a 1366px-wide laptop screen, the user must be able to see the complete Action column and Edit icon without horizontal scrolling.
