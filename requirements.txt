@@ -1,64 +1,223 @@
-> Update ONLY the Actions column of the Create Batches table. Do not change any functionality, API calls, routing, table data, sidebar, header, pagination, or other columns.
+Yes. I went through your notes. Your topic is basically Testing Process + Test Planning + Test Execution + Automation + Test Strategy/Scope + Tools.
 
-Make the Actions column match the clean, uniform style shown in the reference image.
+If your trainer asked you to give a reverse presentation, you can present it as a flow from “What happens at the end?” → “How did we reach there?” rather than simply reading the notes in order.
 
-Action buttons
-
-View: text-only View — NO eye icon.
-
-Edit: pen/pencil icon ONLY — do NOT show the word Edit.
-
-Delete: trash icon ONLY.
-
-The Edit and Delete icon buttons must have the same height, width, border radius, border thickness, and vertical alignment as each other.
-
-The View button must have the same height and border radius as the Edit/Delete buttons.
-
-Keep View, Edit, and Delete visually consistent as one action-button family.
-
-View and Edit should use the existing blue outline style.
-
-Delete should use the same outline/button structure but with the existing red delete styling.
-
-Use approximately 40–44px height for all action buttons.
-
-Use approximately 40–44px width for icon-only Edit/Delete buttons.
-
-Keep consistent spacing of approximately 8px between Edit and Delete.
+Here’s a natural script you can actually speak 👇
 
 
-Table background / column styling
+---
 
-Add a very subtle light-blue/gray background tint to the entire table, including all columns and rows, not just individual cells.
+🎤 Reverse Presentation Script – Testing Process
 
-The background should be uniform across the complete table.
+1. Start with the outcome
 
-Keep the table header as the existing blue header.
+> “So, what is the final goal of testing?”
 
-Use very subtle borders/dividers between columns and rows.
+The main goal is to make sure that the application works as expected and that the changes we make do not break any existing functionality.
 
-Do not make the background too dark or colorful.
-
-Maintain a clean enterprise banking/fintech appearance.
+To achieve this, we go through different testing activities like test planning, test case design, test execution, regression testing and automation.
 
 
-Alignment
-
-Keep the Actions column fixed and properly aligned on the right.
-
-Center all action buttons vertically and horizontally inside the Actions column.
-
-Make every View button line up at exactly the same position.
-
-Make every Draft row's Edit/Delete buttons line up consistently with the View buttons above and below.
-
-Ensure the complete Actions column is visible on a normal laptop screen with no horizontal scrolling.
-
-Do not allow other columns to expand and push the Actions column off-screen.
 
 
-Important
+---
 
-Do not redesign the page. Only improve the Actions column and table background/styling. Preserve the existing application behavior exactly.
+2. Test Execution
 
-Final appearance should be compact, aligned, uniform, clean, and professional, matching the reference style.
+> Before executing the tests, we need to have proper test cases.
+
+During test execution, we execute the test cases and check whether the actual result matches the expected result.
+
+We also maintain the test status and evidence for each test case.
+
+If a test fails, we identify the issue and raise a defect with the required evidence.
+
+
+
+You can give a simple example:
+
+> For example, if the expected result is that a payment batch should be submitted successfully, but the application shows an error, we mark the test as failed and capture the evidence.
+
+
+
+
+---
+
+3. Test Cases → How do we create them?
+
+> So, before execution, how do we get these test cases?
+
+We prepare test cases based on the requirements and user stories.
+
+We identify different scenarios, including positive and negative scenarios, and then define the expected behaviour.
+
+We also need to make sure that the test cases provide proper traceability to the requirement.
+
+
+
+
+---
+
+4. Test Planning
+
+> Before creating and executing test cases, we need a test plan.
+
+A test plan defines what needs to be tested, how it will be tested, and what the scope of testing is.
+
+It also considers the testing environment, required data, timelines and responsibilities.
+
+
+
+Then introduce the types:
+
+> Based on the requirement and stage of the application, we can perform different types of testing such as SIT, UAT and regression testing.
+
+
+
+
+---
+
+5. SIT – System Integration Testing
+
+> SIT stands for System Integration Testing.
+
+In SIT, we verify whether different components or systems work correctly together.
+
+For example, if our application communicates with another downstream or upstream application, we verify whether the data is being passed correctly between them.
+
+So, SIT is not just about checking one application in isolation. We mainly focus on the integration and interaction between systems.
+
+
+
+
+---
+
+6. UAT – User Acceptance Testing
+
+> UAT stands for User Acceptance Testing.
+
+Here, the application is tested from the business or end-user perspective.
+
+The main objective is to verify whether the application satisfies the business requirements and is acceptable for actual use.
+
+
+
+You can connect SIT and UAT:
+
+> So, in simple terms, SIT focuses more on system integration, while UAT focuses more on business acceptance.
+
+
+
+
+---
+
+7. Regression Testing
+
+> Now, suppose we make a new change or fix a defect.
+
+How do we make sure that the new change hasn't affected the existing functionality?
+
+That's where regression testing comes in.
+
+Regression testing means re-running relevant existing test cases after changes to ensure that previously working functionality continues to work.
+
+For example, if we make a change in the payment submission functionality, we should also verify related existing functionalities to make sure nothing has been broken.
+
+
+
+
+---
+
+8. Test Automation
+
+> After identifying the test cases that need to be executed repeatedly, we can consider test automation.
+
+Instead of manually executing the same test every time, we create automation scripts that execute the test automatically.
+
+Tools such as Selenium or Playwright can be used for UI automation.
+
+Automation is especially useful for repetitive regression test cases because it can reduce manual effort and make repeated execution faster.
+
+
+
+
+---
+
+9. Test Strategy
+
+> Next is the test strategy.
+
+The test strategy gives us a high-level approach for testing.
+
+It defines things such as:
+
+What types of testing we will perform
+
+The testing approach
+
+Environment requirements
+
+Test data
+
+Automation approach
+
+Roles and responsibilities
+
+
+So basically, the test plan tells us what we are going to test, while the strategy gives us the broader approach for testing.
+
+
+
+
+---
+
+10. Test Scope
+
+> We also need to define the test scope.
+
+Test scope tells us what is included and what is not included in testing.
+
+For example, if a particular feature is part of the current release, it will come under our testing scope.
+
+This helps us focus our testing efforts on the relevant areas.
+
+
+
+
+---
+
+11. Tools
+
+> Finally, we use different tools throughout this process.
+
+For example, ADO or Azure DevOps can be used for managing test plans, test cases and tracking work.
+
+For automation, we can use tools like Selenium or Playwright.
+
+These tools help us manage, execute and track our testing activities efficiently.
+
+
+
+
+---
+
+⭐ Strong ending
+
+End with this:
+
+> “So, if I summarize the complete testing process, we start with the requirement, define the test strategy and scope, prepare the test plan and test cases, execute them, capture the evidence and defects, perform regression testing wherever required, and finally automate suitable repetitive test cases.
+
+The overall objective is to ensure that the application meets the requirements and that new changes do not impact existing functionality.”
+
+
+
+
+---
+
+🧠 Easy way to remember your presentation
+
+Just remember this chain:
+
+Requirement → Strategy → Scope → Test Plan → Test Cases → Execution → Evidence/Defects → Regression → Automation → Final Quality
+
+That's much easier than memorising the whole script word-for-word. You can speak naturally around these keywords.
